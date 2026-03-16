@@ -96,4 +96,5 @@ auth    sufficient    pam_exec.so quiet /usr/local/bin/usb_login.sh
 keyin esa  `Ctrl + O`, `Enter`  va  `Ctrl + X`
 
 <br>
+
 Endi ishlatib ko'ring, terminalda `sudo reboot` yoki  shunchaki `super + L`
