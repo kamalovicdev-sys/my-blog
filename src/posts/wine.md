@@ -3,8 +3,9 @@ title: 'Wine'
 date: '2026-01-07'
 ---
 
-## Ubuntu muhitida da Windows dasturlarini ishlatish  Wine o'zi nima va u qanday ishlaydi?
+## **Ubuntu muhitida da Windows dasturlarini ishlatish  Wine o'zi nima va u qanday ishlaydi?**
 
+<br>
 Ubuntu'ga o'tdingiz, hammasi zo'r, tizim tez va xavfsiz. Lekin ba'zida faqat Windows'da ishlaydigan qadrdon dasturlar yoki qandaydir `.exe` fayllar kerak bo'lib qoladi. Ularni Linux'da qanday ochish mumkin? Aynan shu joyda sahnaga **Wine** chiqadi.
 
 **Wine emulator emas**
