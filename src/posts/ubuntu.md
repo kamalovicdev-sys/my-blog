@@ -38,7 +38,6 @@ lsblk -f
 ```
 
 <br>
-<br>
 
 2. Endi kompyuterimizga fleshka ulanganini tekshirib beruvchi fayl yaratamiz.
 
