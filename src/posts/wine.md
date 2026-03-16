@@ -21,9 +21,10 @@ Wine esa – bu shunchaki "tarjimon" __(compatibility layer)__.
 Tasavvur qiling, Windows dasturlari ishlashi uchun tizimga o'zining tilida (Windows API) murojaat qiladi. Masalan, dastur kompyuterga: "ekranga mana bu tugmani chiz" yoki "xotiradagi faylni o'qi" deydi. Linux yadrosi (kernel) esa bu tilni umuman tushunmaydi, chunki uning o'z arxitekturasi bor.
 
 Wine aynan ularni o'rtasida ko'prik vazifasini bajaradi, `.exe` fayldan kelayotgan Windows API buyruqlarini o'sha soniyaning o'zida tezkorlik bilan Linux tushunadigan tilga (POSIX chaqiruvlariga) o'girib beradi.
-Buning foydasi:
 
-# * Dastur xuddi o'zining "uyida" turgandek bemalol ishlaydi.
+<br>
+
+# * Dastur xuddi o'zining uyida turgandek bemalol ishlaydi.
 # * Ortiqcha tizim resursi isrof bo'lmaydi, dasturlar xuddi Windows'dagi kabi tez (native) ishlaydi.
 
 <br>
@@ -74,7 +75,7 @@ wine fayl_nomi.exe
 
 <br>
 
-> **Eslatma:** Dasturning qanday yozilganiga qarab, hamma `.exe` fayllar ham Wine'da 100% xatosiz ishlayvermaydi (ayniqsa (updater) dasturlar USB portlar bilan to'g'ridan-to'g'ri ishlashi kerak bo'lsa, qiyinchilik bo'lishi mumkin).
+> **Eslatma:**  Dasturning qanday yozilganiga qarab hamma `.exe` fayllar ham Wine'da 100% xatosiz ishlayvermaydi ayniqsa (updater) dasturlar USB portlar bilan to'g'ridan-to'g'ri ishlashi kerak bo'lsa, qiyinchilik bo'lishi mumkin.
 
 <br>
 
