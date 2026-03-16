@@ -47,9 +47,9 @@ Bu kichik simulation Lyu Sisinning mashhur The Three-Body Problem ilmiy-fantasti
 **a)** **React majburiy qoidalari (ESLint):** `useFrame` ichida state'larni to'g'ridan-to'g'ri o'zgartirish xatolarini oldini olish uchun komponentlar `EarthModel` va `SunModel` ga ajratildi.
 
 **b)** **DOM Manipulyatsiyasi:** Harorat va masofa kabi tez o'zgaruvchi ma'lumotlarni sekundiga 60 marta React `useState` orqali yangilash brauzerni qotirib qo'yishi aniqlandi. Buning o'rniga, `useRef` orqali to'g'ridan-to'g'ri DOM'ga murojaat qilinib (`HTML injection`),  performance maksimal darajaga olib chiqildi.
-
+<br><br>
 ---
-<br>
+<br><br>
 
 ## 2. Ilmiy qonunlar adaptatsiyasi
 
@@ -58,10 +58,10 @@ Dasturimiz kosmik fizika qonunlariga asoslanadi, lekin sivilizatsiya uzoqroq yas
 ### 1. Nyuton Tortishish Qonuni
 
 Jismlarning harakati quyidagi formula asosida hisoblanadi:
-<br>
+<br><br>
 
 $$F = G \frac{m_1 m_2}{r^2}$$
-<br>
+<br><br>
 **Dasturda qo'llanilishi:** Har bir kadrda Uchta Quyosh (Massasi =< 100) va Yer (Massasi = 0.001) orasidagi o'zaro tortishish vektorlari hisoblanadi. 
 <br>
 ### 2. Teskari Kvadrat Qonuni _(harorat uchun)_
@@ -74,13 +74,13 @@ Yorug'lik va radiatsiya nurlanishi manbadan uzoqlashgan sari masofaning kvadrati
 
 Real hayotda "Tirisolaris" _(agar mavjud bo'lganida)_ tizimida sayyora yo qisqa vaqt ichida yulduzga urilib parchalanib ketadi _(yutulib)_, yoki `Slingshot` (gravitatsion uloqtirish) effekti tufayli tizimdan abadiy cheksizlikka chiqib ketadi. 
 Bunga holat bo'lmasligi uchun _(va foydalanuvchiga simulatsiya qiziqroq bo'lishi uchun )_ 2 ta maxsus mexanizm yozildi:
-<br>
+<br><br>
 1. **Termal Itarish Qalqoni (Anti-Swallow Shield / Venus Limit):**
 
 *Muammo:* Yer quyoshga qulab, nolga bo'linish xatoligini keltirib chiqarayotgan edi.
 
 *Yechim:* Agar sayyora yulduzga ma'lum masofadan ($d < 6.0$) ko'proq yaqinlashsa, tortishish kuchi to'xtaydi va uning o'rniga yulduzning termal shamoli _(radiatsiya bosimi)_ sayyorani kvadratik kuch bilan orqaga itarib yuboradi. Natijada sayyora yutilmaydi.
-<br>
+<br><br>
 
 2. **Gravitatsion Qopqon _Outer Bounds Tether_:**
 
