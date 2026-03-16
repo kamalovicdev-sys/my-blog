@@ -65,7 +65,8 @@ Saqlash uchun `Ctrl + O` ni bosing, `Enter` bilan tasdiqlang va `Ctrl + X`  chiq
 
 3. Skriptimizni tizim o'qishi  uchun unga ruxsatni berishimiz kere
 <br>
-```
+
+```bash
 sudo nano /etc/pam.d/common-auth
 ```
 <br>
@@ -73,7 +74,8 @@ sudo nano /etc/pam.d/common-auth
 
 4. Endi tizim kirish sozlamalarini tahrirlaymiz
 <br>
-```
+5. 
+```bash
 sudo nano /etc/pam.d/common-auth
 ```
 <br>
@@ -82,7 +84,7 @@ Faylning ichidan `auth [success=1 default=ignore] pam_unix.so nullok` degan qato
  shu qatorning tepasiga quyidagini yozing:
 <br>
 
-```
+```bash
 auth    sufficient    pam_exec.so quiet /usr/local/bin/usb_login.sh
 ```
 keyin esa  `Ctrl + O`, `Enter`  va  `Ctrl + X`
