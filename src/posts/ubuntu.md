@@ -14,10 +14,13 @@ Keling  uni logikasi qanaqa ishlashini aytaman. Siz laptopni ishga tushirganizda
 <br>
 **Tekshirish:** Biz yozgan skript kompyuterga ulangan qurilmalar ro'yxati turadigan maxsus jildga  `/dev/disk/by-uuid/` qaraydi.
 <br>
+
 **Tasdiqlash:** Agar o'sha jildda sizning UUID raqamingizdagi fleshka borligini ko'rsa, skript kompyuterning xavfsizlik tizimiga `(PAM)` "Hammasi joyida, bu odamga ruxsat berish mumkin" degan signal `(exit 0)` yuboradi.
 <br>
+
 **Cheklab o'tish:** Ushbu signalni olgach, kompyuter sizdan qandaydir parol so'rash jarayonini umuman bekor qiladi va sizni to'g'ridan-to'g'ri tizimga kiritib yuboradi.
 <br>
+
 **Rad etish:** Agar skript u jildda sizning fleshkangizni topa olmasa, tizimga "Men ruxsat bera olmayman" deydi, va tizim sizdan odatdagi  parolingizni kiritishingizni so'rashda davom etadi.
 <br>
 
@@ -29,6 +32,7 @@ Keling endi buni qilishni boshlaymiz.
 
 1. Ubuntu OS quribmaga xotira kartasini ulang. Bu buyriq bilan kompyuterdagi barcha disklar ro'yxati chiqadi. UUID yozib qo'ying
 <br>
+
 ``` bash
 lsblk -f
 ```
@@ -37,11 +41,13 @@ lsblk -f
 <br>
 
 2. Endi kompyuterimizga fleshka ulanganini tekshirib beruvchi fayl yaratamiz.
+
 ``` bash
 sudo nano /usr/local/bin/usb_login.sh
 ```
 GNU nano oynasi ochiladi. va siz bu skriptni kiritishingiz kerak
 <br>
+
 ``` bash
 #!/bin/bash
 if [ -e "/dev/disk/by-uuid/SIZNING-UUID-KODINGIZ" ]; then
@@ -50,6 +56,8 @@ else
     exit 1
 fi
 ```
+<br>
+
 Yuqoridagi uuid shu yrga yozasiz. `uuid ABCD-1234` tahminan shunaqa bo'ladi.  
 Saqlash uchun `Ctrl + O` ni bosing, `Enter` bilan tasdiqlang va `Ctrl + X`  chiqing
 
