@@ -29,7 +29,7 @@ Keling  uni logikasi qanaqa ishlashini aytaman. Siz laptopni ishga tushirganizda
 
 <br>
 Keling endi buni qilishni boshlaymiz.
-<br>
+<br><br>
 
 1. Ubuntu OS quribmaga xotira kartasini ulang. Bu buyriq bilan kompyuterdagi barcha disklar ro'yxati chiqadi. UUID yozib qo'ying
 <br>
