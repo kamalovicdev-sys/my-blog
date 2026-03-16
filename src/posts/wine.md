@@ -1,5 +1,5 @@
 ---
-title: 'Linux Ubuntu muhitida `.exe` fayli bilan qanday ishlaymiz ? '
+title: 'Linux Ubuntu muhitida .exe fayli bilan qanday ishlaymiz ? '
 date: '2026-01-07'
 ---
 
