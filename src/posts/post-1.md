@@ -63,7 +63,7 @@ Jismlarning harakati quyidagi formula asosida hisoblanadi:
 $$F = G \frac{m_1 m_2}{r^2}$$
 <br><br>
 **Dasturda qo'llanilishi:** Har bir kadrda Uchta Quyosh (Massasi =< 100) va Yer (Massasi = 0.001) orasidagi o'zaro tortishish vektorlari hisoblanadi. 
-<br><br>
+<br>
 ### 2. Teskari Kvadrat Qonuni _(harorat uchun)_
 
 Yorug'lik va radiatsiya nurlanishi manbadan uzoqlashgan sari masofaning kvadratiga teskari proporsional ravishda kamayadi.
@@ -101,4 +101,6 @@ npm run dev
 ```
 
 ---
-[https://3bodyproblem.netlify.app/]
+<br>
+
+https://3bodyproblem.netlify.app
