@@ -91,6 +91,8 @@ Faylning ichidan `auth [success=1 default=ignore] pam_unix.so nullok` degan qato
 ```
 auth    sufficient    pam_exec.so quiet /usr/local/bin/usb_login.sh
 ```
+<br>
+
 keyin esa  `Ctrl + O`, `Enter`  va  `Ctrl + X`
 
 <br>
