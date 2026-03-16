@@ -6,8 +6,10 @@ date: '2026-03-15'
 
 
 # 🌌 3Body Problem 
-## Trisolaris Simulation
+<br>
 
+## Trisolaris Simulation
+<br>
 
 Bu kichik simulation Lyu Sisinning mashhur The Three-Body Problem ilmiy-fantastik kitobi va Netflix serialidan ko'rib ilhomlanib qilingan. Loyiha `React`, `Three.js` va `React Three Fiber` yordamida qurilgan bo'lib, o'z ichiga real vaqtda hisoblanadigan tortishish fizikasi, dinamik yorug'lik va `Astrometrics Dashboard` oladi.
 ![Simulation App Design](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgFKj5Ar5gXavHSDCE64LU0DXwgBlc0GXW7cAAaj0wf2xNNmKSXbC4ZG5n6Qa-080qebF9uERevetUW1mzJaOsBYmvJG7yW3Ap0DhrRb7MU6sloHzRd1PVmBNcOeHY6XSx3kjxWlxfXNxQOV0A7E7Ocsdh_x6K6JDPFPLWutG1agaobQ4Z0CKJX3Z9Wsgs/s768/3%20body%20problem%20netflix%20poster.jpg)
@@ -47,20 +49,21 @@ Bu kichik simulation Lyu Sisinning mashhur The Three-Body Problem ilmiy-fantasti
 **b)** **DOM Manipulyatsiyasi:** Harorat va masofa kabi tez o'zgaruvchi ma'lumotlarni sekundiga 60 marta React `useState` orqali yangilash brauzerni qotirib qo'yishi aniqlandi. Buning o'rniga, `useRef` orqali to'g'ridan-to'g'ri DOM'ga murojaat qilinib (`HTML injection`),  performance maksimal darajaga olib chiqildi.
 
 ---
+<br>
 
 ## 2. Ilmiy qonunlar adaptatsiyasi
 
 Dasturimiz kosmik fizika qonunlariga asoslanadi, lekin sivilizatsiya uzoqroq yashashi va foydalanuvchiga qiziqarli vizual tajriba berishi uchun ba'zi qonuniyatlar kod orqali "_fizikani chetlab o'tib_"  o'zgartirildi.
-
+<br>
 ### 1. Nyuton Tortishish Qonuni
 
 Jismlarning harakati quyidagi formula asosida hisoblanadi:
-
+<br>
 
 $$F = G \frac{m_1 m_2}{r^2}$$
-
+<br>
 **Dasturda qo'llanilishi:** Har bir kadrda Uchta Quyosh (Massasi =< 100) va Yer (Massasi = 0.001) orasidagi o'zaro tortishish vektorlari hisoblanadi. 
-
+<br>
 ### 2. Teskari Kvadrat Qonuni _(harorat uchun)_
 
 Yorug'lik va radiatsiya nurlanishi manbadan uzoqlashgan sari masofaning kvadratiga teskari proporsional ravishda kamayadi.
@@ -71,13 +74,13 @@ Yorug'lik va radiatsiya nurlanishi manbadan uzoqlashgan sari masofaning kvadrati
 
 Real hayotda "Tirisolaris" _(agar mavjud bo'lganida)_ tizimida sayyora yo qisqa vaqt ichida yulduzga urilib parchalanib ketadi _(yutulib)_, yoki `Slingshot` (gravitatsion uloqtirish) effekti tufayli tizimdan abadiy cheksizlikka chiqib ketadi. 
 Bunga holat bo'lmasligi uchun _(va foydalanuvchiga simulatsiya qiziqroq bo'lishi uchun )_ 2 ta maxsus mexanizm yozildi:
-
+<br>
 1. **Termal Itarish Qalqoni (Anti-Swallow Shield / Venus Limit):**
 
 *Muammo:* Yer quyoshga qulab, nolga bo'linish xatoligini keltirib chiqarayotgan edi.
 
 *Yechim:* Agar sayyora yulduzga ma'lum masofadan ($d < 6.0$) ko'proq yaqinlashsa, tortishish kuchi to'xtaydi va uning o'rniga yulduzning termal shamoli _(radiatsiya bosimi)_ sayyorani kvadratik kuch bilan orqaga itarib yuboradi. Natijada sayyora yutilmaydi.
-
+<br>
 
 2. **Gravitatsion Qopqon _Outer Bounds Tether_:**
 
@@ -85,7 +88,7 @@ Bunga holat bo'lmasligi uchun _(va foydalanuvchiga simulatsiya qiziqroq bo'lishi
 
 *Yechim:* Koinot markazidan 35 birlik masofada ko'rinmas chegara tortildi. Agar Yer bu chegaradan o'tsa, koinot uni _spring_ kabi sekin orqaga tortadi va uning energiyasini (tezligini) `vel.multiplyScalar(0.98)` orqali so'ndirib, yana yulduzlar tizimiga yoysimon traektoriya bilan qaytaradi.
 
-
+<br><br>
 
 ## 🚀 Ishga Tushirish
 
