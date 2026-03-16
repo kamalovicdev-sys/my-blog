@@ -56,6 +56,7 @@ else
     exit 1
 fi
 ```
+
 <br>
 
 Yuqoridagi uuid shu yrga yozasiz. `uuid ABCD-1234` tahminan shunaqa bo'ladi.  
