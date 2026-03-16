@@ -83,7 +83,7 @@ Bunga holat bo'lmasligi uchun _(va foydalanuvchiga simulatsiya qiziqroq bo'lishi
 *Yechim:* Agar sayyora yulduzga ma'lum masofadan ($d < 6.0$) ko'proq yaqinlashsa, tortishish kuchi to'xtaydi va uning o'rniga yulduzning termal shamoli _(radiatsiya bosimi)_ sayyorani kvadratik kuch bilan orqaga itarib yuboradi. Natijada sayyora yutilmaydi.
 <br><br>
 
-2. **Gravitatsion Qopqon _Outer Bounds Tether_:**
+2. **Gravitatsion Qopqon _(Outer Bounds Tether)_:**
 
 *Muammo:* Sayyora katta tezlik olib tizimdan chiqib ketsa, ekran bo'shab zerikarli bo'lib qoladi.
 
@@ -91,9 +91,8 @@ Bunga holat bo'lmasligi uchun _(va foydalanuvchiga simulatsiya qiziqroq bo'lishi
 
 <br>
 
-## 🚀 Ishga Tushirish
-
-Loyihani o'z kompyuteringizda ishga tushirib ko'ring:
+## 🚀Loyihani o'z kompyuteringizda ishga tushirib ko'ring:
+<br>
 
 ```bash
 npm install
