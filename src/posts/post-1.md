@@ -88,7 +88,8 @@ Bunga holat bo'lmasligi uchun _(va foydalanuvchiga simulatsiya qiziqroq bo'lishi
 
 *Yechim:* Koinot markazidan 35 birlik masofada ko'rinmas chegara tortildi. Agar Yer bu chegaradan o'tsa, koinot uni _spring_ kabi sekin orqaga tortadi va uning energiyasini (tezligini) `vel.multiplyScalar(0.98)` orqali so'ndirib, yana yulduzlar tizimiga yoysimon traektoriya bilan qaytaradi.
 
-<br><br>
+<br>
+<br>
 
 ## 🚀 Ishga Tushirish
 
