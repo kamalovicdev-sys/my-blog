@@ -12,6 +12,7 @@ Ubuntuni go'zal tomoni uni o'zingiz hohlagancha o'zgartirishlar kiritib user-fri
 
 Keling  uni logikasi qanaqa ishlashini aytaman. Siz laptopni ishga tushirganizda Enter tugmasini bosilsa jarayon  quyidagicha ishlaydi:
 <br>
+
 **Tekshirish:** Biz yozgan skript kompyuterga ulangan qurilmalar ro'yxati turadigan maxsus jildga  `/dev/disk/by-uuid/` qaraydi.
 <br>
 
@@ -84,10 +85,10 @@ Faylning ichidan `auth [success=1 default=ignore] pam_unix.so nullok` degan qato
  shu qatorning tepasiga quyidagini yozing:
 <br>
 
-```bash
+```
 auth    sufficient    pam_exec.so quiet /usr/local/bin/usb_login.sh
 ```
 keyin esa  `Ctrl + O`, `Enter`  va  `Ctrl + X`
 
-
+<br>
 Endi ishlatib ko'ring, terminalda `sudo reboot` yoki  shunchaki `super + L`
