@@ -1,6 +1,6 @@
 ---
 title: '3Body Problem'
-date: '2026-03-15'
+date: '2025-11-26'
 ---
 
 
