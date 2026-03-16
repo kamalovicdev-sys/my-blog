@@ -23,15 +23,20 @@ Tasavvur qiling, Windows dasturlari ishlashi uchun tizimga o'zining tilida (Wind
 Wine aynan ularni o'rtasida ko'prik vazifasini bajaradi, `.exe` fayldan kelayotgan Windows API buyruqlarini o'sha soniyaning o'zida tezkorlik bilan Linux tushunadigan tilga (POSIX chaqiruvlariga) o'girib beradi.
 Buning foydasi:
 
-* Dastur xuddi o'zining "uyida" turgandek bemalol ishlaydi.
-* Ortiqcha tizim resursi isrof bo'lmaydi, dasturlar xuddi Windows'dagi kabi tez (native) ishlaydi.
+# * Dastur xuddi o'zining "uyida" turgandek bemalol ishlaydi.
+# * Ortiqcha tizim resursi isrof bo'lmaydi, dasturlar xuddi Windows'dagi kabi tez (native) ishlaydi.
+
+<br>
 
 **Nimalar uchun qulay ?**
+
+<br>
 
 * Linux'da muqobili yo'q bo'lgan kichik Windows utilitalarini ishga tushirish uchun.
 * Yengil dasturlarni ochish uchun.
 
 **Lekin bitta narsani unutmang! (Muhim)**
+
 <br>
 
 > Hammasi ham doim silliq kechavermaydi. `.exe` faylni Wine orqali ochdingiz degani, u 100% xatosiz ishlaydi degani emas.
@@ -47,25 +52,27 @@ Ayniqsa, hardware bilan to'g'ridan-to'g'ri ishlaydigan dasturlar (masalan, flesh
 
 **O'rnatish va ishlatish**
 
-1. Wine dasturini o'rnatish:
+<br>
+
+# 1. Wine dasturini o'rnatish:
 
 ```bash
 sudo apt update
 sudo apt install wine
-
 ```
+<br>
 
+# 2. Dastur o'rnatilgandan so'ng, `.exe` faylingiz joylashgan papkaga borishiz kere (masalan, `cd Downloads`).
 
-2. Dastur o'rnatilgandan so'ng, `.exe` faylingiz joylashgan papkaga borishiz kere (masalan, `cd Downloads`).
+<br>
 
-3. Faylni ishga tushirish uchun quyidagi buyruqni berasiz:
+# 3. Faylni ishga tushirish uchun quyidagi buyruqni berasiz:
 
 ```bash
 wine fayl_nomi.exe
-
 ```
 
-
+<br>
 
 > **Eslatma:** Dasturning qanday yozilganiga qarab, hamma `.exe` fayllar ham Wine'da 100% xatosiz ishlayvermaydi (ayniqsa (updater) dasturlar USB portlar bilan to'g'ridan-to'g'ri ishlashi kerak bo'lsa, qiyinchilik bo'lishi mumkin).
 
