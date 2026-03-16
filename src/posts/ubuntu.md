@@ -76,7 +76,7 @@ sudo nano /etc/pam.d/common-auth
 
 4. Endi tizim kirish sozlamalarini tahrirlaymiz
 <br>
-5. 
+
 ```bash
 sudo nano /etc/pam.d/common-auth
 ```
