@@ -7,7 +7,7 @@ date: '2026-03-15'
 Ubuntuni go'zal tomoni uni o'zingiz hohlagancha o'zgartirishlar kiritib user-friendly qilishingiz mumkin. 
  Laptopni o'chirib keyin qayta ishga tushurganimda password kiritish jonimga tegdi. Paswordsiz ishlatamanmi yo'q. Usb ulash orqali qurilmamga passwordsiz kiraman. 
 
-![Ubuntu]([https://linuxiac.com/wp-content/uploads/2020/06/ubuntu-linux.jpg](https://cdn.thenewstack.io/media/2023/12/b0026b48-ubuntu.png))
+![Ubuntu](https://cdn.thenewstack.io/media/2023/12/b0026b48-ubuntu.png)
 
 
 Keling  uni logikasi qanaqa ishlashini aytaman. Siz laptopni ishga tushirganizda Enter tugmasini bosilsa jarayon  quyidagicha ishlaydi:
