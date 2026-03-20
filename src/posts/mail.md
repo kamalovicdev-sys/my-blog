@@ -145,7 +145,7 @@ Shu tariqa siz ham, marketing byudjetini tejab, butun boshli CRM va pochta jo'na
 
 <br>
 
-Albatta o'xshash xizmatlar mavjud. **Brevo**, **SendPulus** va boshqa saytlar pullik o'z hizmatlarini taklif qilib kelishadi, bu sizga oyiga taminan $200 tushadi (Tayyor ma'lumotlar bazasi bilan hisoblaganda).  
+Albatta o'xshash xizmatlar mavjud. **Brevo**, **SendPulus** va boshqa saytlar pullik o'z hizmatlarini taklif qilib kelishadi, bu sizga oyiga taminan **$200** tushadi (Tayyor ma'lumotlar bazasi bilan hisoblaganda).  
 
 
 
