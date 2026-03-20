@@ -1,9 +1,11 @@
 ---
-title: 'email рассылка'
+title: 'Python orqali email рассылка yubora olamizmi ?'
 date: '2026-03-17'
 ---
 
-# Qanday qilib 3200 ta korxonaga bloklanmasdan ommaviy xat yuborish tizimini yasadik? (Python)
+# **Qanday qilib 3200 ta korxonaga bloklanmasdan ommaviy xat yuborish tizimini yasadik? (Python)**
+
+<br>
 
 Tasavvur qiling: sizda ajoyib biznes taklif bor va qo'lingizda 3200 dan ortiq salohiyatli mijozlarning (korxonalarning) elektron pochta manzillari ro'yxati turibdi. Maqsad bitta — hammaga xat yuborib chiqish. 
 
