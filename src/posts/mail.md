@@ -7,6 +7,10 @@ date: '2026-03-17'
 
 <br>
 
+![mail](https://static.tildacdn.com/tild3632-6265-4038-b362-663865303534/blog_15.png)
+
+
+
 Tasavvur qiling: sizda ajoyib biznes taklif bor va qo'lingizda 3200 dan ortiq salohiyatli mijozlarning (korxonalarning) elektron pochta manzillari ro'yxati turibdi. Maqsad bitta — hammaga xat yuborib chiqish. 
 
 Lekin buni qanday qilasiz? 
