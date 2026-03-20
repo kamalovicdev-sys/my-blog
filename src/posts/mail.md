@@ -7,7 +7,7 @@ date: '2026-03-17'
 
 <br>
 
-Tasavvur qiling: Siz o'z bizesingizni rivojlantirmoqchisiz. O'z xizmatlaringizni boshqa kanallar orqali reklama qilishingiz kerak. Aytaylik qolingingizda Golden Pages [Link](https://www.goldenpages.uz/en/) olgan  `db` , kompaniyangiz uchun bo'lajak mijozlaringizni minglab ro'yxati bor. 
+Tasavvur qiling: Siz o'z bizesingizni rivojlantirmoqchisiz. O'z xizmatlaringizni boshqa kanallar orqali reklama qilishingiz kerak. Aytaylik qolingingizda [Golden Pages](https://www.goldenpages.uz/en/) olgan  `db` , kompaniyangiz uchun bo'lajak mijozlaringizni minglab ro'yxati bor. 
 Bu ma'lumotlarni qanday ishlatasiz, birma bir qo'ng'iroq qilish yoki xabar yuborib chiqish sizni yillab vaqtingizni olishi mumkin. Bitta tugmani bosish orqali vazifani birdaniga bajarishingiz mumkin va bu mutlaqo bepul desam bu sizga qiziq eshitiladimi ? 
 
 ![mail](https://img1.teletype.in/files/80/de/80ded7f8-97a9-4dc4-8ead-d585901efd28.jpeg)
@@ -16,20 +16,30 @@ Lekin buni qanday qilasiz? Keling jarayonni qanday bo'lishini gapirib beraman.
 
 <br>
 
-* Agar Corporative mail'ga kirib, 3000 ta emailni bittaga kopmaniyalarga yuborsangiz — tabriklayman, siz xalqaro spammerlar ro'yxatiga tushdingiz va pochtangiz uzoq vaqtga bloklandi.
-<br>
+* Agar Corporative mail'ga kirib, 3000 ta emailni bittaga kopmaniyalarga yuborsangiz — tabriklayman, siz xalqaro spammerlar ro'yxatiga tushdingiz va pochtangiz uzoq vaqtga bloklandi (Corporative pochta orqali xabarlar yuborish soni, kunlik limit 350-500 oralig'ida).
+
+* <br>
+
 * Agar kuniga 100 tadan erinmay qo'lda yuborib chiqsangiz — bunga roppa-rosa 1 oy vaqtingiz olib qo'yadi. 
 
-Manga qiziqarli buyurma tushdi (zakaz). E-mail xabarlarni bo'lajak mijozlarga yuborib ciqish. Python'da o'zimizning kichkina, lekin juda "aqlli" va xavfsiz pochta jo'natuvchi dasturni yozishga qaror qildim. Ushbu postda dasturlashni unchalik tushunmaydiganlar uchun ham bu jarayon qanday ishlashini oddiy tilda tushuntirib berishga harakat qilaman.
+Manga qiziqarli buyurma tushdi. E-mail xabarlarni bo'lajak mijozlarga yuborib chiqish. Birinchi navbatda bo'lajak mijozlarni ro'yxatini yaratish. (Tez usul Golden page yoki open soure manbalardan ma'lumotlarni API orqali olish yoki Scrap qilish) Python'da o'zimizning kichkina, lekin juda "aqlli" va xavfsiz pochta jo'natuvchi dasturni yozishga qaror qildim. Ushbu postda dasturlashni unchalik tushunmaydiganlar uchun ham bu jarayon qanday ishlashini oddiy tilda tushuntirib berishga harakat qilaman.
 
 <br>
 
 ## Bizning skriptimiz qanday ishlaydi?
 
-Pochta xizmatlari (Gmail, Mail.ru) bizni yomon ko'rib qolmasligi uchun botimizga bir nechta qat'iy qoidalar o'rnatdik:
+<br>
+
+Yuqorida aytganimdek mizojlarimiz kimligini segmentation qilgach ularni bazalarini opensource orqali ko'chirib oldik. (Scrap mehthod haqida keyingi postlarimda jarayonni qanday bo'lishi haqida aytib beraman)
+
+<br>
+
 1. **Pauza bilan yuborish:** Skript xatlarni pulemyotga o'xshab otmaydi. Har bir xat orasida 45 soniya tanaffus qiladi. Go'yoki xatni haqiqiy odam yozib jo'natayotgandek.
+<br>
 2. **Kunlik limit:** Kuniga faqat 400 ta xat yuboradi va o'zini avtomatik to'xtatadi. Bu Google'ning 500 talik limitidan xavfsiz masofada saqlash uchun kerak.
+<br>
 3. **Shaxsiylashtirish:** Hammaga bir xil zerikarli xat bormaydi. Dastur Excel (CSV) fayldan korxona nomini o'qiydi va chiroyli HTML dizayndagi xatning boshiga *"Hurmatli [Korxona Nomi] rahbariyati"* deb avtomatik qo'yib ketadi.
+<br>
 
 ## Asosiy mantiq: "Aqlli xotira" (Kod qismi)
 
