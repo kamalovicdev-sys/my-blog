@@ -5,22 +5,24 @@ date: '2026-03-17'
 
 # **Qanday qilib 3200 ta korxonaga bloklanmasdan ommaviy xat yuborish tizimini yasadik? (Python)**
 
+<br>
+
 Tasavvur qiling: Siz o'z bizesingizni rivojlantirmoqchisiz. O'z xizmatlaringizni boshqa kanallar orqali reklama qilishingiz kerak. Aytaylik qolingingizda Golden Pages [Link](https://www.goldenpages.uz/en/) olgan  `db` , kompaniyangiz uchun bo'lajak mijozlaringizni minglab ro'yxati bor. 
 Bu ma'lumotlarni qanday ishlatasiz, birma bir qo'ng'iroq qilish yoki xabar yuborib chiqish sizni yillab vaqtingizni olishi mumkin. Bitta tugmani bosish orqali vazifani birdaniga bajarishingiz mumkin va bu mutlaqo bepul desam bu sizga qiziq eshitiladimi ? 
 
 ![mail](https://img1.teletype.in/files/80/de/80ded7f8-97a9-4dc4-8ead-d585901efd28.jpeg)
 
-So'nggi yillarda O'zbekiston bozorida email-рассылка yuborish urfga kirmoqda. Bu marketing uchun juda samarali hisoblanadi. 
+Lekin buni qanday qilasiz? Keling jarayonni qanday bo'lishini gapirib beraman.
 
 <br>
 
-Lekin buni qanday qilasiz? 
+* Agar Corporative mail'ga kirib, 3000 ta emailni bittaga kopmaniyalarga yuborsangiz — tabriklayman, siz xalqaro spammerlar ro'yxatiga tushdingiz va pochtangiz uzoq vaqtga bloklandi.
+<br>
+* Agar kuniga 100 tadan erinmay qo'lda yuborib chiqsangiz — bunga roppa-rosa 1 oy vaqtingiz olib qo'yadi. 
 
-* Agar Gmail'ga kirib, 3000 ta emailni bittaga tiqib yuborsangiz — tabriklayman, siz xalqaro spammerlar ro'yxatiga tushdingiz va pochtangiz bloklandi.
+Manga qiziqarli buyurma tushdi (zakaz). E-mail xabarlarni bo'lajak mijozlarga yuborib ciqish. Python'da o'zimizning kichkina, lekin juda "aqlli" va xavfsiz pochta jo'natuvchi dasturni yozishga qaror qildim. Ushbu postda dasturlashni unchalik tushunmaydiganlar uchun ham bu jarayon qanday ishlashini oddiy tilda tushuntirib berishga harakat qilaman.
 
-* Agar kuniga 100 tadan erinmay qo'lda yuborib chiqsangiz — bunga roppa-rosa 1 oy vaqtingiz ketadi. 
-
-Kecha xuddi shu muammoga duch keldik va uni hal qilish uchun Python'da o'zimizning kichkina, lekin juda "aqlli" va xavfsiz pochta jo'natuvchi botimizni yozishga qaror qildik. Ushbu postda dasturlashni unchalik tushunmaydiganlar uchun ham bu jarayon qanday ishlashini oddiy tilda tushuntirib beraman.
+<br>
 
 ## Bizning skriptimiz qanday ishlaydi?
 
