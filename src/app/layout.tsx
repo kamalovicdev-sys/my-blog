@@ -17,7 +17,7 @@ export default function RootLayout({
       <body className="antialiased bg-[#17212d] text-white">
         <nav className="py-6 border-b border-gray-700/50">
           <div className="container mx-auto px-4 sm:px-6 max-w-5xl flex justify-between items-center">
-            <a href="/" className="text-xl sm:text-2xl font-extrabold tracking-tighter cursor-pointer">Kamalovic's Blog</a>
+            <a href="/" className="text-xl sm:text-2xl font-extrabold tracking-tighter cursor-pointer">Kamalovic's  Blog</a>
             <div className="flex items-center">
               <SubscribeModal />
             </div>
