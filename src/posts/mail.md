@@ -1,5 +1,5 @@
 ---
-title: 'Python orqali _bepul_ email рассылка yubora olamizmi ?'
+title: 'Python orqali bepul email рассылка yubora olamizmi ?'
 date: '2026-03-17'
 ---
 
@@ -16,29 +16,31 @@ Lekin buni qanday qilasiz? Keling jarayonni qanday bo'lishini gapirib beraman.
 
 <br>
 
-* Agar Corporative mail'ga kirib, 3000 ta emailni bittaga kopmaniyalarga yuborsangiz — tabriklayman, siz xalqaro spammerlar ro'yxatiga tushdingiz va pochtangiz uzoq vaqtga bloklandi (Corporative pochta orqali xabarlar yuborish soni, kunlik limit 350-500 oralig'ida).
+* Agar Corporative mail'ga kirib, 3000 ta emailni birdaniga kompaniyalarga yuborsangiz — tabriklayman, siz xalqaro spammerlar ro'yxatiga tushdingiz va pochtangiz uzoq vaqtga bloklandi (Corporative pochta orqali xabarlar yuborish soni, kunlik limit 350-500 oralig'ida).
 
 * <br>
 
 * Agar kuniga 100 tadan erinmay qo'lda yuborib chiqsangiz — bunga roppa-rosa 1 oy vaqtingiz olib qo'yadi. 
 
-Manga qiziqarli buyurma tushdi. E-mail xabarlarni bo'lajak mijozlarga yuborib chiqish. Birinchi navbatda bo'lajak mijozlarni ro'yxatini yaratish. (Tez usul Golden page yoki open soure manbalardan ma'lumotlarni API orqali olish yoki Scrap qilish) Python'da o'zimizning kichkina, lekin juda "aqlli" va xavfsiz pochta jo'natuvchi dasturni yozishga qaror qildim. Ushbu postda dasturlashni unchalik tushunmaydiganlar uchun ham bu jarayon qanday ishlashini oddiy tilda tushuntirib berishga harakat qilaman.
+Sizga kompaniyangiz tomonidan qiziqarli vazifa berildi. E-mail xabarlarni bo'lajak mijozlarga yuborib chiqishingiz kerak. _Xo'sh nima qilasiz ?_ Birinchi navbatda bo'lajak mijozlarni ro'yxatini yaratishingiz kerak. (Tez usul Golden page yoki opensoure manbalardan ma'lumotlarni  `API`  orqali olish yoki  `Scrap`  qilish) Python'da juda "aqlli" va xavfsiz pochta jo'natuvchi dasturni yozishingiz mumkin.
+ <br>
+ Ushbu postda dasturlashni unchalik tushunmaydiganlar uchun ham bu jarayon qanday ishlashini oddiy tilda tushuntirib berishga harakat qilaman.
 
 <br>
 
-## Bizning skriptimiz qanday ishlaydi?
+## Dastur skripti qanday ishlaydi?
 
 <br>
 
-Yuqorida aytganimdek mizojlarimiz kimligini segmentation qilgach ularni bazalarini opensource orqali ko'chirib oldik. (Scrap mehthod haqida keyingi postlarimda jarayonni qanday bo'lishi haqida aytib beraman)
+Yuqorida aytganimdek mizojlarimiz kimligini segmentation qilgach ularni bazalarini opensource orqali ko'chirib olish kerak. (Scrap mehthod haqida keyingi postlarimda jarayonni qanday bo'lishi haqida aytib beraman)
 
 <br>
 
-1. **Pauza bilan yuborish:** Skript xatlarni pulemyotga o'xshab otmaydi. Har bir xat orasida 45 soniya tanaffus qiladi. Go'yoki xatni haqiqiy odam yozib jo'natayotgandek.
+1. **Pauza bilan yuborish:** Skript xatlarni bittada yubobmang. Har bir yuboriluvchi xat orasida 45 soniya tanaffus qilish kerak. Go'yoki xatni haqiqiy odam yozib jo'natayotgandek.
 <br>
-2. **Kunlik limit:** Kuniga faqat 400 ta xat yuboradi va o'zini avtomatik to'xtatadi. Bu Google'ning 500 talik limitidan xavfsiz masofada saqlash uchun kerak.
+2. **Kunlik limit:** Kuniga faqat 400 ta xat yuborasiz va dastur o'zini avtomatik to'xtatadi. Bu qoidalar'ning 500 talik limitidan xavfsiz masofada saqlash uchun kerak.
 <br>
-3. **Shaxsiylashtirish:** Hammaga bir xil zerikarli xat bormaydi. Dastur Excel (CSV) fayldan korxona nomini o'qiydi va chiroyli HTML dizayndagi xatning boshiga *"Hurmatli [Korxona Nomi] rahbariyati"* deb avtomatik qo'yib ketadi.
+3. **Shaxsiylashtirish:** Hammaga bir xil zerikarli xat bormaydi. Dastur Excel (CSV) fayldan korxona nomini o'qiydi va chiroyli HTML dizayndagi xatning boshiga *"Hurmatli [Korxona Nomi] jamoasi"* deb avtomatik qo'yib ketadi.
 
 <br>
 
@@ -46,9 +48,9 @@ Yuqorida aytganimdek mizojlarimiz kimligini segmentation qilgach ularni bazalari
 
 <br>
 
-Skript yozishdagi eng katta xavf nima bilasizmi? Tasavvur qiling, botingiz 150 ta xat yubordi va chiroq o'chib qoldi yoki internet uzildi. Qayta ishga tushirsangiz, u yana 1-xatdan boshlaydimi? Unda oldingi 150 kishiga ikkinchi marta xat boradiku. Bu mijozlarning g'ashiga tegishi mumkin va tabiyki Companiyangiz xabarlarni Spamga tushadi. **_Marhamat qilib SPAMga bor_**.
+Skript yozishdagi eng katta xavf nima bilasizmi? Tasavvur qiling, botingiz 150 ta xat yubordi va chiroq o'chib qoldi yoki internet uzildi. Qayta ishga tushirsangiz, u yana 1-xatdan boshlaydimi? Unda oldingi 150 kishiga ikkinchi marta xat boradi-ku. Bu mijozlarning g'ashiga tegishi mumkin va tabiyki Companiyangiz xabarlarni Spamga tushadi. **_Marhamat qilib SPAMga boring_**.
 
-Shuning uchun botga **xotira** qo'shdim. U har bir jo'natilgan emailni alohida `yuborilganlar.txt` degan oddiy faylga yozib boradi. Jarayon izdan chiqganida soniyaning milli-soniyasida o'sha fayl ichidagi  `log`  ni ko'rib chiqadi va yuborilgan mail pochtalarni  `skip`  qiladi.
+Shuning uchun botga **xotira** qo'shish kerak bo'ladi. U har bir jo'natilgan emailni alohida `yuborilganlar.txt` degan oddiy faylga yozib boradi. Jarayon izdan chiqganida soniyaning milli-soniyasida o'sha fayl ichidagi  `log`  ni ko'rib chiqadi va yuborilgan mail pochtalarni  `skip`  qilib yuboradi.
 
 <br>
 
@@ -95,7 +97,7 @@ for row in reader:
 
 <br>
 
-Biz jarayonni shunchaki qora ekranda emas, maxsus `.log` faylda tarix sifatida saqlanadigan qildik. Dasturni ishga tushirganingizda, u qanday qilib arilar kabi mehnat qilayotganini jonli kuzatib turish mumkin.
+ Dastur jarayonni shunchaki qora ekranda emas, maxsus `.log` faylda tarix sifatida saqlanadigan qildim. Dasturni ishga tushirganingizda, u qanday qilib arilar kabi mehnat qilayotganini jonli kuzatib turishingiz mumkin.
 
 <br>
 
