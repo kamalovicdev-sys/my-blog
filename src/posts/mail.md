@@ -1,5 +1,5 @@
 ---
-title: 'Python orqali email рассылка yubora olamizmi ?'
+title: 'Python orqali _bepul_ email рассылка yubora olamizmi ?'
 date: '2026-03-17'
 ---
 
@@ -120,14 +120,30 @@ Jarayon tugadi. Bugun yuborilgan jami xatlar soni: 400
 Ko'rib turganingizdek, tizim juda tartibli ishlaydi. Qaysi soat, qaysi daqiqada kimga xat ketganini, qaysi email noto'g'riligi sababli xatolik berganini  `log`  ko'rinishida yozib boradi. 400 ta limitga yetgach, jimgina ishlashni to'xtatadi. 
 <br>
 Ertasi kuni uni yana bitta bosish bilan ishga tushiramiz va u roppa-rosa to'xtagan joyidan o'z ishini davom ettirib ketaveradi. Hech qanday bosh og'rig'isiz! 
+
 <br>
-Shu tariqa, marketing byudjetini tejab, butun boshli CRM va pochta jo'natish servislari qiladigan ishni kichik bir Python skripti yordamida o'zimiz uchun bepul va ishonchli tizimga aylantirdik. Agar siz ham shunday muammolarga duch kelsangiz, endi uni qanday hal qilishni bilasiz!
+
+**Mijozlaringiz pochtasiga xabarlar qanday ko'rinishda boradi ?** 
+
+<br>
+
+![mail_viev](https://www.mailjet.com/wp-content/uploads/2025/04/Screenshot-2019-09-24-at-14.08.07.png)
+
+<br>
+
+Har bir yuborilgan mail xabarlar  `html` design ko'rinishida yetib boradi va siz ularni ham analysis qilishingiz va A/B testing o'tkazishingiz mumkin. 
+
+<br>
+
+Shu tariqa siz ham, marketing byudjetini tejab, butun boshli CRM va pochta jo'natish servislari qiladigan ishni kichik bir Python skripti yordamida o'zingiz uchun bepul va ishonchli tizimga yasashingiz mumkin. Agar sizda ham shunday muammolarg paydo bo'lsa, endi uni qanday hal qilishni bilasiz!
 
 <br>
 
 **O'xshash xizmatlar** bormi ?
 
 <br>
+
+Albatta o'xshash xizmatlar mavjud. **Brevo**, **SendPulus** va boshqa saytlar pullik o'z hizmatlarini taklif qilib kelishadi, bu sizga oyiga taminan $200 tushadi (Tayyor ma'lumotlar bazasi bilan hisoblaganda).  
 
 
 
