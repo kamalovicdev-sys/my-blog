@@ -5,16 +5,19 @@ date: '2026-03-17'
 
 # **Qanday qilib 3200 ta korxonaga bloklanmasdan ommaviy xat yuborish tizimini yasadik? (Python)**
 
+Tasavvur qiling: Siz o'z bizesingizni rivojlantirmoqchisiz. O'z xizmatlaringizni boshqa kanallar orqali reklama qilishingiz kerak. Aytaylik qolingingizda Golden Pages [Link](https://www.goldenpages.uz/en/) olgan  `db` , kompaniyangiz uchun bo'lajak mijozlaringizni minglab ro'yxati bor. 
+Bu ma'lumotlarni qanday ishlatasiz, birma bir qo'ng'iroq qilish yoki xabar yuborib chiqish sizni yillab vaqtingizni olishi mumkin. Bitta tugmani bosish orqali vazifani birdaniga bajarishingiz mumkin va bu mutlaqo bepul desam bu sizga qiziq eshitiladimi ? 
+
+![mail](https://img1.teletype.in/files/80/de/80ded7f8-97a9-4dc4-8ead-d585901efd28.jpeg)
+
+So'nggi yillarda O'zbekiston bozorida email-рассылка yuborish urfga kirmoqda. Bu marketing uchun juda samarali hisoblanadi. 
+
 <br>
 
-![mail](https://static.tildacdn.com/tild3632-6265-4038-b362-663865303534/blog_15.png)
-
-
-
-Tasavvur qiling: sizda ajoyib biznes taklif bor va qo'lingizda 3200 dan ortiq salohiyatli mijozlarning (korxonalarning) elektron pochta manzillari ro'yxati turibdi. Maqsad bitta — hammaga xat yuborib chiqish. 
-
 Lekin buni qanday qilasiz? 
+
 * Agar Gmail'ga kirib, 3000 ta emailni bittaga tiqib yuborsangiz — tabriklayman, siz xalqaro spammerlar ro'yxatiga tushdingiz va pochtangiz bloklandi.
+
 * Agar kuniga 100 tadan erinmay qo'lda yuborib chiqsangiz — bunga roppa-rosa 1 oy vaqtingiz ketadi. 
 
 Kecha xuddi shu muammoga duch keldik va uni hal qilish uchun Python'da o'zimizning kichkina, lekin juda "aqlli" va xavfsiz pochta jo'natuvchi botimizni yozishga qaror qildik. Ushbu postda dasturlashni unchalik tushunmaydiganlar uchun ham bu jarayon qanday ishlashini oddiy tilda tushuntirib beraman.
