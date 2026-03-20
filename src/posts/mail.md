@@ -1,0 +1,93 @@
+---
+title: 'email рассылка'
+date: '2026-03-17'
+---
+
+# Qanday qilib 3200 ta korxonaga bloklanmasdan ommaviy xat yuborish tizimini yasadik? (Python)
+
+Tasavvur qiling: sizda ajoyib biznes taklif bor va qo'lingizda 3200 dan ortiq salohiyatli mijozlarning (korxonalarning) elektron pochta manzillari ro'yxati turibdi. Maqsad bitta — hammaga xat yuborib chiqish. 
+
+Lekin buni qanday qilasiz? 
+* Agar Gmail'ga kirib, 3000 ta emailni bittaga tiqib yuborsangiz — tabriklayman, siz xalqaro spammerlar ro'yxatiga tushdingiz va pochtangiz bloklandi.
+* Agar kuniga 100 tadan erinmay qo'lda yuborib chiqsangiz — bunga roppa-rosa 1 oy vaqtingiz ketadi. 
+
+Kecha xuddi shu muammoga duch keldik va uni hal qilish uchun Python'da o'zimizning kichkina, lekin juda "aqlli" va xavfsiz pochta jo'natuvchi botimizni yozishga qaror qildik. Ushbu postda dasturlashni unchalik tushunmaydiganlar uchun ham bu jarayon qanday ishlashini oddiy tilda tushuntirib beraman.
+
+## Bizning skriptimiz qanday ishlaydi?
+
+Pochta xizmatlari (Gmail, Mail.ru) bizni yomon ko'rib qolmasligi uchun botimizga bir nechta qat'iy qoidalar o'rnatdik:
+1. **Pauza bilan yuborish:** Skript xatlarni pulemyotga o'xshab otmaydi. Har bir xat orasida 45 soniya tanaffus qiladi. Go'yoki xatni haqiqiy odam yozib jo'natayotgandek.
+2. **Kunlik limit:** Kuniga faqat 400 ta xat yuboradi va o'zini avtomatik to'xtatadi. Bu Google'ning 500 talik limitidan xavfsiz masofada saqlash uchun kerak.
+3. **Shaxsiylashtirish:** Hammaga bir xil zerikarli xat bormaydi. Dastur Excel (CSV) fayldan korxona nomini o'qiydi va chiroyli HTML dizayndagi xatning boshiga *"Hurmatli [Korxona Nomi] rahbariyati"* deb avtomatik qo'yib ketadi.
+
+## Asosiy mantiq: "Aqlli xotira" (Kod qismi)
+
+Skript yozishdagi eng katta xavf nima bilasizmi? Tasavvur qiling, botingiz 150 ta xat yubordi va chiroq o'chib qoldi yoki internet uzildi. Qayta ishga tushirsangiz, u yana 1-xatdan boshlaydimi? Unda oldingi 150 kishiga ikkinchi marta xat boradi. Bu mijozlarning g'ashiga tegadi.
+
+Shuning uchun biz botga **xotira** qo'shdik. U har bir jo'natilgan emailni alohida `yuborilganlar.txt` degan oddiy faylga yozib boradi. 
+
+Mana o'sha jarayonning asosiy kodi (imkon qadar soddalashtirilgan):
+
+```python
+# Oldin yuborilgan emaillarni txt fayldan o'qib olamiz
+oldin_yuborilganlar = yuborilganlarni_olish()
+
+# Bazamizdagi (Excel) har bir qatorni aylanib chiqamiz
+for row in reader:
+    kompaniya_nomi = row['Kompaniya nomi']
+    qabul_qiluvchi = row['Email']
+
+    # 1. Agar bu emailga oldin xat borgan bo'lsa, o'tkazib yuboramiz (continue)
+    if qabul_qiluvchi in oldin_yuborilganlar:
+        continue  # Bunga tegmaymiz, keyingi qatorga o't!
+
+    # 2. Xatni tayyorlaymiz (Kompaniya nomini joylaymiz)
+    shaxsiylashtirilgan_html = BODY_HTML.format(kompaniya_nomi=kompaniya_nomi)
+    
+    # 3. Xatni jo'natishga urinib ko'ramiz
+    try:
+        server.send_message(msg) # Jo'natish amali
+        
+        # Muvaffaqiyatli ketsa, txt faylga yozib qo'yamiz
+        yuborilganni_saqlash(qabul_qiluvchi)
+        oldin_yuborilganlar.add(qabul_qiluvchi) # Bot xotirasini ham yangilaymiz
+        
+        print(f"Muvaffaqiyatli: {kompaniya_nomi} ga xat ketdi.")
+        
+        # 45 soniya uxlash
+        time.sleep(45)
+        
+    except Exception as e:
+        print(f"Xatolik: {qabul_qiluvchi} ga xat bormadi.")
+```
+
+**Koddagi mantiq oddiy:** Faylni ochadi, emailni ko'radi, qora ro'yxatida (txt faylda) bormi tekshiradi. Agar bo'lsa, indamasdan keyingisiga o'tadi (`continue`). Agar yo'q bo'lsa, xat yuboradi va uni darhol ro'yxatga qo'shib qo'yadi. Shu tariqa, dastur ming marta o'chib yonsa ham, bitta odamga ikkita xat ketmaydi.
+
+## Natija qanday ko'rinadi? (Output)
+
+Biz jarayonni shunchaki qora ekranda emas, maxsus `.log` faylda tarix sifatida saqlanadigan qildik. Dasturni ishga tushirganingizda, u qanday qilib arilar kabi mehnat qilayotganini jonli kuzatib turish mumkin. 
+
+Terminal (va log fayl) da chiqadigan natija taxminan mana bunday bo'ladi:
+
+```text
+2026-03-20 22:30:05 - Dastur ishga tushdi. Oldin yuborilganlar soni: 400
+2026-03-20 22:30:05 - Gmail serveriga ulanilmoqda...
+2026-03-20 22:30:08 - Pochtaga muvaffaqiyatli kirildi. Xatlarni yuborish boshlandi!
+----------------------------------------
+2026-03-20 22:30:10 - [401] Muvaffaqiyatli: "UNISPORT TECH" MCHJ (napo1991@mail.ru)
+2026-03-20 22:30:56 - [402] Muvaffaqiyatli: "GREEN AGRO" LLC (info@greenagro.uz)
+2026-03-20 22:31:42 - [403] Muvaffaqiyatli: "BUILD MASTER" XK (director@build.uz)
+...
+2026-03-20 23:15:00 - ❌ Xatolik yuz berdi (notogri_email@.ru): Noto'g'ri format
+...
+2026-03-21 02:45:10 - ✅ Kunlik limitga (400 ta) yetildi. Dastur o'z ishini yakunladi.
+----------------------------------------
+Jarayon tugadi. Bugun yuborilgan jami xatlar: 400
+```
+
+Ko'rib turganingizdek, tizim juda tartibli ishlaydi. Qaysi soat, qaysi daqiqada kimga xat ketganini, qaysi email noto'g'riligi sababli xatolik berganini bitta-bitta yozib boradi. 400 ta limitga yetgach, jimgina ishlashni to'xtatadi. 
+
+Ertasi kuni uni yana bitta bosish bilan ishga tushiramiz va u roppa-rosa 801-korxonadan o'z ishini davom ettirib ketaveradi. Hech qanday bosh og'rig'isiz! 
+
+Shu tariqa, marketing byudjetini tejab, butun boshli CRM va pochta jo'natish servislari qiladigan ishni kichik bir Python skripti yordamida o'zimiz uchun bepul va ishonchli tizimga aylantirdik. Agar siz ham shunday muammolarga duch kelsangiz, endi uni qanday hal qilishni bilasiz!
+
