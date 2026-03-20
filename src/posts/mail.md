@@ -95,9 +95,9 @@ for row in reader:
 
 <br>
 
-Biz jarayonni shunchaki qora ekranda emas, maxsus `.log` faylda tarix sifatida saqlanadigan qildik. Dasturni ishga tushirganingizda, u qanday qilib arilar kabi mehnat qilayotganini jonli kuzatib turish mumkin. 
+Biz jarayonni shunchaki qora ekranda emas, maxsus `.log` faylda tarix sifatida saqlanadigan qildik. Dasturni ishga tushirganingizda, u qanday qilib arilar kabi mehnat qilayotganini jonli kuzatib turish mumkin.
 
-Terminal (va log fayl) da chiqadigan natija taxminan mana bunday bo'ladi:
+<br>
 
 ```text
 2026-03-20 22:30:05 - Dastur ishga tushdi. Oldin yuborilgan mail'lar soni: 400
@@ -129,9 +129,5 @@ Shu tariqa, marketing byudjetini tejab, butun boshli CRM va pochta jo'natish ser
 
 <br>
 
-| Left columns  | Right columns |
-| ------------- |:-------------:|
-| left foo      | right foo     |
-| left bar      | right bar     |
-| left baz      | right baz     |
+
 
