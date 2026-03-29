@@ -3,6 +3,7 @@ title: 'Tails OS mahfiyligingiz to'liq taminlay oladigan cho'ntak kompyuteri'
 date: '2026-03-29'
 ---
 
+
 # **Bu method o'zidan doim havfsiraydigan va doim meni kuzatib yurishibdi yoki shunchaki xafsizlikni o'ylaydigan insonlarga to'g'ri keladi.**
 
 <br>
