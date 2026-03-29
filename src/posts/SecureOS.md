@@ -1,6 +1,6 @@
 ---
 title: 'Tails OS mahfiyligingiz to'liq taminlay oladigan cho'ntak kompyuteri'
-date: '2026-03-29'
+date: '2026-03-27'
 ---
 
 
