@@ -23,8 +23,10 @@ Lekin buni qanday qilasiz? Keling jarayonni qanday bo'lishini gapirib beraman.
 * Agar kuniga 100 tadan erinmay qo'lda yuborib chiqsangiz — bunga roppa-rosa 1 oy vaqtingiz olib qo'yadi. 
 
 Sizga kompaniyangiz tomonidan qiziqarli vazifa berildi. E-mail xabarlarni bo'lajak mijozlarga yuborib chiqishingiz kerak. _Xo'sh nima qilasiz ?_ Birinchi navbatda bo'lajak mijozlarni ro'yxatini yaratishingiz kerak. (Tez usul Golden page yoki opensoure manbalardan ma'lumotlarni  `API`  orqali olish yoki  `Scrap`  qilish) Python'da juda "aqlli" va xavfsiz pochta jo'natuvchi dasturni yozishingiz mumkin.
- <br>
- Ushbu postda dasturlashni unchalik tushunmaydiganlar uchun ham bu jarayon qanday ishlashini oddiy tilda tushuntirib berishga harakat qilaman.
+ 
+<br>
+
+Ushbu postda dasturlashni unchalik tushunmaydiganlar uchun ham bu jarayon qanday ishlashini oddiy tilda tushuntirib berishga harakat qilaman.
 
 <br>
 
