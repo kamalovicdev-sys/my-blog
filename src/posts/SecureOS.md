@@ -1,5 +1,5 @@
 ---
-title: 'Tails OS mahfiyligingiz to'liq taminlay oladigan cho'ntak kompyuteri. '
+title: 'Tails OS mahfiyligingiz to'liq taminlay oladigan cho'ntak kompyuteri.'
 date: '2026-03-27'
 ---
 
@@ -23,3 +23,4 @@ Iz qoldirmaslik: Operatsion tizim faqat kompyuterning operativ xotirasida (RAM) 
 <br>
 
 Favqulodda vaziyat: Agar xavf tug'ilsa, shunchaki fleshkani sug'urib olasiz. Kompyuter darhol o'chadi va barcha jarayonlar, parollar va xabarlar izsiz yo'qoladi.
+
