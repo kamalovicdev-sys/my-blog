@@ -1,6 +1,6 @@
 ---
 title: 'Python orqali bepul email рассылка yubora olamizmi ?'
-date: '2026-03-17'
+date: '2026-03-16'
 ---
 
 # **Qanday qilib 3200 ta korxonaga bloklanmasdan ommaviy xat yuborish tizimini yasadik? (Python)**
