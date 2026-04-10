@@ -1,6 +1,6 @@
 ---
 title: 'Python orqali bepul email рассылка yubora olamizmi ?'
-date: '2026-03-16'
+date: '2026-03-18'
 ---
 
 # **Qanday qilib 3200 ta korxonaga bloklanmasdan ommaviy xat yuborish tizimini yasadik? (Python)**
@@ -148,8 +148,5 @@ Shu tariqa siz ham, marketing byudjetini tejab, butun boshli CRM va pochta jo'na
 <br>
 
 Albatta o'xshash xizmatlar mavjud. **Brevo**, **SendPulus** va boshqa saytlar pullik o'z xizmatlarini taklif qilib kelishadi, bu sizga oyiga taminan **$200** tushadi (Tayyor ma'lumotlar bazasi bilan hisoblaganda).  
-
-
-
 
 
