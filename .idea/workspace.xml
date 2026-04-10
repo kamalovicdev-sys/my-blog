@@ -4,15 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a1b3d2a7-caf0-4983-ba5b-c575e259347d" name="Changes" comment="edits">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/my-blog.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-    </list>
+    <list default="true" id="a1b3d2a7-caf0-4983-ba5b-c575e259347d" name="Changes" comment="edits" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -118,6 +110,7 @@
       <workItem from="1774813517681" duration="749000" />
       <workItem from="1774814577538" duration="90000" />
       <workItem from="1774842700873" duration="440000" />
+      <workItem from="1774941185411" duration="11000" />
     </task>
     <task id="LOCAL-00001" summary="update">
       <option name="closed" value="true" />
