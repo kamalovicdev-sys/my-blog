@@ -40,8 +40,8 @@ Quyida Pythonda nol tajribadan ishga tayyor dasturchiga aylanish uchun tasdiqlan
 
 To'rt bosqichli tizim:
 
-Asosiy ko'nikmalarni o'zlashtiring
-Muhim vositalar bilan samarali ishlang
-Yuqori talabga ega bo'lgan sohada ixtisoslashing
-Python'dagi birinchi ishingizni toping
+* Asosiy ko'nikmalarni o'zlashtiring
+* Muhim vositalar bilan samarali ishlang
+* Yuqori talabga ega bo'lgan sohada ixtisoslashing
+* Python'dagi birinchi ishingizni toping
 Keling, har bir bosqichni qanday bajarishni batafsil ko'rib chiqaylik.
