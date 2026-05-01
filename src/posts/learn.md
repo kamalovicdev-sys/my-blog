@@ -40,8 +40,51 @@ Quyida Pythonda nol tajribadan ishga tayyor dasturchiga aylanish uchun tasdiqlan
 
 To'rt bosqichli tizim:
 
-* 1. Asosiy ko'nikmalarni o'zlashtiring
-* 2. Muhim vositalar bilan samarali ishlang
-* 3. Yuqori talabga ega bo'lgan sohada ixtisoslashing
-* 4. Python'dagi birinchi ishingizni toping
+1. Asosiy ko'nikmalarni o'zlashtiring
+2. Muhim vositalar bilan samarali ishlang
+3. Yuqori talabga ega bo'lgan sohada ixtisoslashing
+4.  Python'dagi birinchi ishingizni toping
 Keling, har bir bosqichni qanday bajarishni batafsil ko'rib chiqaylik.
+
+<br>
+
+Keling, har bir bosqichni qanday bajarishni batafsil ko'rib chiqaylik.
+
+<br>
+
+### Python o'rganuvchilari yo'l qo'yadigan 1-sonli xato
+
+Yo'l xaritasiga o'tishdan oldin, keling, Python o'rganish jarayonlarining ko'pchiligini biron bir joyga yetmasdan oldin to'xtatadigan xatoni ko'rib chiqaylik.
+
+#### Passiv o'rganish.
+
+Darsliklarni tomosha qilish, kitob o'qish, boshqa odamlarning kodlariga amal qilish. Tadqiqotlar shuni ko'rsatadiki, bu yondashuv sizga iste'mol qilgan narsangizning atigi 20 foizini saqlab qolishga yordam beradi. Siz o'zingizni samarali his qilasiz. Siz ko'nikmalarni rivojlantirmayapsiz.
+
+<br>
+
+Kod yozganingizda, loyihalar qurganingizda, tajriba o'tkazganingizda va xatolarga yo'l qo'yganingizda - saqlash darajasi 75–90% gacha ko'tariladi.
+
+<br>
+
+Bu olti oy davomida "Pythonni o'rgangan" va hech narsa qura olmaydigan odam bilan uch oy ichida ishga tayyor bo'lgan odam o'rtasidagi farq.
+
+<br>
+
+Yechim - bu birinchi kundan boshlab interaktiv, loyihaga asoslangan o'rganish.
+
+<br>
+
+Shuning uchun men ushbu yo'l xaritasi uchun o'quv platformasi sifatida DataCampni tavsiya qilaman . Ularning platformasi, ayniqsa, brauzeringizda haqiqiy Python kodini yozish, tezkor fikr-mulohazalarni olish va shunchaki boshqa birovning kodini kuzatish emas, balki sizning ko'nikmalaringizni mustahkamlaydigan loyihalar ustida ishlashga asoslangan.
+
+<br>
+
+Xususan, ikkita yo'l ushbu yo'l xaritasiga juda mos keladi:
+
+<br>
+
+Python dasturlash asoslari — 1-bosqichdagi barcha narsalarni qamrab oladi: o'zgaruvchilar, ma'lumotlar turlari, funktsiyalar va birinchi kundan boshlab amaliy kod
+Python dasturchisi yordamchisi — 1-bosqich ilg'or mavzularini qamrab oladi: OOP, nosozliklarni tuzatish va ishga tayyor portfelni yaratadigan real hayot loyihalari
+
+<br>
+
+Ikkalasini ham xatcho'plarga qo'shib qo'ying. Biz ularga yo'l xaritasi davomida havola qilamiz.

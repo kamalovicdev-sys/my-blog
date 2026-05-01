@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a1b3d2a7-caf0-4983-ba5b-c575e259347d" name="Changes" comment="edits">
-      <change beforePath="$PROJECT_DIR$/src/posts/SecureOS.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/posts/SecureOS.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/posts/learn.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/posts/learn.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -127,15 +127,7 @@
       <workItem from="1776006376197" duration="15000" />
       <workItem from="1777360960597" duration="5192000" />
       <workItem from="1777383667886" duration="396000" />
-      <workItem from="1777617543060" duration="1335000" />
-    </task>
-    <task id="LOCAL-00005" summary="post">
-      <option name="closed" value="true" />
-      <created>1773623509285</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1773623509285</updated>
+      <workItem from="1777617543060" duration="1650000" />
     </task>
     <task id="LOCAL-00006" summary="post">
       <option name="closed" value="true" />
@@ -521,7 +513,15 @@
       <option name="project" value="LOCAL" />
       <updated>1777618738458</updated>
     </task>
-    <option name="localTasksCounter" value="54" />
+    <task id="LOCAL-00054" summary="edits">
+      <option name="closed" value="true" />
+      <created>1777618889171</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1777618889172</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
