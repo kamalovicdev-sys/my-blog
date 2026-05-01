@@ -26,4 +26,26 @@ Bu xayolning ham o‘z nomi bor edi. OpenAI hammuassisi va Tesla’ning sobiq AI
 
 Oradan o‘n to‘rt oy o‘tgach esa, bu shirin mastlikning achchiq oqibatlari yuzaga chiqdi.
 
+[vibecoding](https://miro.medium.com/v2/resize:fit:1100/format:webp/1*mAgMN6rv13G4ERjZaSE_9Q.png)
+
+<br>
+
+### Bu orzuni bunyod etgan raqamlar
+
+Avvalo, bu jarayon naqadar shiddat bilan rivojlanganini anglash uchun ayrim muhim ko‘rsatkichlarga nazar tashlaylik.
+
+<br>
+
+Y Combinator’ning 2025-yilgi qishki dasturida ishtirok etgan startaplarning 25 foizi kod bazasining kamida 95 foizini sun’iy intellekt yordamida yaratgan edi. GitHub ma’lumotlariga ko‘ra, bugungi kunda yangi qo‘shilayotgan barcha kodlarning 46 foizi AI tomonidan generatsiya qilinmoqda. Yana bir tahlilga ko‘ra, AQShdagi dasturchilarning 92 foizi endilikda AI kodlash vositalaridan har kuni foydalanadi. Cursor, Replit, Bolt, Lovable kabi platformalarning o‘zi milliardlab venchur sarmoyalarni jalb qildi; bozor hajmi esa 2026-yilda 4,7 milliard dollarga baholanib, kelasi yilga borib 12,3 milliard dollarga yetishi prognoz qilinmoqda.
+
+<br>
+
+Bu shunchaki o‘tkinchi urf emas edi. Sun’iy intellekt ko‘magida dasturchilar vazifalarni 25–55 foizgacha tezroq bajara boshladilar. Ayniqsa, AI yaratgan natijani chuqur tahlil qila oladigan tajribali muhandislar samaradorlikning hatto 81 foizgacha oshganini qayd etdilar. Ilgari dasturlash imkoniyatidan yiroq bo‘lgan insonlar ham endi hech qachon yarata olmas deb o‘ylagan ilovalarini bunyod eta boshladi. Dasturiy ta’minot yaratishni ommalashtirish haqidagi va’da ma’lum ma’noda rostdan ham amalga oshayotgan edi.
+
+<br>
+
+Xo‘sh, unda qayerda xato qilindi?
+
+[arch](https://miro.medium.com/v2/resize:fit:1100/format:webp/1*bAOhqZQwJni9S8E0yzyt-g.png)
+
 
