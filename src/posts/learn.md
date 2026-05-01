@@ -8,7 +8,7 @@ date: '2026-04-20'
 
 <br>
 
-![ai | dev](https://greatlakesdp.us/wp-content/uploads/2025/05/Efficiency-Speed-1024x576.webp)
+![ai | dev](https://images.fastcompany.com/image/upload/f_webp,c_fit,w_1920,q_auto/wp-cms-2/2025/11/p-91443823-vide-coding-is-a-leadership-problem.jpg)
 
 <br>
 
