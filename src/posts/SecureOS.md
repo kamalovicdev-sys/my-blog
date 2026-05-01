@@ -8,7 +8,7 @@ date: '2026-03-25'
 
 <br>
 
-![TailsOS](https://i.etsystatic.com/59367687/r/il/f558f3/6847957344/il_1588xN.6847957344_o5u0.jpg)
+![TailsOS](https://blog.hostdime.in/wp-content/uploads/2017/06/Tails-for-privacy-and-anonymity.png)
 
 Tails OS (The Amnesic Incognito Live System) – bu sizning holatingizda, ayniqsa kuzatuv va kutilmagan xavf-xatarlar yuqori bo'lgan muhitda eng ishonchli va amaliy vositalardan biridir. Uning asosiy maqsadi kompyuterda yoki tarmoqda siz haqingizda hech qanday iz qoldirmaslikdir.
 
