@@ -40,10 +40,10 @@ Quyida Pythonda nol tajribadan ishga tayyor dasturchiga aylanish uchun tasdiqlan
 
 To'rt bosqichli tizim:
 
-1. Asosiy ko'nikmalarni o'zlashtiring
-2. Muhim vositalar bilan samarali ishlang
-3. Yuqori talabga ega bo'lgan sohada ixtisoslashing
-4.  Python'dagi birinchi ishingizni toping
+1. _Asosiy ko'nikmalarni o'zlashtiring_
+2. _Muhim vositalar bilan samarali ishlang_
+3. _Yuqori talabga ega bo'lgan sohada ixtisoslashing_
+4.  _Python'dagi birinchi ishingizni toping_
 Keling, har bir bosqichni qanday bajarishni batafsil ko'rib chiqaylik.
 
 <br>
@@ -82,9 +82,9 @@ Xususan, ikkita yo'l ushbu yo'l xaritasiga juda mos keladi:
 
 <br>
 
-Python dasturlash asoslari — 1-bosqichdagi barcha narsalarni qamrab oladi: o'zgaruvchilar, ma'lumotlar turlari, funktsiyalar va birinchi kundan boshlab amaliy kod
-Python dasturchisi yordamchisi — 1-bosqich ilg'or mavzularini qamrab oladi: OOP, nosozliklarni tuzatish va ishga tayyor portfelni yaratadigan real hayot loyihalari
+[Python Programming Fundamentals] (https://www.datacamp.com/tracks/python-programming-fundamentals?irclickid=03EVSezCoxyZWDbSVY1z91e9UkuyJCX25UPWUs0&irgwc=1&afsrc=1&utm_medium=affiliate&utm_source=impact&utm_campaign=000000_1-1193463_2-mix_3-all_4-na_5-na_6-na_7-mp_8-affl-ip_9-na_10-bau_11-Soma%20Sharma&utm_content=ONLINE_TRACKING_LINK&utm_term=)
+[Associate Python Developer] (https://www.datacamp.com/tracks/associate-python-developer?irclickid=03EVSezCoxyZWDbSVY1z91e9UkuyJs2v5UPWUs0&irgwc=1&afsrc=1&utm_medium=affiliate&utm_source=impact&utm_campaign=000000_1-1193463_2-mix_3-all_4-na_5-na_6-na_7-mp_8-affl-ip_9-na_10-bau_11-Soma%20Sharma&utm_content=ONLINE_TRACKING_LINK&utm_term=)
 
 <br>
 
-Ikkalasini ham xatcho'plarga qo'shib qo'ying. Biz ularga yo'l xaritasi davomida havola qilamiz.
+Ikkalasini ham **bookmarked** qo'shib qo'ying. 
