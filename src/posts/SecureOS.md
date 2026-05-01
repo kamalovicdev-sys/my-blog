@@ -24,4 +24,8 @@ Iz qoldirmaslik: Operatsion tizim faqat kompyuterning operativ xotirasida (RAM) 
 
 Favqulodda vaziyat: Agar xavf tug'ilsa, shunchaki fleshkani sug'urib olasiz. Kompyuter darhol o'chadi va barcha jarayonlar, parollar va xabarlar izsiz yo'qoladi.
 
+<br>
+
+Davomi bor ...
+
 
