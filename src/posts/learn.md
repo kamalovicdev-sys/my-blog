@@ -62,7 +62,7 @@ Darsliklarni tomosha qilish, kitob o'qish, boshqa odamlarning kodlariga amal qil
 
 <br>
 
-> Kod yozganingizda, loyihalar qurganingizda, tajriba o'tkazganingizda va xatolarga yo'l qo'yganingizda - saqlash darajasi 75–90% gacha ko'tariladi.
+>>> **Kod yozganingizda, loyihalar qurganingizda, tajriba o'tkazganingizda va xatolarga yo'l qo'yganingizda - saqlash darajasi 75–90% gacha ko'tariladi.**
 
 <br>
 
@@ -81,9 +81,9 @@ Shuning uchun men ushbu yo'l xaritasi uchun o'quv platformasi sifatida DataCampn
 Xususan, ikkita yo'l ushbu yo'l xaritasiga juda mos keladi:
 <br>
 
-[Python Programming Fundamentals](https://www.datacamp.com/tracks/python-programming-fundamentals?irclickid=03EVSezCoxyZWDbSVY1z91e9UkuyJCX25UPWUs0&irgwc=1&afsrc=1&utm_medium=affiliate&utm_source=impact&utm_campaign=000000_1-1193463_2-mix_3-all_4-na_5-na_6-na_7-mp_8-affl-ip_9-na_10-bau_11-Soma%20Sharma&utm_content=ONLINE_TRACKING_LINK&utm_term=)
+[<u> Python Programming Fundamentals </u>](https://www.datacamp.com/tracks/python-programming-fundamentals?irclickid=03EVSezCoxyZWDbSVY1z91e9UkuyJCX25UPWUs0&irgwc=1&afsrc=1&utm_medium=affiliate&utm_source=impact&utm_campaign=000000_1-1193463_2-mix_3-all_4-na_5-na_6-na_7-mp_8-affl-ip_9-na_10-bau_11-Soma%20Sharma&utm_content=ONLINE_TRACKING_LINK&utm_term=)
 <br>
-[Associate Python Developer](https://www.datacamp.com/tracks/associate-python-developer?irclickid=03EVSezCoxyZWDbSVY1z91e9UkuyJs2v5UPWUs0&irgwc=1&afsrc=1&utm_medium=affiliate&utm_source=impact&utm_campaign=000000_1-1193463_2-mix_3-all_4-na_5-na_6-na_7-mp_8-affl-ip_9-na_10-bau_11-Soma%20Sharma&utm_content=ONLINE_TRACKING_LINK&utm_term=)
+[<u> Associate Python Developer </u>](https://www.datacamp.com/tracks/associate-python-developer?irclickid=03EVSezCoxyZWDbSVY1z91e9UkuyJs2v5UPWUs0&irgwc=1&afsrc=1&utm_medium=affiliate&utm_source=impact&utm_campaign=000000_1-1193463_2-mix_3-all_4-na_5-na_6-na_7-mp_8-affl-ip_9-na_10-bau_11-Soma%20Sharma&utm_content=ONLINE_TRACKING_LINK&utm_term=)
 
 <br>
 
@@ -92,4 +92,6 @@ Ikkalasini ham **bookmarked** qo'shib qo'ying.
 ![roadmap](https://miro.medium.com/v2/resize:fit:1100/format:webp/1*nRmnNtfShc-sOglLxrgLTA.png)
 
 <br>
+
+
 
