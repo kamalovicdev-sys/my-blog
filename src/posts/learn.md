@@ -3,7 +3,7 @@ title: 'Vibe Coding davri nihoyasiga yetdi. '
 date: '2026-04-20'
 ---
 
-## _Faqat tasvirlab ber va darhol ishga tushir_ davri bir muddat samarali hukm surdi. Ammo uni yakuniga yetkazgan omillar mana shular — va endilikda haqiqiy maydon qanday tus olayotgani ham aynan shudir.
+## _Faqat tasvirlab ber va darhol ishga tushir_ davri bir muddat samarali bo'ldi. Ammo uni yakuniga yetkazgan omillar mana shular — va endilikda haqiqiy maydon qanday tus olayotgani ko'rishingiz mumkin.
 
 
 <br>
@@ -12,15 +12,15 @@ date: '2026-04-20'
 
 <br>
 
-Bu, davom etgan lahzalarda, chinakamiga maftunkor bir xayol edi.
+Bu, davom etgan lahzalarda, chinakamiga maftunkor bir xayol edi. Vibecodingni rossa hayp qilindi.
 
 <br>
 
-Siz o‘z g‘oyangizni oddiy, ravon tilda bayon qilasiz. Sun’iy intellekt esa go‘yo sehr ila kodni yaratadi. Uni loyihangizga joylaysiz, brauzerni yangilaysiz — va tamom — ilovangiz ishga tushadi. Na kompyuter fanlari diplomi kerak, na Stack Overflow sahifalarida cheksiz sarsonlik, na tungi soat ikkidagi tinkani qurituvchi debugging jarayonlari. Faqatgina ilhom, oqim va zavq.
+Siz o‘z g‘oyangizni oddiy, ravon tilda bayon qilasiz. Sun’iy intellekt esa go‘yo sehr ila kodni yaratadi. Uni loyihangizga joylaysiz, brauzerni yangilaysiz — va tamom  — ilovangiz ishga tushadi. Na kompyuter fanlari na diplomi kerak, na Stack Overflow sahifalarida cheksiz sarsonlik, na tungi soat ikkidagi tinkani qurituvchi debugging jarayonlari. Faqatgina ilhom, oqim va zavq (_yana coffee shirin ichish mumkin_).
 
 <br>
 
-Bu xayolning ham o‘z nomi bor edi. OpenAI hammuassisi va Tesla’ning sobiq AI yetakchisi Andrej Karpathy 2025-yil fevralida unga “vibe coding” deb nom berdi — ya’ni dasturchi sun’iy intellekt yaratgan kodni har bir satrini chuqur anglab yetmasdan ham, “oqimga to‘liq berilgan” holda qabul qiladigan dasturlash uslubi. Hatto Collins Dictionary ham uni 2025-yilning eng muhim iborasi sifatida e’tirof etdi.
+Bu xayolning ham o‘z nomi bor edi. **OpenAI** va Tesla’ning sobiq AI yetakchisi Andrej Karpathy 2025-yil fevralida unga _vibe coding_ deb nom berdi — ya’ni dasturchi sun’iy intellekt yaratgan kodni har bir satrini chuqur anglab yetmasdan ham, “oqimga to‘liq berilgan” holda qabul qiladigan dasturlash uslubi. Hatto Collins Dictionary ham uni 2025-yilning eng muhim iborasi sifatida e’tirof etdi.
 
 <br>
 
@@ -36,11 +36,11 @@ Avvalo, bu jarayon naqadar shiddat bilan rivojlanganini anglash uchun ayrim muhi
 
 <br>
 
-Y Combinator’ning 2025-yilgi qishki dasturida ishtirok etgan startaplarning 25 foizi kod bazasining kamida 95 foizini sun’iy intellekt yordamida yaratgan edi. GitHub ma’lumotlariga ko‘ra, bugungi kunda yangi qo‘shilayotgan barcha kodlarning 46 foizi AI tomonidan generatsiya qilinmoqda. Yana bir tahlilga ko‘ra, AQShdagi dasturchilarning 92 foizi endilikda AI kodlash vositalaridan har kuni foydalanadi. Cursor, Replit, Bolt, Lovable kabi platformalarning o‘zi milliardlab venchur sarmoyalarni jalb qildi; bozor hajmi esa 2026-yilda 4,7 milliard dollarga baholanib, kelasi yilga borib 12,3 milliard dollarga yetishi prognoz qilinmoqda.
+Y Combinator’ning 2025-yilgi qishki dasturida ishtirok etgan startaplarning 25 foizi kod bazasining kamida 95 foizini sun’iy intellekt yordamida yaratgan edi. **GitHub** ma’lumotlariga ko‘ra, bugungi kunda yangi qo‘shilayotgan barcha kodlarning 46 foizi AI tomonidan generatsiya qilinmoqda. Yana bir tahlilga ko‘ra, AQShdagi dasturchilarning 92 foizi endilikda AI kodlash vositalaridan har kuni foydalanadi. Cursor, Replit, Bolt, Lovable kabi platformalarning o‘zi milliardlab venchur sarmoyalarni jalb qildi; bozor hajmi esa 2026-yilda 4,7 milliard dollarga baholanib, kelasi yilga borib 12,3 milliard dollarga yetishi prognoz qilinmoqda.
 
 <br>
 
-Bu shunchaki o‘tkinchi urf emas edi. Sun’iy intellekt ko‘magida dasturchilar vazifalarni 25–55 foizgacha tezroq bajara boshladilar. Ayniqsa, AI yaratgan natijani chuqur tahlil qila oladigan tajribali muhandislar samaradorlikning hatto 81 foizgacha oshganini qayd etdilar. Ilgari dasturlash imkoniyatidan yiroq bo‘lgan insonlar ham endi hech qachon yarata olmas deb o‘ylagan ilovalarini bunyod eta boshladi. Dasturiy ta’minot yaratishni ommalashtirish haqidagi va’da ma’lum ma’noda rostdan ham amalga oshayotgan edi.
+Bu shunchaki o‘tkinchi urf emas edi. Sun’iy intellekt ko‘magida dasturchilar vazifalarni 25–55 foizgacha tezroq bajara boshladilar. Ayniqsa, AI yaratgan natijani chuqur tahlil qila oladigan tajribali muhandislar samaradorlikning hatto **81** foizgacha oshganini qayd etdilar. Ilgari dasturlash imkoniyatidan yiroq bo‘lgan insonlar ham endi hech qachon yarata olmas deb o‘ylagan ilovalarini barpo qila boshladi. Dasturiy ta’minot yaratishni ommalashtirish haqidagi va’da ma’lum ma’noda rostdan ham amalga oshayotgan edi.
 
 <br>
 
