@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getAllPostSlugs, getPostData, getPostMeta, getRelatedPosts } from "@/lib/posts";
+import { SITE_NAME, SITE_URL } from "@/lib/site";
 import CodeCopyButtons from "@/components/CodeCopyButtons";
+import Comments from "@/components/Comments";
 import PostCard, { PostInfo } from "@/components/PostCard";
 import ReadingProgress from "@/components/ReadingProgress";
 import ShareButtons from "@/components/ShareButtons";
@@ -27,7 +29,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description: post.description,
     openGraph: {
       type: "article",
-      siteName: "Kamalovic's Blog",
+      siteName: SITE_NAME,
       locale: "uz_UZ",
       title: post.title,
       description: post.description,
@@ -86,7 +88,8 @@ export default async function Post({ params }: Props) {
             {postData.tags.map((tag) => <TagLink key={tag.slug} tag={tag} />)}
           </div>
         )}
-        <ShareButtons slug={slug} />
+        <ShareButtons url={`${SITE_URL}/posts/${slug}`} title={postData.title} />
+        <Comments />
       </article>
 
       {relatedPosts.length > 0 && (
