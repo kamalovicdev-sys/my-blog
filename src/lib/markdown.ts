@@ -74,7 +74,7 @@ function remarkHeadingIds(toc: TocItem[]) {
     const usedIds = new Map<string, number>();
     visit(tree, 'heading', (node) => {
       const text = toString(node).trim();
-      const baseId = slugify(text) || 'bolim';
+      const baseId = slugify(text) || 'section';
       const count = usedIds.get(baseId) ?? 0;
       usedIds.set(baseId, count + 1);
       const id = count ? `${baseId}-${count}` : baseId;
@@ -108,7 +108,7 @@ function rehypeCodeCopy() {
             type: 'element',
             tagName: 'button',
             properties: { type: 'button', className: ['copy-code'], dataCopyCode: true },
-            children: [{ type: 'text', value: 'Nusxalash' }],
+            children: [{ type: 'text', value: 'Copy' }],
           },
         ],
       };

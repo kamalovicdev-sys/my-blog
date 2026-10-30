@@ -1,7 +1,7 @@
 "use client";
 import { useEffect } from "react";
 
-// Kod bloklaridagi "Nusxalash" tugmalari build paytida HTML'ga qo'shiladi (lib/markdown.ts),
+// Kod bloklaridagi "Copy" tugmalari build paytida HTML'ga qo'shiladi (lib/markdown.ts),
 // bu komponent esa ularning bosilishini ishlaydi
 export default function CodeCopyButtons() {
   useEffect(() => {
@@ -11,9 +11,9 @@ export default function CodeCopyButtons() {
       if (!button || code == null) return;
 
       await navigator.clipboard.writeText(code);
-      button.textContent = "Nusxalandi";
+      button.textContent = "Copied";
       setTimeout(() => {
-        button.textContent = "Nusxalash";
+        button.textContent = "Copy";
       }, 2000);
     };
 

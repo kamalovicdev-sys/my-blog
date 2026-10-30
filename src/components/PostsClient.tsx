@@ -33,7 +33,7 @@ export default function PostsClient({ initialPosts, tags }: { initialPosts: Post
       <div className="space-y-6 sm:space-y-8">
         {filteredPosts.map((post) => <PostCard key={post.slug} post={post} />)}
         {filteredPosts.length === 0 && (
-          <p className="text-gray-400 text-center py-12">Hech narsa topilmadi</p>
+          <p className="text-gray-400 text-center py-12">No posts found</p>
         )}
       </div>
     </>

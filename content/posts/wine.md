@@ -33,7 +33,7 @@ Wine aynan ularni o'rtasida ko'prik vazifasini bajaradi, `.exe` fayldan kelayotg
 > Hammasi ham doim silliq kechavermaydi. `.exe` faylni Wine orqali ochdingiz degani, u 100% xatosiz ishlaydi degani emas.
 Ayniqsa, hardware bilan to'g'ridan-to'g'ri ishlaydigan dasturlar (masalan, fleshkaga operatsion tizim yozadigan utilitalar, apparatlarni proshivka qiluvchi dasturlar, murakkab drayverlar) ko'pincha ishlamaydi. Nega? Chunki Wine oddiy buyruqlarni tarjima qila olgani bilan, to'g'ridan-to'g'ri hardware yoki yadro darajasiga ta'sir qiluvchi so'rovlarni alday olmaydi.
 
-![installarion](https://www.redswitches.com/wp-content/uploads/2023/12/How-to-Install-Wine-on-Ubuntu.png)
+![Install Wine on Ubuntu](../images/wine-install.webp)
 
 **O'rnatish va ishlatish**
 

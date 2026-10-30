@@ -8,8 +8,8 @@ export function PostInfo({ date, readingTime, draft, className = "" }: Pick<Post
   return (
     <p className={`text-xs text-gray-400 uppercase tracking-widest ${className}`}>
       <time dateTime={date}>{formatDate(date)}</time>
-      {` · ${readingTime} daqiqa`}
-      {draft && <span className="text-amber-400"> · Qoralama</span>}
+      {` · ${readingTime} min read`}
+      {draft && <span className="text-amber-400"> · Draft</span>}
     </p>
   );
 }

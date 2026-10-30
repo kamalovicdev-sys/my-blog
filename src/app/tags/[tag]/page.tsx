@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   return {
     title: `#${tag.name}`,
-    description: `#${tag.name} mavzusidagi postlar`,
+    description: `Posts tagged #${tag.name}`,
   };
 }
 
@@ -32,9 +32,9 @@ export default async function TagPage({ params }: Props) {
 
   return (
     <section>
-      <Link href="/" className="text-sm text-gray-400 hover:text-white transition">← Barcha postlar</Link>
+      <Link href="/" className="text-sm text-gray-400 hover:text-white transition">← All posts</Link>
       <h1 className="text-3xl sm:text-4xl font-extrabold mt-4">#{tag.name}</h1>
-      <p className="text-gray-400 mt-1 mb-8">{tag.count} ta post</p>
+      <p className="text-gray-400 mt-1 mb-8">{tag.count} {tag.count === 1 ? "post" : "posts"}</p>
       <div className="space-y-6 sm:space-y-8">
         {getPostsByTag(tag.slug).map((post) => <PostCard key={post.slug} post={post} />)}
       </div>

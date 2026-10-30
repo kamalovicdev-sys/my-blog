@@ -62,14 +62,14 @@ export default async function Post({ params }: Props) {
         {showToc && (
           <>
             <details className="xl:hidden mb-8 rounded-lg border border-gray-700/50 bg-surface px-4 py-3">
-              <summary className="cursor-pointer text-sm font-semibold text-gray-300">Mundarija</summary>
+              <summary className="cursor-pointer text-sm font-semibold text-gray-300">Contents</summary>
               <div className="mt-3">
                 <TableOfContents items={postData.toc} />
               </div>
             </details>
             <aside className="hidden xl:block absolute top-0 left-full ml-12 w-56 h-full">
               <nav className="sticky top-8 max-h-[calc(100vh-4rem)] overflow-y-auto">
-                <p className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-3">Mundarija</p>
+                <p className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-3">Contents</p>
                 <TableOfContents items={postData.toc} />
               </nav>
             </aside>
@@ -91,7 +91,7 @@ export default async function Post({ params }: Props) {
 
       {relatedPosts.length > 0 && (
         <section className="max-w-2xl mx-auto mt-16">
-          <h2 className="text-sm font-semibold text-gray-400 uppercase tracking-widest mb-6">Yana o&apos;qing</h2>
+          <h2 className="text-sm font-semibold text-gray-400 uppercase tracking-widest mb-6">Read next</h2>
           <div className="space-y-6 sm:space-y-8">
             {relatedPosts.map((post) => <PostCard key={post.slug} post={post} />)}
           </div>
