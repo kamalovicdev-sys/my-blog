@@ -4,7 +4,6 @@ import { SOCIAL } from "@/lib/site";
 
 const links = [
   { label: "Telegram channel", href: SOCIAL.telegramChannel },
-  { label: "RSS feed", href: "/rss.xml" },
   { label: "GitHub", href: SOCIAL.github },
   { label: "Website", href: SOCIAL.portfolio },
 ];
@@ -48,7 +47,7 @@ export default function SubscribeModal() {
             className="bg-surface p-8 rounded-3xl border border-gray-700 w-full max-w-sm shadow-2xl"
           >
             <h2 id="subscribe-title" className="text-2xl font-bold mb-2 text-white text-center tracking-tight">Stay updated</h2>
-            <p className="text-sm text-gray-400 text-center mb-8">Get new posts on Telegram or in your RSS reader.</p>
+            <p className="text-sm text-gray-400 text-center mb-8">Get new posts in the Telegram channel.</p>
             <div className="space-y-4">
               {links.map(({ label, href }) => (
                 <a
