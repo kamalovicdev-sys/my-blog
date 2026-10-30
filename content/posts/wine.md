@@ -1,6 +1,7 @@
 ---
 title: 'Linux Ubuntu muhitida .exe fayli bilan qanday ishlaymiz ? '
 date: '2026-01-07'
+tags: [linux, ubuntu]
 ---
 
 ## **Ubuntu muhitida da Windows dasturlarini ishlatish  Wine o'zi nima va u qanday ishlaydi?**
@@ -12,7 +13,7 @@ Ko'pchilik foydalanuvchilar uni Windows emulatori deb o'ylaydi, lekin aslo unday
 
 Wine esa – bu shunchaki "tarjimon" __(compatibility layer)__.
 
-![wine](https://ubunlog.com/wp-content/uploads/2015/11/wine-830x400.jpg)
+![wine](../images/wine-cover.jpg)
 
 **U qanday ishlaydi ?**
 Tasavvur qiling, Windows dasturlari ishlashi uchun tizimga o'zining tilida (Windows API) murojaat qiladi. Masalan, dastur kompyuterga: "ekranga mana bu tugmani chiz" yoki "xotiradagi faylni o'qi" deydi. Linux yadrosi (kernel) esa bu tilni umuman tushunmaydi, chunki uning o'z arxitekturasi bor.

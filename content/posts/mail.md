@@ -1,6 +1,7 @@
 ---
 title: 'Python orqali bepul email рассылка yubora olamizmi ?'
 date: '2026-03-18'
+tags: [python, email, avtomatlashtirish]
 ---
 
 # **Qanday qilib 3200 ta korxonaga bloklanmasdan ommaviy xat yuborish tizimini yasadik? (Python)**
@@ -8,7 +9,7 @@ date: '2026-03-18'
 Tasavvur qiling: Siz o'z bizesingizni rivojlantirmoqchisiz. O'z xizmatlaringizni boshqa kanallar orqali reklama qilishingiz kerak. Aytaylik qolingingizda [Golden Pages](https://www.goldenpages.uz/en/) olgan  `db` , kompaniyangiz uchun bo'lajak mijozlaringizni minglab ro'yxati bor. 
 Bu ma'lumotlarni qanday ishlatasiz, birma bir qo'ng'iroq qilish yoki xabar yuborib chiqish sizni yillab vaqtingizni olishi mumkin. Bitta tugmani bosish orqali vazifani birdaniga bajarishingiz mumkin va bu mutlaqo bepul desam bu sizga qiziq eshitiladimi ? 
 
-![mail](https://img1.teletype.in/files/80/de/80ded7f8-97a9-4dc4-8ead-d585901efd28.jpeg)
+![mail](../images/mail-cover.jpg)
 
 Lekin buni qanday qilasiz? Keling jarayonni qanday bo'lishini gapirib beraman.
 
@@ -97,7 +98,7 @@ Ertasi kuni uni yana bitta bosish bilan ishga tushiramiz va u roppa-rosa to'xtag
 
 **Mijozlaringiz pochtasiga xabarlar qanday ko'rinishda boradi ?** 
 
-![mail_viev](https://www.mailjet.com/wp-content/uploads/2025/04/Screenshot-2019-09-24-at-14.08.07.png)
+![mail_viev](../images/mail-example.png)
 
 Har bir yuborilgan mail xabarlar  `html` design ko'rinishida yetib boradi va siz ularni ham analysis qilishingiz va A/B testing o'tkazishingiz mumkin. 
 

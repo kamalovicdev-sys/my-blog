@@ -29,6 +29,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: post.description,
       url: `/posts/${slug}`,
       publishedTime: post.date,
+      tags: post.tags,
       images: post.imageUrl ? [post.imageUrl] : undefined,
     },
     twitter: { card: "summary_large_image" },
@@ -45,6 +46,7 @@ export default async function Post({ params }: Props) {
       <header className="mb-8 sm:mb-10">
         <time dateTime={postData.date} className="text-xs text-gray-400 uppercase tracking-widest">
           {formatDate(postData.date)}
+          {postData.draft && <span className="ml-2 text-amber-400">· Qoralama</span>}
         </time>
         <h1 className="text-3xl md:text-4xl font-extrabold leading-tight text-balance mt-2 text-white">{postData.title}</h1>
       </header>

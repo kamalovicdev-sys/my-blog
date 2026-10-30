@@ -4,15 +4,28 @@ Bu papka (`content/`) Obsidian vault sifatida ochiladi: Obsidian → **Open fold
 
 ## Yangi post
 
-1. `posts/` papkasida yangi fayl yarating. **Fayl nomi = post manzili**, shuning uchun kichik harf va chiziqcha ishlating: `docker-ornatish.md` → `/posts/docker-ornatish`
+1. `posts/` papkasida yangi qayd yarating va unga odatdagidek nom bering, masalan `Docker o'rnatish`. Post manzili nomdan avtomatik yasaladi: `/posts/docker-ornatish`
 2. `Ctrl+P` → **Templates: Insert template** → `post`
-3. `title`ni to'ldiring. Bo'sh qolsa, fayl nomi sarlavha bo'ladi
-4. `description` ixtiyoriy. Bo'sh qolsa, matnning birinchi paragraflaridan olinadi
+3. Yozing. Post tayyor bo'lgach `draft`ni o'chiring (`false`)
+
+Shablonsiz, ya'ni frontmatter'siz fayl post hisoblanmaydi va saytda ko'rinmaydi.
+
+## Maydonlar
+
+| Maydon | Majburiy | Izoh |
+|---|---|---|
+| `date` | ha | `2026-10-30` ko'rinishida. Shablon o'zi qo'yadi |
+| `title` | yo'q | Bo'sh qolsa, qayd nomi sarlavha bo'ladi |
+| `description` | yo'q | Bosh sahifa va Telegram preview uchun. Bo'sh qolsa, matnning birinchi paragraflaridan olinadi |
+| `tags` | yo'q | Masalan: `linux`, `python` |
+| `cover` | yo'q | Bosh sahifadagi kichik rasm va Telegram preview rasmi. Bo'sh qolsa, matndagi birinchi rasm olinadi |
+| `draft` | yo'q | `true` bo'lsa, post faqat kompyuteringizda (`npm run dev`) ko'rinadi, saytga chiqmaydi |
+| `slug` | yo'q | Manzilni qo'lda berish uchun: `slug: docker` → `/posts/docker` |
 
 ## Rasmlar
 
 Rasmni nusxalab postga joylashtiring (`Ctrl+V`). Obsidian uni `images/` papkasiga saqlaydi, saytda ham o'zi ko'rinadi.
-Postdagi birinchi rasm bosh sahifadagi kartochkada va Telegram preview'da chiqadi.
+Boshqa saytdagi rasmga havola bermang, ular vaqt o'tib o'chib ketishi yoki bloklanishi mumkin. Rasmni yuklab olib, postga joylashtiring.
 
 ## Yozish qoidalari
 

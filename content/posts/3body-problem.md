@@ -1,6 +1,7 @@
 ---
 title: '3Body Problem'
 date: '2025-11-26'
+tags: [react, threejs, simulyatsiya]
 ---
 
 # 🌌 3Body Problem 
@@ -8,7 +9,7 @@ date: '2025-11-26'
 ## Trisolaris Simulation
 
 Bu kichik simulation Lyu Sisinning mashhur The Three-Body Problem ilmiy-fantastik kitobi va Netflix serialidan ko'rib ilhomlanib qilingan. Loyiha `React`, `Three.js` va `React Three Fiber` yordamida qurilgan bo'lib, o'z ichiga real vaqtda hisoblanadigan tortishish fizikasi, dinamik yorug'lik va `Astrometrics Dashboard` oladi.
-![Simulation App Design](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgFKj5Ar5gXavHSDCE64LU0DXwgBlc0GXW7cAAaj0wf2xNNmKSXbC4ZG5n6Qa-080qebF9uERevetUW1mzJaOsBYmvJG7yW3Ap0DhrRb7MU6sloHzRd1PVmBNcOeHY6XSx3kjxWlxfXNxQOV0A7E7Ocsdh_x6K6JDPFPLWutG1agaobQ4Z0CKJX3Z9Wsgs/s768/3%20body%20problem%20netflix%20poster.jpg)
+![Simulation App Design](../images/3body-problem-cover.jpg)
 
 ##  1. Documentation: Loyihani Evolyutsiyasi *(A dan Z gacha)*
 

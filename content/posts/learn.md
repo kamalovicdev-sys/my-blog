@@ -1,11 +1,12 @@
 ---
 title: 'Vibe Coding davri nihoyasiga yetdi. '
 date: '2026-04-20'
+tags: [ai, dasturlash]
 ---
 
 ## _Faqat tasvirlab ber va darhol ishga tushir_ davri bir muddat samarali bo'ldi. Ammo uni yakuniga yetkazgan omillar mana shular — va endilikda haqiqiy maydon qanday tus olayotgani ko'rishingiz mumkin.
 
-![ai | dev](https://images.fastcompany.com/image/upload/f_webp,c_fit,w_1920,q_auto/wp-cms-2/2025/11/p-91443823-vide-coding-is-a-leadership-problem.jpg)
+![ai | dev](../images/vibe-coding-cover.webp)
 
 Bu, davom etgan lahzalarda, chinakamiga maftunkor bir xayol edi. Vibecodingni rossa hayp qilindi.
 
@@ -15,7 +16,7 @@ Bu xayolning ham o‘z nomi bor edi. **OpenAI** va Tesla’ning sobiq AI yetakch
 
 Oradan o‘n to‘rt oy o‘tgach esa, bu shirin mastlikning achchiq oqibatlari yuzaga chiqdi.
 
-![vibecoding](https://miro.medium.com/v2/resize:fit:1100/format:webp/1*mAgMN6rv13G4ERjZaSE_9Q.png)
+![vibecoding](../images/vibe-coding-1.webp)
 
 ### Bu orzuni bunyod etgan raqamlar
 
@@ -27,7 +28,7 @@ Bu shunchaki o‘tkinchi urf emas edi. Sun’iy intellekt ko‘magida dasturchil
 
 Xo‘sh, unda qayerda xato qilindi?
 
-![arch](https://miro.medium.com/v2/resize:fit:1100/format:webp/1*bAOhqZQwJni9S8E0yzyt-g.png)
+![arch](../images/vibe-coding-2.webp)
 
 #### Hech kim oshkora muhokama qilishni istamagan hisob-kitob lahzasi
 
