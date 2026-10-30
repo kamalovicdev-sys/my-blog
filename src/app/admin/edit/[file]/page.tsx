@@ -2,6 +2,7 @@ import { notFound, redirect } from "next/navigation";
 import PostEditor from "@/components/admin/PostEditor";
 import { getFile, GitHubError } from "@/lib/admin/github";
 import { isPostFileName, POSTS_DIRECTORY, readPostForm } from "@/lib/admin/post-file";
+import { collectTags, listPosts } from "@/lib/admin/posts";
 import { getAdminSession } from "@/lib/admin/session";
 import { parsePost } from "@/lib/posts";
 import { slugify } from "@/lib/slug";
@@ -13,9 +14,13 @@ export default async function EditPostPage({ params }: { params: Promise<{ file:
   const fileName = decodeURIComponent((await params).file);
   if (!isPostFileName(fileName)) notFound();
 
-  let file;
+  let file, tags;
   try {
-    file = await getFile(session.accessToken, `${POSTS_DIRECTORY}/${fileName}`);
+    // Teg takliflari bo'lmasa ham muharrir ochilaversin
+    [file, tags] = await Promise.all([
+      getFile(session.accessToken, `${POSTS_DIRECTORY}/${fileName}`),
+      listPosts(session.accessToken).then(collectTags, () => []),
+    ]);
   } catch (error) {
     if (error instanceof GitHubError && error.status === 404) notFound();
     if (error instanceof GitHubError && error.status === 401) redirect("/admin");
@@ -30,5 +35,5 @@ export default async function EditPostPage({ params }: { params: Promise<{ file:
     // Fayl nomidan yasalgan manzil qoladi
   }
 
-  return <PostEditor key={file.sha} fileName={fileName} sha={file.sha} slug={slug} initial={readPostForm(file.text)} />;
+  return <PostEditor key={file.sha} fileName={fileName} sha={file.sha} slug={slug} initial={readPostForm(file.text)} tagSuggestions={tags} />;
 }

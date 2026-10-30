@@ -10,6 +10,7 @@ import { toString } from 'mdast-util-to-string';
 import { SKIP, visit } from 'unist-util-visit';
 import type { Heading, Paragraph, Root } from 'mdast';
 import type { Root as HtmlRoot } from 'hast';
+import { resolveImageUrl } from './images';
 import { slugify } from './slug';
 
 const EXCERPT_LENGTH = 160;
@@ -39,17 +40,13 @@ export function getExcerpt(markdown: string) {
   return text.slice(0, text.lastIndexOf(' ', EXCERPT_LENGTH)) + '…';
 }
 
-// O'qish vaqti daqiqalarda
-export function getReadingTime(markdown: string) {
-  const words = toString(parseMarkdown(markdown)).split(/\s+/).filter(Boolean).length;
-  return Math.max(1, Math.round(words / WORDS_PER_MINUTE));
+export function countWords(markdown: string) {
+  return toString(parseMarkdown(markdown)).split(/\s+/).filter(Boolean).length;
 }
 
-// Obsidian rasmga matnda nisbiy yo'l bilan (../images/rasm.png), property'da esa [[rasm.png]] bilan murojaat qiladi
-export function resolveImageUrl(url: string) {
-  return url
-    .replace(/^\[\[(.+)\]\]$/, (_, name: string) => `/images/${encodeURI(name)}`)
-    .replace(/^(\.\.\/)?images\//, '/images/');
+// O'qish vaqti daqiqalarda
+export function getReadingTime(markdown: string) {
+  return Math.max(1, Math.round(countWords(markdown) / WORDS_PER_MINUTE));
 }
 
 // Sahifadagi yagona <h1> post sarlavhasi bo'lishi uchun, matnda `#` ishlatilgan bo'lsa

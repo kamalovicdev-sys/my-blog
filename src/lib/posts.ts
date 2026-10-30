@@ -1,7 +1,8 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
-import { getExcerpt, getReadingTime, renderMarkdown, resolveImageUrl } from './markdown';
+import { findFirstImage, resolveImageUrl } from './images';
+import { getExcerpt, getReadingTime, renderMarkdown } from './markdown';
 import { slugify } from './slug';
 
 const postsDirectory = path.join(process.cwd(), 'content/posts');
@@ -51,7 +52,7 @@ export function parsePost(fileName: string, fileContents: string): Post | null {
   }
 
   // cover berilmagan bo'lsa, matndagi birinchi rasm olinadi
-  const cover = data.cover || /!\[.*?\]\((.*?)\)/.exec(content)?.[1];
+  const cover = data.cover || findFirstImage(content);
 
   return {
     meta: {

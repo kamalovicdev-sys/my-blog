@@ -3,20 +3,31 @@ import { getUserLogin } from '@/lib/admin/github';
 import { getMissingEnv, getSession } from '@/lib/admin/session';
 import { ADMIN_GITHUB_LOGIN } from '@/lib/site';
 
+// GitHub token endpoint'ining xato kodlari → /admin sahifasidagi xabar kodi
+const GITHUB_ERRORS: Record<string, string> = {
+  incorrect_client_credentials: 'credentials',
+  // Client ID umuman topilmasa GitHub shunday javob beradi
+  'Not Found': 'credentials',
+  redirect_uri_mismatch: 'redirect',
+  bad_verification_code: 'code',
+};
+
+// Xatoda /admin'ga qaytaramiz, u yerda tushunarli xabar chiqadi
+function fail(request: NextRequest, reason: string) {
+  return NextResponse.redirect(new URL(`/admin?error=${reason}`, request.url));
+}
+
 // GitHub kirishdan keyin shu yerga qaytaradi: kodni token'ga almashtiramiz va akkauntni tekshiramiz
 export async function GET(request: NextRequest) {
   if (getMissingEnv().length > 0) return NextResponse.redirect(new URL('/admin', request.url));
 
-  const session = await getSession();
-  const expectedState = session.oauthState;
-  session.oauthState = undefined;
-  await session.save();
-
   const code = request.nextUrl.searchParams.get('code');
   const state = request.nextUrl.searchParams.get('state');
-  if (!code || !state || state !== expectedState) {
-    return new Response('Invalid sign-in request. Open /admin and try again.', { status: 400 });
-  }
+  const session = await getSession();
+  // State faqat mos kelganda o'chiriladi: tasodifiy so'rov (sahifani yangilash, boshqa tab) haqiqiy kirishni buzmasin
+  if (!code || !state || state !== session.oauthState) return fail(request, 'state');
+  session.oauthState = undefined;
+  await session.save();
 
   const tokenResponse = await fetch('https://github.com/login/oauth/access_token', {
     method: 'POST',
@@ -30,14 +41,12 @@ export async function GET(request: NextRequest) {
     cache: 'no-store',
   });
   const token = await tokenResponse.json();
-  if (!token.access_token) {
-    return new Response(`GitHub sign-in failed: ${token.error_description ?? token.error ?? 'unknown error'}`, { status: 400 });
-  }
+  if (!token.access_token) return fail(request, GITHUB_ERRORS[token.error] ?? 'github');
 
   const login = await getUserLogin(token.access_token);
   if (login.toLowerCase() !== ADMIN_GITHUB_LOGIN.toLowerCase()) {
     session.destroy();
-    return new Response(`The GitHub account "${login}" is not allowed to use this admin panel.`, { status: 403 });
+    return fail(request, 'account');
   }
 
   session.login = login;
