@@ -1,222 +1,223 @@
 ---
-title: Quyosh stansiyasini qayerga qurish kerak ?
+title: >-
+  Где строить солнечную станцию: 14 регионов, 4 сегмента и формула за каждой
+  цифрой
 date: '2026-10-31'
 description: >-
-  Solar kompaniyalari uchun ikkita ochiq Metabase dashboard yasadim. Ular qaysi
-  hududda va qaysi mijoz uchun (davlat, biznes yoki aholi) stansiya qurish
-  foydaliroq ekanini, qoplanish muddatini va raqobatchilarni ko'rsatadi. Har bir
-  raqam rasmiy manbadan olingan, formulasi ochiq va tekshirilgan.
+  **Коротко:** я собрал два открытых дашборда в Metabase для компаний солнечной
+  энергетики. Они показывают, в каком регионе и для какого клиента (государство,
+  бизнес или население) строить СЭС выгоднее, за сколько лет она окупится и кто
+  уже работает рядом. Каждая цифра взята из официального источника, формула
+  открыта и проверена.
 draft: true
 ---
 
-![image-1793396305967](../images/image-1793396305967-2.webp)
+![Дашборд «Решения: где строить СЭС»: ключевые показатели, карта регионов по баллу сегмента и инструкция](img/01_svodka_resheniy.png)
 
+Солнечная энергетика в Узбекистане растёт очень быстро. В 2023 году солнце давало 0,8% всей электроэнергии страны, в 2024-м уже 4,8%. Сейчас работают 12 крупных СЭС на 3,2 ГВт, ещё 1,3 ГВт строится. Панелей на крышах тоже всё больше: только в августе больше 61,5 тысячи семей продали электроэнергию в сеть по программе «Солнечный дом» и получили за это выплаты.
 
-O'zbekistonda quyosh energetikasi juda tez o'smoqda. 2023 yilda quyosh mamlakatdagi elektrning 0,8 foizini ishlab chiqargan bo'lsa, 2024 yilda bu ulush 4,8 foizga yetdi. Hozir 3,2 GVt quvvatli 12 ta yirik stansiya ishlayapti, yana 1,3 GVt qurilmoqda. Uylar tomida ham panellar ko'paymoqda: faqat avgust oyida «Quyoshli uy» dasturi bo'yicha 61,5 mingdan ortiq oila tarmoqqa elektr sotib, pul oldi.
+На таком рынке у владельца солнечной компании постоянно один и тот же вопрос: где и для кого делать следующий проект? Я собрал два дашборда, которые отвечают на этот вопрос, и открыл их для всех.
 
-Bunday bozorda quyosh kompaniyasi egasi oldida doim bir savol turadi: keyingi loyihani qayerda va kim uchun qilish kerak? Shu savolga javob beradigan ikkita dashboard yasadim va ularni hamma uchun ochiq qildim.
+## Зачем нужен проект и какая у него цель
 
-## Loyiha nima uchun kerak va maqsadi nima
+Цель простая: чтобы солнечная компания выбирала регион и сегмент по проверенным цифрам, а не наугад.
 
-Maqsad oddiy: quyosh kompaniyasi hudud va segmentni taxmin bilan emas, tekshirilgan raqamlar bilan tanlasin.
+Дашборды отвечают на четыре вопроса:
 
-Dashboardlar to'rtta savolga javob beradi:
+1. **Какой сегмент?** Крупная СЭС (B2G), госучреждения (B2G), бизнес (B2B) или домохозяйства (B2C).
+2. **Какой регион?** Какие три из 14 регионов самые перспективные в каждом сегменте.
+3. **Когда окупится?** За сколько лет СЭС вернёт вложения.
+4. **Кто конкуренты?** Какие станции в регионе уже работают и строятся.
 
-1. **Qaysi segment?** Yirik stansiya (B2G), davlat muassasalari (B2G), biznes (B2B) yoki uy xo'jaliklari (B2C).
-2. **Qaysi hudud?** Har bir segmentda 14 hududdan qaysi uchtasi eng istiqbolli.
-3. **Qachon o'zini oqlaydi?** Stansiya necha yilda qoplanadi.
-4. **Raqobatchilar kim?** Hududda qaysi stansiyalar ishlayapti va qurilmoqda.
+## Для владельца бизнеса: проблема, последствия и решение
 
-## Biznes egasi uchun: muammo, oqibat va yechim
+### Проблема
 
-### Muammo
+Нужные данные есть, но они разбросаны по десятку мест:
 
-Kerakli ma'lumot bor, lekin u o'nlab joyga tarqalgan:
+- потребление электроэнергии, стройка, предприятия и население в системе SIAT Агентства статистики (40 показателей);
+- солнечный ресурс в NASA POWER и калькуляторе PVGIS Еврокомиссии;
+- тарифы в постановлении Кабмина (№243 от 15.05.2026), льготы в ПП-57;
+- выплаты по «Солнечному дому» в новостях Налогового комитета;
+- список станций на сайтах инвесторов, в СМИ и OpenStreetMap.
 
-- elektr iste'moli, qurilish, korxonalar va aholi Statistika agentligining SIAT tizimida (40 ta ko'rsatkich);
-- quyosh resursi NASA POWER va Yevrokomissiyaning PVGIS kalkulyatorida;
-- tariflar Vazirlar Mahkamasining qarorida (№243, 15.05.2026), imtiyozlar PQ-57 da;
-- «Quyoshli uy» to'lovlari Soliq qo'mitasining yangiliklarida;
-- stansiyalar ro'yxati investorlar saytlarida, OAV va OpenStreetMap'da.
+Форматы, годы и даже названия регионов везде разные. Свести всё в одну таблицу и сравнить обычно некогда. В итоге регион выбирают по принципу «все идут в Ташкент» или «там много солнца».
 
-Ularning formati, yillari va hudud nomlari har xil. Hammasini bitta jadvalga yig'ib solishtirishga ko'pincha vaqt topilmaydi. Natijada hudud "hamma Toshkentga ketyapti" yoki "u yerda quyosh ko'p" degan tamoyil bilan tanlanadi.
+### Последствия
 
-### Oqibat
+- **В регионе, выбранном по солнцу, может не оказаться клиентов.** В Сурхандарье самое сильное солнце (1 626 кВт·ч/кВтп в год), но в рейтинге B2B она только на 10-м месте из 14: промышленных предприятий мало.
+- **Там, где СЭС уже много, выше конкуренция.** В Бухаре работающие и строящиеся станции покрывают 31,6% потребления, в Навоийской области всего 2,5%. Борьба за подключение к сети в первом случае намного жёстче.
+- **В B2C есть бюджетный риск.** Лимит «Солнечного дома» на 2026 год 100 млрд сум, а за 8 месяцев выплачено 542 млрд, выплаты задерживались. План продаж, построенный только на субсидии, может не сработать.
+- **Время отдела продаж уходит впустую.** Месяцы тратятся на поиск клиентов в районах, где их мало.
 
-- **Quyoshga qarab tanlangan hududda mijoz bo'lmasligi mumkin.** Surxondaryoda quyosh eng kuchli (yiliga 1 626 kVt·soat/kVtp), lekin B2B reytingida u 14 hududdan 10-o'rinda turadi, chunki sanoat korxonalari kam.
-- **Stansiya ko'p qurilgan hududda raqobat kuchli.** Buxoroda ishlayotgan va qurilayotgan stansiyalar iste'molning 31,6 foizini qoplaydi, Navoiyda esa atigi 2,5 foizini. Tarmoqqa ulanish uchun kurash birinchi hududda ancha qattiq bo'ladi.
-- **B2C'da byudjet xavfi bor.** «Quyoshli uy» uchun 2026 yilga 100 mlrd so'm limit belgilangan, 8 oyda esa 542 mlrd so'm to'langan va to'lovlar kechikkan. Faqat subsidiyaga tayangan savdo rejasi buzilishi mumkin.
-- **Savdo jamoasining vaqti behuda ketadi.** Oylar mijoz kam bo'lgan tumanda qidiruvga sarflanadi.
+### Решение
 
-### Yechim
+Все источники собраны в одну базу, проверены и превращены в два дашборда. Владелец бизнеса видит на одной странице: какой сегмент, какой регион, за сколько окупится и кто конкуренты.
 
-Barcha manbalar bitta bazaga yig'ildi, tekshirildi va ikkita dashboardga aylantirildi. Biznes egasi bir sahifada ko'radi: qaysi segment, qaysi hudud, qancha vaqtda qoplanadi va raqobatchilar kim.
+## Дашборд 1: «Решения: где строить СЭС»
 
-## 1-dashboard: «Решения: где строить СЭС»
+Это панель решений для владельца бизнеса. У каждого сегмента своя вкладка. 14 регионов получают балл от 0 до 100, на карте лучшие три региона отмечены цифрами, а кружки показывают крупные СЭС, то есть конкурентов.
 
-Bu biznes egasi uchun qaror paneli. Har bir segment uchun alohida tab bor. 14 hudud 0 dan 100 gacha ball oladi, xaritada top-3 hudud raqam bilan belgilangan, doiralar esa yirik stansiyalar, ya'ni raqobatchilar.
+![Вкладка B2C: регионы окрашены по баллу сегмента домохозяйств, справа рейтинг 14 регионов](img/02_b2c_reyting.png)
 
-![image-1793396577256](../images/image-1793396577256.webp)
-
-
-| Segment | Kim sotib oladi | Top-3 hudud | Qoplanish (top-3) |
+| Сегмент | Кто покупает | Топ-3 региона | Окупаемость (топ-3) |
 |---|---|---|---|
-| B2G: yirik SES (100+ MVt) | Milliy elektr tarmoqlari, 25 yillik PPA | Navoiy, Surxondaryo, Xorazm | tenderda belgilanadi |
-| B2G: davlat muassasalari | maktab, bog'cha, kasalxona, poliklinika | Samarqand, Qashqadaryo, Surxondaryo | 4,4–4,7 yil |
-| B2B: biznes | sanoat va tijorat korxonalari | Toshkent sh., Toshkent vil., Navoiy | 4,6–4,9 yil |
-| B2C: uy xo'jaliklari | aholi («Quyoshli uy») | Surxondaryo, Buxoro, Xorazm | 4,9–5,2 yil |
+| B2G: крупные СЭС (100+ МВт) | НЭС Узбекистана, PPA на 25 лет | Навоийская, Сурхандарьинская, Хорезмская | определяется на тендере |
+| B2G: госучреждения | школы, детсады, больницы, поликлиники | Самаркандская, Кашкадарьинская, Сурхандарьинская | 4,4–4,7 года |
+| B2B: бизнес | промышленные и коммерческие предприятия | г. Ташкент, Ташкентская, Навоийская | 4,6–4,9 года |
+| B2C: домохозяйства | население («Солнечный дом») | Сурхандарьинская, Бухарская, Хорезмская | 4,9–5,2 года |
 
-Tablar:
+Вкладки:
 
-- **«Сводка решений»**: asosiy ko'rsatkichlar, xarita, har bir segmentda top-3 hudud va 14 hudud bo'yicha tavsiya.
-- **«B2G: крупные СЭС»**: reyting omillari (ishlab chiqarish, yer, defitsit, bo'sh nisha, iste'mol o'sishi) va manba havolasi bilan raqobatchilar reestri.
-- **«B2G: госучреждения»**: hududlar bo'yicha maktab, bog'cha, kasalxona va poliklinikalar soni, top-25 tuman.
-- **«B2B: бизнес»**: iste'mol, sanoat korxonalari, investitsiya, top-25 tuman va PQ-57 dagi imtiyozlar.
-- **«B2C: домохозяйства»**: «Quyoshli uy» to'lovlari, modelni tekshirish va top-25 tuman.
-- **«Достоверность данных»**: barcha tekshiruvlar (pastda batafsil).
+- **«Сводка решений»**: ключевые показатели, карта, топ-3 региона в каждом сегменте и рекомендация по всем 14 регионам.
+- **«B2G: крупные СЭС»**: факторы рейтинга (выработка, земля, дефицит, свободная ниша, рост потребления) и реестр конкурентов со ссылками на источники.
+- **«B2G: госучреждения»**: школы, детсады, больницы и поликлиники по регионам, топ-25 районов.
+- **«B2B: бизнес»**: потребление, промышленные предприятия, инвестиции, топ-25 районов и льготы по ПП-57.
+- **«B2C: домохозяйства»**: выплаты «Солнечного дома», проверка модели и топ-25 районов.
+- **«Достоверность данных»**: все проверки (подробнее ниже).
 
-«Регион» filtri barcha tablarda va xaritada ishlaydi.
+Фильтр «Регион» работает на всех вкладках и на карте.
 
-## 2-dashboard: «Солнечная энергетика Узбекистана»
+## Дашборд 2: «Солнечная энергетика Узбекистана»
 
-Bu batafsil tahlil, ya'ni qarorlar ortidagi ma'lumotlar.
+Это подробная аналитика, то есть данные, на которых стоят решения.
 
-![image-1793396668392](../images/image-1793396668392.webp)
+![Вкладка «Обзор»: потребление и выработка электроэнергии, доля СЭС, выработка солнечных и ветровых станций по годам](img/04_obzor.png)
 
+- **«Обзор»**: выработка и потребление, доля солнца и ветра. В 2024 году СЭС выработали 3 965 млн кВт·ч.
+- **«Потребление»**: потребление по регионам и на душу населения, дефицит и рост за 4 года.
+- **«Солнечный ресурс»**: карта солнечного ресурса с сеткой 0,1°, выработка по месяцам и окупаемость коммерческой СЭС.
+- **«Строительство»**: строительные работы, ввод жилья и топ-30 районов.
+- **«Солнечные станции»**: реестр станций (мощность, статус, инвестор, дата ввода и источник). Работают 3 193 МВт, строятся 1 300 МВт, накопители на 1 963 МВт·ч.
+- **«Проверка PVGIS»**: сверка модели с калькулятором Еврокомиссии.
+- **«Источники и методология»**: все допущения, тарифы, курс валюты и каталог показателей SIAT.
 
-- **«Обзор»**: ishlab chiqarish va iste'mol, quyosh va shamol ulushi. 2024 yilda quyosh 3 965 mln kVt·soat elektr berdi.
-- **«Потребление»**: hududlar bo'yicha iste'mol, jon boshiga iste'mol, defitsit va 4 yillik o'sish.
-- **«Солнечный ресурс»**: 0,1° to'rdagi quyosh resursi xaritasi, oylar bo'yicha ishlab chiqarish va tijorat stansiyasining qoplanishi.
-- **«Строительство»**: qurilish ishlari, uy-joy topshirish va top-30 tuman.
-- **«Солнечные станции»**: stansiyalar reestri (quvvat, holat, investor, ishga tushish sanasi va manba). Ishlayotgan stansiyalar 3 193 MVt, qurilayotganlari 1 300 MVt, akkumulyatorlar 1 963 MVt·soat.
-- **«Проверка PVGIS»**: modelni Yevrokomissiya kalkulyatori bilan solishtirish.
-- **«Источники и методология»**: barcha taxminlar, tariflar, valyuta kursi va SIAT ko'rsatkichlari katalogi.
+![Вкладка «Солнечный ресурс»: карта ресурса и годовая выработка 1 кВтп по регионам](img/05_solnechny_resurs.png)
 
-![image-1793396726712](../images/image-1793396726712.webp)
+![Вкладка «Солнечные станции»: карта крупных СЭС и мощность по регионам и статусу](img/06_stancii.png)
 
-![image-1793396775484](../images/image-1793396775484.webp)
+## Что получает солнечная компания
 
+1. **Выбор сегмента и региона.** 4 сегмента × 14 регионов, у каждого балл и пояснение «почему», например: «число промышленных предприятий и потребление».
+2. **Где искать клиентов.** Топ-25 районов в каждом сегменте: для B2B инвестиции и промышленность, для B2C жилой фонд и зарплаты, для госучреждений больницы и поликлиники.
+3. **Экономику.** Окупаемость по каждому региону и годовую выработку станции на 100 МВт.
+4. **Конкурентов.** Мощность, инвестор, статус и ссылка на источник по каждой крупной СЭС.
+5. **Сигналы рынка.** Выплаты и число участников «Солнечного дома» по периодам вместе с лимитом бюджета.
+6. **Льготы.** Налоговые льготы ПП-57 и условия ежемесячного взаимозачёта с сетью в одном месте.
 
-## Quyosh kompaniyasi bundan nima oladi
+По ходу работы обнаружился неожиданный вывод:
 
-1. **Segment va hudud tanlovi.** 4 segment × 14 hudud, har biri uchun ball va "nega" degan izoh, masalan: "sanoat korxonalari soni va iste'mol".
-2. **Mijoz qayerdaligi.** Har bir segment uchun top-25 tuman: B2B uchun investitsiya va sanoat, B2C uchun uy-joy fondi va ish haqi, muassasalar uchun kasalxona va poliklinikalar.
-3. **Iqtisod.** Har bir hudud uchun qoplanish muddati va 100 MVt stansiyaning yillik ishlab chiqarishi.
-4. **Raqobat.** Har bir yirik stansiyaning quvvati, investori, holati va manba havolasi.
-5. **Bozor signallari.** «Quyoshli uy» to'lovlari va qatnashchilar soni davrlar bo'yicha, byudjet limiti bilan birga.
-6. **Davlat imtiyozlari.** PQ-57 dagi soliq imtiyozlari va tarmoq bilan oylik hisob-kitob shartlari bir joyda.
+![Окупаемость небольшой СЭС по 14 регионам: B2B 4,4–5,1 года, B2C 4,9–5,6 года](img/08_okupaemost_ru.png)
 
-Ishlash davomida kutilmagan bir xulosa chiqdi:
+Солнечный ресурс между регионами различается всего на ±7%. Поэтому небольшая СЭС окупается везде за 4,4–5,6 года. Где строить, решает не солнце, а рынок: число клиентов, потребление и конкуренция. Именно эти факторы и измеряет дашборд.
 
-![image-1793396818241](../images/image-1793396818241.webp)
+## Почему цифрам можно доверять
 
-Quyosh resursi hududlar orasida bor-yo'g'i ±7% farq qiladi. Shuning uchun kichik stansiya hamma joyda 4,4 yildan 5,6 yilgacha qoplanadi. Qayerda qurishni quyosh emas, bozor hal qiladi: mijozlar soni, iste'mol va raqobat. Dashboard aynan shu omillarni o'lchaydi.
+Я следил за двумя вещами: у каждой цифры есть источник, и у каждого расчёта открыта формула. Вот основные.
 
-## Raqamlarga qanday ishonish mumkin
-
-Ikki narsaga alohida e'tibor berdim: har bir raqamning manbasi bor va har bir hisobning formulasi ochiq. Mana asosiylari.
-
-### 1. Stansiya qancha elektr ishlab chiqaradi
+### 1. Сколько электроэнергии выработает станция
 
 ```
-Ishlab chiqarish (kVt·soat/kVtp, yiliga) =
-    Σ 12 oy [ GHI × kunlar × 1,13 × 0,82 × (1 − 0,0035 × (T + 22 − 25)) ]
+Выработка (кВт·ч/кВтп в год) =
+    Σ 12 месяцев [ GHI × дни × 1,13 × 0,82 × (1 − 0,0035 × (T + 22 − 25)) ]
 ```
 
-- **GHI**: NASA POWER bo'yicha 2001–2025 yillardagi o'rtacha quyosh nurlanishi, kVt·soat/m² kuniga;
-- **1,13**: panel optimal qiyalikda o'rnatilganda nurlanishning ortishi;
-- **0,82**: tizim samaradorligi (chang, inverter, kabellardagi yo'qotishlar);
-- **T**: havoning o'rtacha oylik harorati. Panel havodan ~22 °C issiqroq bo'ladi va 25 °C dan yuqori har bir gradus quvvatni 0,35% ga kamaytiradi.
+- **GHI**: средняя солнечная радиация по NASA POWER за 2001–2025 годы, кВт·ч/м² в день;
+- **1,13**: прирост радиации при установке панелей под оптимальным углом;
+- **0,82**: коэффициент производительности системы (загрязнение, инвертор, кабели);
+- **T**: средняя месячная температура воздуха. Панель нагревается примерно на 22 °C выше воздуха, и каждый градус выше 25 °C снижает мощность на 0,35%.
 
-NASA ma'lumoti 1° to'rda keladi, model uni hudud ichidagi 0,1° nuqtalarga interpolyatsiya qiladi. Bu formula xarita va yirik stansiyalar uchun ishlatiladi. Qoplanish esa viloyat markazidagi PVGIS qiymati bilan hisoblanadi.
+Данные NASA приходят с сеткой 1°, модель интерполирует их в точки 0,1° внутри региона. Эта формула используется для карты и крупных СЭС. Окупаемость считается по выработке PVGIS в центре региона.
 
-### 2. B2B va davlat muassasalari uchun qoplanish
-
-```
-Qoplanish (yil)  = CAPEX / yillik tejash
-CAPEX            = 600 $/kVtp × 11 919 so'm = 7 151 400 so'm/kVtp
-Yillik tejash    = ishlab chiqarish × 1 100 so'm × 0,9
-```
-
-1 100 so'm 01.06.2026 dan yuridik shaxslar uchun amaldagi tarif (VMQ №243). 0,9 esa elektrning 90 foizi korxonaning o'zida ishlatilib, tarif bo'yicha xaridni almashtirishini bildiradi.
-
-Misol, Surxondaryo: 1 626 × 1 100 × 0,9 = 1 609 740 so'm yillik tejash, 7 151 400 / 1 609 740 = **4,4 yil**.
-
-### 3. Uy xo'jaliklari (B2C) uchun qoplanish
+### 2. Окупаемость для бизнеса и госучреждений
 
 ```
-Qoplanish (yil) = (650 $ × 11 919 so'm) / (ishlab chiqarish × (0,3 × 900 + 0,7 × 1 000))
+Окупаемость (лет)  = CAPEX / годовая экономия
+CAPEX              = 600 $/кВтп × 11 919 сум = 7 151 400 сум/кВтп
+Годовая экономия   = выработка × 1 100 сум × 0,9
 ```
 
-Uy elektrning 30 foizini o'zi ishlatadi (900 so'm, aholi tarifining 2-pog'onasi), qolgan 70 foizini «Quyoshli uy» bo'yicha tarmoqqa 1 000 so'mdan sotadi. Bu ulush Soliq qo'mitasi ma'lumotiga asoslangan: qatnashchilar oyiga ~1,3–1,7 ming kVt·soat elektrni tarmoqqa beradi.
+1 100 сум — тариф для юрлиц с 01.06.2026 (ПКМ №243). 0,9 означает, что 90% выработки потребляется на самом предприятии и заменяет покупку по тарифу.
 
-Misol, Surxondaryo: 7 747 350 / (1 626 × 970) = 7 747 350 / 1 577 220 = **4,9 yil**.
+Пример, Сурхандарья: 1 626 × 1 100 × 0,9 = 1 609 740 сум экономии в год, 7 151 400 / 1 609 740 = **4,4 года**.
 
-### 4. Yirik stansiyalar (B2G)
-
-```
-100 MVt stansiyaning yillik energiyasi (GVt·soat) = ishlab chiqarish × 100 / 1 000
-Defitsit (%)      = (iste'mol − ishlab chiqarish) / iste'mol × 100
-To'yinganlik (%)  = ishlayotgan va qurilayotgan SES energiyasi / iste'mol × 100
-```
-
-PPA narxi tenderda belgilanadi, shuning uchun bu segmentda qoplanish hisoblanmaydi. Navoiyda 100 MVt stansiya yiliga 1 527 × 100 / 1 000 ≈ 153 GVt·soat beradi. Navoiyda elektr ortiqcha (profitsit 57%), lekin yer ko'p, quyosh kuchli va stansiyalar iste'molning atigi 2,5 foizini qoplaydi. Shuning uchun u birinchi o'rinda.
-
-### 5. Hudud bali
+### 3. Окупаемость для домохозяйств (B2C)
 
 ```
-omil = (x − min) / (max − min)                  14 hudud bo'yicha, 0 dan 1 gacha
-Ball = 100 × Σ (og'irlik × omil) / Σ og'irlik
+Окупаемость (лет) = (650 $ × 11 919 сум) / (выработка × (0,3 × 900 + 0,7 × 1 000))
 ```
 
-Katta sonlar (iste'mol, korxonalar soni) avval ln(1 + x) bilan siqiladi, aks holda Toshkent hamma omilda boshqalarni bosib ketadi.
+Дом потребляет 30% выработки сам (900 сум, вторая ступень тарифа для населения), остальные 70% продаёт в сеть по «Солнечному дому» по 1 000 сум. Доля опирается на данные Налогового комитета: участники отдают в сеть около 1,3–1,7 тыс. кВт·ч в месяц.
 
-Misol, Surxondaryo B2C: 100 × (0,30 × 1,000 + 0,25 × 0,952 + 0,20 × 0,970 + 0,15 × 0,597 + 0,10 × 0,036) = **82,5**.
+Пример, Сурхандарья: 7 747 350 / (1 626 × 970) = 7 747 350 / 1 577 220 = **4,9 года**.
 
-| Segment | Omillar va og'irliklar |
+### 4. Крупные СЭС (B2G)
+
+```
+Годовая энергия СЭС на 100 МВт (ГВт·ч) = выработка × 100 / 1 000
+Дефицит (%)      = (потребление − производство) / потребление × 100
+Насыщенность (%) = энергия работающих и строящихся СЭС / потребление × 100
+```
+
+Цена PPA определяется на тендере, поэтому окупаемость в этом сегменте не считается. В Навоийской области станция на 100 МВт даст 1 527 × 100 / 1 000 ≈ 153 ГВт·ч в год. Электроэнергии там в избытке (профицит 57%), но земли много, солнце сильное, а СЭС покрывают всего 2,5% потребления. Поэтому регион на первом месте.
+
+### 5. Балл региона
+
+```
+фактор = (x − min) / (max − min)                 по 14 регионам, от 0 до 1
+Балл   = 100 × Σ (вес × фактор) / Σ весов
+```
+
+Большие числа (потребление, число предприятий) сначала сжимаются через ln(1 + x), иначе Ташкент перевешивал бы всех по каждому фактору.
+
+Пример, Сурхандарья, B2C: 100 × (0,30 × 1,000 + 0,25 × 0,952 + 0,20 × 0,970 + 0,15 × 0,597 + 0,10 × 0,036) = **82,5**.
+
+| Сегмент | Факторы и веса |
 |---|---|
-| B2G: yirik SES | ishlab chiqarish 30%, yer 20%, defitsit 20%, bo'sh nisha 20%, iste'mol o'sishi 10% |
-| B2G: muassasalar | muassasalar soni 70%, PVGIS ishlab chiqarish 30% |
-| B2B | iste'mol 20%, sanoat korxonalari 20%, sanoat hajmi 15%, investitsiya 15%, barcha korxonalar 10%, qurilish o'sishi 10%, ishlab chiqarish 10% |
-| B2C | ishlab chiqarish 30%, qishloq aholisi ulushi 25%, jon boshiga past iste'mol 20%, yangi xususiy uylar 15%, daromad 10% |
+| B2G: крупные СЭС | выработка 30%, земля 20%, дефицит 20%, свободная ниша 20%, рост потребления 10% |
+| B2G: госучреждения | число учреждений 70%, выработка по PVGIS 30% |
+| B2B | потребление 20%, промышленные предприятия 20%, объём промышленности 15%, инвестиции 15%, все предприятия 10%, рост стройки 10%, выработка 10% |
+| B2C | выработка 30%, доля сельского населения 25%, низкое потребление на душу 20%, новые частные дома 15%, доход 10% |
 
-### Tekshiruvlar
+### Проверки
 
-![image-1793396869098](../images/image-1793396869098.webp)
+![Вкладка «Достоверность данных»: 53 897 значений сверено с источником, 0 расхождений, таблица всех проверок](img/03_dostovernost.png)
 
+1. **Сверка с источником.** 53 897 значений базы (40 показателей SIAT) по одному сверены со свежей выгрузкой SIAT: **0 расхождений**.
+2. **Итоги.** Проверяется, что сумма регионов равна Республике, сумма районов равна региону, а потребление на душу равно потреблению, делённому на население. Из 53 проверок 43 сходятся полностью. В 8 расхождение есть в самом источнике: например, ВВП Республики включает налоги, не распределённые по регионам, поэтому сумма регионов на 13,6% меньше. Такие случаи помечены и объяснены.
+3. **Солнечная модель против PVGIS.** В 58 точках (станции, центры регионов, топовые районы) модель сверена с калькулятором PVGIS Еврокомиссии. Средняя абсолютная разница 1,8%, в среднем модель занижает на 1,3%, то есть оценка осторожная. В горных районах разница доходит до 14%, и это тоже показано.
+4. **B2C-модель против реальных выплат.** Налоговый комитет публикует по «Солнечному дому» только три крупнейших региона. Во всех трёх периодах (I квартал, январь–май и август 2026) все регионы из опубликованного топ-3 входят в топ-5 модели. Сурхандарья, которую модель ставит первой, в опубликованный топ-3 не попала, и я этого не скрываю.
+5. **Реестр станций.** У каждой станции есть ссылка на источник и уровень подтверждения (официально, инвестор, МФИ, СМИ). 3 станции на 900 МВт, которые видны только в OpenStreetMap, помечены как «Внимание».
 
-1. **Manba bilan solishtirish.** Bazadagi 53 897 ta qiymat (40 ta SIAT ko'rsatkichi) SIAT'dan yangi yuklangan nusxa bilan birma-bir solishtirildi: **0 ta farq**.
-2. **Yig'indilar.** Hududlar yig'indisi respublikaga, tumanlar yig'indisi viloyatga teng bo'lishi, jon boshiga iste'mol esa iste'mol / aholiga mos kelishi tekshiriladi. 53 ta tekshiruvdan 43 tasi to'liq mos. 8 tasida farq manbaning o'zida: masalan, respublika YaIMga hududlarga taqsimlanmagan soliqlar kiradi, shuning uchun hududlar yig'indisi 13,6% kam. Bunday holatlar izohlab qo'yilgan.
-3. **Quyosh modeli PVGIS bilan.** 58 nuqtada (stansiyalar, viloyat markazlari, top tumanlar) model Yevrokomissiyaning PVGIS kalkulyatori bilan solishtirildi. O'rtacha mutlaq farq 1,8%, model o'rtacha 1,3% past baholaydi, ya'ni ehtiyotkor. Tog'li hududlarda farq 14 foizgacha yetadi, bu ham ko'rsatilgan.
-4. **B2C modeli haqiqiy to'lovlar bilan.** Soliq qo'mitasi «Quyoshli uy» bo'yicha faqat top-3 hududni e'lon qiladi. Uchta davrda (I chorak, yanvar–may va avgust 2026) e'lon qilingan barcha top-3 hududlar modelning top-5 ichida. Model birinchi o'ringa qo'ygan Surxondaryo esa e'lon qilingan top-3 ga kirmagan, buni ham yashirmayman.
-5. **Stansiyalar reestri.** Har bir stansiyada manba havolasi va tasdiq darajasi bor (rasmiy, investor, xalqaro moliya tashkiloti, OAV). Faqat OpenStreetMap'da ko'ringan 3 ta stansiya (900 MVt) «Внимание» deb belgilangan.
+![Вкладка «Проверка PVGIS»: модель и PVGIS в 58 точках, средняя абсолютная разница 1,8%](img/07_proverka_pvgis.png)
 
-![image-1793396892399](../images/image-1793396892399.webp)
+![Регионы по баллу B2C: все регионы из топ-3 Налогового комитета входят в топ-5 модели](img/09_proverka_b2c_ru.png)
 
-![image-1793396936047](../images/image-1793396936047.webp)
+### Ограничения
 
+Честно о том, чего в данных нет:
 
-### Cheklovlar
+- открытых данных о свободной мощности подстанций и категориях земель нет, поэтому для крупного проекта всё равно нужны технические условия НЭС;
+- CAPEX (600 и 650 $/кВтп) — рыночная оценка, веса факторов — экспертная. И то и другое открыто на вкладках «Источники и методология» и «Достоверность данных»;
+- окупаемость упрощённая: кредит, деградация панелей и рост тарифов не учтены;
+- региональная статистика «Солнечного дома» публикуется только для топ-3.
 
-Nima yo'qligini ham ochiq aytaman:
+## Как пользоваться
 
-- podstansiyalarning bo'sh quvvati va yer toifalari bo'yicha ochiq ma'lumot yo'q, shuning uchun yirik loyiha uchun baribir Milliy elektr tarmoqlaridan texnik shartlar olish kerak;
-- CAPEX (600 va 650 $/kVtp) bozor bahosi, omillar og'irligi esa ekspert bahosi. Ikkalasi ham «Источники и методология» va «Достоверность данных» tablarida ochiq turibdi;
-- qoplanish soddalashtirilgan: kredit, panellarning eskirishi va tarif o'sishi hisobga olinmagan;
-- «Quyoshli uy» bo'yicha hududiy statistika faqat top-3 uchun e'lon qilinadi.
+1. Откройте вкладку «Сводка решений» и выберите сегмент на панели карты.
+2. В таблице топ-3 посмотрите окупаемость и колонку «Сильные стороны региона».
+3. Перейдите на вкладку сегмента: там таблица факторов и топ-25 районов для поиска клиентов.
+4. Если сомневаетесь в какой-то цифре, найдите её проверку на вкладке «Достоверность данных».
 
-## Qanday foydalanish kerak
+## Ссылки
 
-1. «Сводка решений» tabini oching va xarita panelida segmentni tanlang.
-2. Top-3 jadvalida qoplanish va "kuchli tomonlar" ustunini o'qing.
-3. Segment tabiga o'ting: omillar jadvali va top-25 tumandan mijoz qidirish ro'yxatini oling.
-4. Biror raqamga shubha bo'lsa, «Достоверность данных» tabida uning tekshiruvini ko'ring.
-
-## Havolalar
-
-Ikkala dashboard ochiq, login kerak emas:
+Оба дашборда открыты, логин не нужен:
 
 - **Решения: где строить СЭС**: https://analytics.kamalovic.uz/public/dashboard/b6e141f5-4d83-4975-b274-95fc1999b0b1
 - **Солнечная энергетика Узбекистана**: https://analytics.kamalovic.uz/public/dashboard/75b46627-b70e-4188-9af6-016ebc30701f
 
-Agar quyosh sohasida ishlasangiz, fikringizni yozing: qaysi ko'rsatkich yetishmayapti va qaysi raqam sizning tajribangizga to'g'ri kelmaydi? Bu men uchun eng foydali fikr bo'ladi.
+Если вы работаете в солнечной энергетике, напишите: какого показателя не хватает и какая цифра расходится с вашим опытом? Для меня это самая полезная обратная связь.
+
+---
+
+#SolarEnergy #RenewableEnergy #CleanEnergy #Uzbekistan #DataAnalytics #BusinessIntelligence #OpenData #Metabase #СолнечнаяЭнергетика #ВИЭ #ЗелёнаяЭнергетика #Узбекистан #АналитикаДанных
