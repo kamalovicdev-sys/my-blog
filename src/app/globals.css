@@ -16,6 +16,11 @@
   --color-accent: #818cf8;
 }
 
+/* Sayt to'liq qorong'i: brauzer scroll chiziqlari va forma elementlarini ham qorong'i chizadi */
+:root {
+  color-scheme: dark;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   html {
     scroll-behavior: smooth;

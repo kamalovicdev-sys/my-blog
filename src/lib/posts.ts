@@ -25,23 +25,28 @@ export type PostMeta = {
 type Post = { meta: PostMeta; content: string };
 
 // Obsidian teglarni ro'yxat qilib yozadi, qo'lda esa "linux, ubuntu" deb ham yozish mumkin
-function parseTags(value: unknown): Tag[] {
+export function parseTags(value: unknown): Tag[] {
   return (Array.isArray(value) ? value : String(value ?? '').split(','))
     .map((tag) => String(tag).trim().replace(/^#/, ''))
     .filter(Boolean)
     .map((name) => ({ name, slug: slugify(name) }));
 }
 
-function readPost(fileName: string): Post | null {
-  const fileContents = fs.readFileSync(path.join(postsDirectory, fileName), 'utf8');
+// Obsidian sanani qo'shtirnoqsiz yozadi va gray-matter uni Date obyektiga aylantiradi
+export function parseDate(value: unknown) {
+  const date = value instanceof Date ? value.toISOString().slice(0, 10) : String(value ?? '');
+  return /^\d{4}-\d{2}-\d{2}$/.test(date) ? date : null;
+}
+
+// Fayl matnidan post yasash. Sayt build'i ham, GitHub'dan o'qiydigan admin panel ham shuni ishlatadi
+export function parsePost(fileName: string, fileContents: string): Post | null {
   // Frontmatter'siz fayl hali post emas (masalan, shablon qo'yilmagan yangi qayd)
   if (!matter.test(fileContents)) return null;
   const { data, content } = matter(fileContents);
   const name = fileName.replace(/\.md$/, '');
 
-  // Obsidian sanani qo'shtirnoqsiz yozadi va gray-matter uni Date obyektiga aylantiradi
-  const date = data.date instanceof Date ? data.date.toISOString().slice(0, 10) : String(data.date ?? '');
-  if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) {
+  const date = parseDate(data.date);
+  if (!date) {
     throw new Error(`content/posts/${fileName}: "date" maydoni YYYY-MM-DD ko'rinishida bo'lishi kerak`);
   }
 
@@ -62,6 +67,10 @@ function readPost(fileName: string): Post | null {
     },
     content,
   };
+}
+
+function readPost(fileName: string) {
+  return parsePost(fileName, fs.readFileSync(path.join(postsDirectory, fileName), 'utf8'));
 }
 
 // Build paytida fayllar o'zgarmaydi, shuning uchun postlar bir marta o'qiladi

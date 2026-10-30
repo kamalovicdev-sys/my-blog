@@ -11,6 +11,16 @@ export const SOCIAL = {
   portfolio: 'https://kamalovic.netlify.app',
 };
 
+// Admin panel postlar va rasmlarni shu repo'ga commit qiladi
+export const GITHUB_REPO = {
+  owner: 'kamalovicdev-sys',
+  name: 'my-blog',
+  branch: 'master',
+};
+
+// Admin panelga faqat shu GitHub akkaunt kira oladi
+export const ADMIN_GITHUB_LOGIN = 'kamalovicdev-sys';
+
 // Izohlar GitHub Discussions'da saqlanadi (https://giscus.app). categoryId bo'sh bo'lsa izohlar o'chiq
 export const GISCUS = {
   repo: 'kamalovicdev-sys/my-blog',

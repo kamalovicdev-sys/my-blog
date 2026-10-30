@@ -4,6 +4,7 @@ import { getAllPostSlugs, getPostData, getPostMeta, getRelatedPosts } from "@/li
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 import CodeCopyButtons from "@/components/CodeCopyButtons";
 import Comments from "@/components/Comments";
+import PostBody from "@/components/PostBody";
 import PostCard, { PostInfo } from "@/components/PostCard";
 import ReadingProgress from "@/components/ReadingProgress";
 import ShareButtons from "@/components/ShareButtons";
@@ -78,10 +79,7 @@ export default async function Post({ params }: Props) {
           </>
         )}
 
-        <div
-          className="prose prose-lg prose-invert prose-slate max-w-none break-words font-serif prose-headings:font-sans prose-h2:text-2xl prose-h3:text-xl prose-img:mx-auto prose-img:rounded-lg"
-          dangerouslySetInnerHTML={{ __html: postData.contentHtml }}
-        />
+        <PostBody html={postData.contentHtml} />
 
         {postData.tags.length > 0 && (
           <div className="mt-10 flex flex-wrap gap-2">
