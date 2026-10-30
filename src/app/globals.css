@@ -92,6 +92,11 @@
   .copy-code {
     opacity: 1;
   }
+
+  /* Telefonda tugma doim ko'rinadi, kodning birinchi qatorini yopmasligi uchun tepada joy qoldiramiz */
+  .prose .code-block pre {
+    padding-top: 2.75rem;
+  }
 }
 
 /* Mobilda keng formula va jadvallar butun sahifani emas, faqat o'zini suradi */
