@@ -1,14 +1,11 @@
 ---
-title: >-
-  Quyosh stansiyasini qayerga qurish kerak: 14 hudud, 4 segment va har bir
-  raqamning formulasi
+title: Quyosh stansiyasini qayerga qurish kerak ?
 date: '2026-10-31'
 description: >-
-  quyosh energetikasi kompaniyalari uchun ikkita ochiq Metabase dashboard
-  yasadim. Ular qaysi hududda va qaysi mijoz uchun (davlat, biznes yoki aholi)
-  stansiya qurish foydaliroq ekanini, qoplanish muddatini va raqobatchilarni
-  ko'rsatadi. Har bir raqam rasmiy manbadan olingan, formulasi ochiq va
-  tekshirilgan.
+  Solar kompaniyalari uchun ikkita ochiq Metabase dashboard yasadim. Ular qaysi
+  hududda va qaysi mijoz uchun (davlat, biznes yoki aholi) stansiya qurish
+  foydaliroq ekanini, qoplanish muddatini va raqobatchilarni ko'rsatadi. Har bir
+  raqam rasmiy manbadan olingan, formulasi ochiq va tekshirilgan.
 draft: true
 ---
 
