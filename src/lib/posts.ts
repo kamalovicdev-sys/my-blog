@@ -1,97 +1,43 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
-import { remark } from 'remark';
-import remarkGfm from 'remark-gfm';
-import remarkMath from 'remark-math';
-import remarkRehype from 'remark-rehype';
-import rehypeRaw from 'rehype-raw';
-import rehypeKatex from 'rehype-katex';
-import rehypeHighlight from 'rehype-highlight';
-import rehypeStringify from 'rehype-stringify';
-import { toString } from 'mdast-util-to-string';
-import { visit } from 'unist-util-visit';
-import type { Heading, Paragraph, Root } from 'mdast';
+import { getExcerpt, getReadingTime, renderMarkdown, resolveImageUrl } from './markdown';
+import { slugify } from './slug';
 
 const postsDirectory = path.join(process.cwd(), 'content/posts');
-const EXCERPT_LENGTH = 160;
 
 // Qoralamalar (draft: true) `npm run dev`da ko'rinadi, lekin saytga chiqmaydi
-const showDrafts = process.env.NODE_ENV !== 'production';
+const isProduction = process.env.NODE_ENV === 'production';
 
-// Fayl nomidan URL yasash: "Docker o'rnatish.md" → "docker-ornatish"
-function slugify(fileName: string) {
-  return fileName
-    .replace(/\.md$/, '')
-    .normalize('NFKD')
-    .replace(/[̀-ͯ]/g, '')
-    .replace(/['‘’ʻʼ`]/g, '')
-    .toLowerCase()
-    .replace(/[^\p{L}\p{N}]+/gu, '-')
-    .replace(/^-+|-+$/g, '');
-}
+export type Tag = { name: string; slug: string };
 
-// Matndagi oddiy paragraflardan (sarlavha, rasm va HTML teglarsiz) qisqa tavsif yasash
-function getExcerpt(markdown: string) {
-  const tree = remark().use(remarkGfm).use(remarkMath).parse(markdown);
-  const text = tree.children
-    .filter((node): node is Paragraph => node.type === 'paragraph')
-    .map((paragraph) =>
-      paragraph.children
-        .filter((node) => node.type !== 'html')
-        .map((node) => toString(node, { includeImageAlt: false }))
-        .join('')
-    )
-    .join(' ')
-    .replace(/\s+/g, ' ')
-    .trim();
+export type PostMeta = {
+  slug: string;
+  title: string;
+  date: string;
+  description: string;
+  tags: Tag[];
+  imageUrl: string | null;
+  draft: boolean;
+  readingTime: number;
+};
 
-  if (text.length <= EXCERPT_LENGTH) return text;
-  return text.slice(0, text.lastIndexOf(' ', EXCERPT_LENGTH)) + '…';
-}
-
-// Sahifadagi yagona <h1> post sarlavhasi bo'lishi uchun, matnda `#` ishlatilgan bo'lsa
-// barcha sarlavhalarni bir pog'ona pastga suramiz (# → h2, ## → h3, ...)
-function remarkShiftHeadings() {
-  return (tree: Root) => {
-    const headings: Heading[] = [];
-    visit(tree, 'heading', (node) => {
-      headings.push(node);
-    });
-
-    if (!headings.some((heading) => heading.depth === 1)) return;
-    for (const heading of headings) {
-      heading.depth = Math.min(heading.depth + 1, 6) as Heading['depth'];
-    }
-  };
-}
-
-// Obsidian rasmga matnda nisbiy yo'l bilan (../images/rasm.png), property'da esa [[rasm.png]] bilan murojaat qiladi
-function resolveImageUrl(url: string) {
-  return url
-    .replace(/^\[\[(.+)\]\]$/, (_, name: string) => `/images/${encodeURI(name)}`)
-    .replace(/^(\.\.\/)?images\//, '/images/');
-}
-
-function remarkLocalImages() {
-  return (tree: Root) => {
-    visit(tree, 'image', (node) => {
-      node.url = resolveImageUrl(node.url);
-    });
-  };
-}
+type Post = { meta: PostMeta; content: string };
 
 // Obsidian teglarni ro'yxat qilib yozadi, qo'lda esa "linux, ubuntu" deb ham yozish mumkin
-function parseTags(value: unknown) {
-  const tags = Array.isArray(value) ? value : String(value ?? '').split(',');
-  return tags.map((tag) => String(tag).trim().replace(/^#/, '')).filter(Boolean);
+function parseTags(value: unknown): Tag[] {
+  return (Array.isArray(value) ? value : String(value ?? '').split(','))
+    .map((tag) => String(tag).trim().replace(/^#/, ''))
+    .filter(Boolean)
+    .map((name) => ({ name, slug: slugify(name) }));
 }
 
-function readPost(fileName: string) {
+function readPost(fileName: string): Post | null {
   const fileContents = fs.readFileSync(path.join(postsDirectory, fileName), 'utf8');
   // Frontmatter'siz fayl hali post emas (masalan, shablon qo'yilmagan yangi qayd)
   if (!matter.test(fileContents)) return null;
   const { data, content } = matter(fileContents);
+  const name = fileName.replace(/\.md$/, '');
 
   // Obsidian sanani qo'shtirnoqsiz yozadi va gray-matter uni Date obyektiga aylantiradi
   const date = data.date instanceof Date ? data.date.toISOString().slice(0, 10) : String(data.date ?? '');
@@ -104,26 +50,33 @@ function readPost(fileName: string) {
 
   return {
     meta: {
-      slug: data.slug ? String(data.slug) : slugify(fileName),
+      slug: data.slug ? String(data.slug) : slugify(name),
       // Obsidian shablonida bo'sh qolgan maydonlar uchun fayl nomi va matndan olingan tavsif ishlatiladi
-      title: String(data.title || fileName.replace(/\.md$/, '')).trim(),
+      title: String(data.title || name).trim(),
       date,
       description: String(data.description || getExcerpt(content)),
       tags: parseTags(data.tags),
       imageUrl: cover ? resolveImageUrl(String(cover)) : null,
       draft: data.draft === true,
+      readingTime: getReadingTime(content),
     },
     content,
   };
 }
 
+// Build paytida fayllar o'zgarmaydi, shuning uchun postlar bir marta o'qiladi
+let cachedPosts: Post[] | null = null;
+
 function getPosts() {
+  if (cachedPosts) return cachedPosts;
+
   const posts = fs
     .readdirSync(postsDirectory)
     .filter((fileName) => fileName.endsWith('.md'))
     .map(readPost)
     .filter((post) => post !== null)
-    .filter((post) => showDrafts || !post.meta.draft);
+    .filter((post) => !isProduction || !post.meta.draft)
+    .sort((a, b) => b.meta.date.localeCompare(a.meta.date));
 
   const slugs = posts.map((post) => post.meta.slug);
   const duplicate = slugs.find((slug, index) => slugs.indexOf(slug) !== index);
@@ -131,6 +84,7 @@ function getPosts() {
     throw new Error(`content/posts: bir nechta post "${duplicate}" manziliga to'g'ri keladi, birining nomini yoki slug'ini o'zgartiring`);
   }
 
+  if (isProduction) cachedPosts = posts;
   return posts;
 }
 
@@ -143,9 +97,7 @@ export function getAllPostSlugs() {
 }
 
 export function getSortedPostsData() {
-  return getPosts()
-    .map((post) => post.meta)
-    .sort((a, b) => b.date.localeCompare(a.date));
+  return getPosts().map((post) => post.meta);
 }
 
 export function getPostMeta(slug: string) {
@@ -156,20 +108,37 @@ export async function getPostData(slug: string) {
   const post = findPost(slug);
   if (!post) return null;
 
-  const processedContent = await remark()
-    .use(remarkGfm)
-    .use(remarkMath)
-    .use(remarkShiftHeadings)
-    .use(remarkLocalImages)
-    .use(remarkRehype, { allowDangerousHtml: true })
-    .use(rehypeRaw)
-    .use(rehypeKatex)
-    .use(rehypeHighlight)
-    .use(rehypeStringify)
-    .process(post.content);
+  const { html, toc } = await renderMarkdown(post.content);
+  return { ...post.meta, contentHtml: html, toc };
+}
 
-  return {
-    ...post.meta,
-    contentHtml: processedContent.toString(),
-  };
+// Har bir teg va undagi postlar soni, ko'p ishlatilgani oldin
+export function getAllTags() {
+  const tags = new Map<string, Tag & { count: number }>();
+  for (const { meta } of getPosts()) {
+    for (const tag of meta.tags) {
+      const entry = tags.get(tag.slug) ?? { ...tag, count: 0 };
+      entry.count += 1;
+      tags.set(tag.slug, entry);
+    }
+  }
+  return [...tags.values()].sort((a, b) => b.count - a.count || a.name.localeCompare(b.name));
+}
+
+export function getPostsByTag(tagSlug: string) {
+  return getSortedPostsData().filter((post) => post.tags.some((tag) => tag.slug === tagSlug));
+}
+
+// Teglari eng ko'p mos keladigan postlar; mos kelmasa, eng yangilari
+export function getRelatedPosts(slug: string, limit = 3) {
+  const current = getPostMeta(slug);
+  if (!current) return [];
+  const currentTags = new Set(current.tags.map((tag) => tag.slug));
+
+  return getSortedPostsData()
+    .filter((post) => post.slug !== slug)
+    .map((post) => ({ post, score: post.tags.filter((tag) => currentTags.has(tag.slug)).length }))
+    .sort((a, b) => b.score - a.score)
+    .slice(0, limit)
+    .map(({ post }) => post);
 }

@@ -1,4 +1,4 @@
-import { getSortedPostsData } from "../lib/posts";
+import { getAllTags, getSortedPostsData } from "../lib/posts";
 import PostsClient from "../components/PostsClient";
 
 export default function Home() {
@@ -6,7 +6,7 @@ export default function Home() {
 
   return (
     <section>
-      <PostsClient initialPosts={allPostsData} />
+      <PostsClient initialPosts={allPostsData} tags={getAllTags()} />
     </section>
   );
 }

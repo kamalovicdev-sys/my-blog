@@ -13,6 +13,13 @@
 @theme {
   --color-background: #17212d;
   --color-surface: #1e2a38;
+  --color-accent: #818cf8;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
 /* Post matni. Bu qoidalar layer'siz yozilgan, shuning uchun typography plaginidan ustun turadi */
@@ -35,10 +42,56 @@
   color: var(--tw-prose-headings);
 }
 
+/* Mundarijadan o'tilganda sarlavha ekranning eng chetiga yopishib qolmasin */
+.prose :is(h2, h3, h4) {
+  scroll-margin-top: 1.5rem;
+}
+
 /* Kod blokining foni va padding'i prose'dan, highlight.js'dan faqat ranglar olinadi */
 .prose pre code.hljs {
   padding: 0;
   background: transparent;
+}
+
+/* Kod bloki va "Nusxalash" tugmasi (lib/markdown.ts'dagi rehypeCodeCopy) */
+.prose .code-block {
+  position: relative;
+  margin-block: 1.75em;
+}
+
+.prose .code-block pre {
+  margin: 0;
+}
+
+.copy-code {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  padding: 0.25rem 0.625rem;
+  border: 1px solid rgb(255 255 255 / 0.1);
+  border-radius: 0.375rem;
+  background-color: var(--color-surface);
+  color: #cbd5e1;
+  font: 500 0.75rem/1.25 var(--font-sans);
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 150ms, color 150ms;
+}
+
+.copy-code:hover {
+  color: #fff;
+}
+
+/* Sichqonchali qurilmada tugma kod ustiga kelganda chiqadi, telefonda doim ko'rinadi */
+.code-block:hover .copy-code,
+.copy-code:focus-visible {
+  opacity: 1;
+}
+
+@media (hover: none) {
+  .copy-code {
+    opacity: 1;
+  }
 }
 
 /* Mobilda keng formula va jadvallar butun sahifani emas, faqat o'zini suradi */

@@ -1,28 +1,21 @@
 "use client";
 import { useState } from "react";
-import Image from "next/image";
-import Link from 'next/link';
-import { formatDate } from "@/lib/date";
+import PostCard from "@/components/PostCard";
+import TagLink from "@/components/TagLink";
+import type { PostMeta, Tag } from "@/lib/posts";
 
-interface Post {
-  slug: string;
-  date: string;
-  title: string;
-  description: string;
-  imageUrl: string | null;
-  draft: boolean;
-}
-
-export default function PostsClient({ initialPosts }: { initialPosts: Post[] }) {
+export default function PostsClient({ initialPosts, tags }: { initialPosts: PostMeta[]; tags: Tag[] }) {
   const [searchQuery, setSearchQuery] = useState("");
 
+  const query = searchQuery.toLowerCase();
   const filteredPosts = initialPosts.filter((post) =>
-    post.title.toLowerCase().includes(searchQuery.toLowerCase())
+    post.title.toLowerCase().includes(query) ||
+    post.tags.some((tag) => tag.name.toLowerCase().includes(query))
   );
 
   return (
     <>
-      <div className="mb-8">
+      <div className="mb-4">
         <input
           type="text"
           placeholder="Search posts..."
@@ -31,34 +24,17 @@ export default function PostsClient({ initialPosts }: { initialPosts: Post[] }) 
           onChange={(e) => setSearchQuery(e.target.value)}
         />
       </div>
+      {tags.length > 0 && (
+        // Mobilda teglar bir qatorda yonga suriladi, kattaroq ekranda qatorlarga bo'linadi
+        <div className="flex gap-2 overflow-x-auto [scrollbar-width:none] -mx-4 px-4 sm:mx-0 sm:px-0 sm:flex-wrap mb-8">
+          {tags.map((tag) => <TagLink key={tag.slug} tag={tag} />)}
+        </div>
+      )}
       <div className="space-y-6 sm:space-y-8">
-        {filteredPosts.map(({ slug, date, title, description, imageUrl, draft }) => (
-          <Link key={slug} href={`/posts/${slug}`} className="block group">
-            <article className="flex gap-4 sm:gap-6 items-start border-b border-gray-700/50 pb-6 sm:pb-8">
-              <div className="flex-1 min-w-0">
-                <time dateTime={date} className="block text-xs text-gray-400 uppercase tracking-widest mb-1 sm:mb-2">
-                  {formatDate(date)}
-                  {draft && <span className="ml-2 text-amber-400">· Qoralama</span>}
-                </time>
-                <h2 className="text-lg sm:text-2xl font-extrabold leading-snug mb-1 sm:mb-2 group-hover:text-gray-300">{title}</h2>
-                <p className="text-sm sm:text-base text-gray-400 line-clamp-2 sm:line-clamp-3">{description}</p>
-              </div>
-              {imageUrl && (
-                <div className="relative w-20 h-14 sm:w-36 sm:h-24 flex-shrink-0 bg-surface rounded-md sm:rounded-lg overflow-hidden">
-                  <Image
-                    src={imageUrl}
-                    alt={title}
-                    fill
-                    sizes="(min-width: 640px) 144px, 80px"
-                    // Tashqi saytlardagi rasmlar next.config'da ruxsat etilmagan, ular o'zgarishsiz ko'rsatiladi
-                    unoptimized={!imageUrl.startsWith("/")}
-                    className="object-cover"
-                  />
-                </div>
-              )}
-            </article>
-          </Link>
-        ))}
+        {filteredPosts.map((post) => <PostCard key={post.slug} post={post} />)}
+        {filteredPosts.length === 0 && (
+          <p className="text-gray-400 text-center py-12">Hech narsa topilmadi</p>
+        )}
       </div>
     </>
   );
