@@ -1,10 +1,21 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import "./globals.css";
 import SubscribeModal from "@/components/SubscribeModal";
 
 export const metadata: Metadata = {
-  title: "Kamalovic's Blog",
-  description: "A Substack-style blog built with Next.js",
+  // Netlify build paytida URL o'zgaruvchisiga saytning asosiy manzilini beradi
+  metadataBase: new URL(process.env.URL ?? "http://localhost:3000"),
+  title: {
+    default: "Kamalovic's Blog",
+    template: "%s | Kamalovic's Blog",
+  },
+  description: "Dasturlash, Linux va texnologiyalar haqida maqolalar",
+  openGraph: {
+    type: "website",
+    siteName: "Kamalovic's Blog",
+    locale: "uz_UZ",
+  },
 };
 
 export default function RootLayout({
@@ -13,11 +24,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="uz">
       <body className="antialiased bg-[#17212d] text-white">
         <nav className="py-6 border-b border-gray-700/50">
           <div className="container mx-auto px-4 sm:px-6 max-w-5xl flex justify-between items-center">
-            <a href="/" className="text-xl sm:text-2xl font-extrabold tracking-tighter cursor-pointer">Kamalovic's  Blog</a>
+            <Link href="/" className="text-xl sm:text-2xl font-extrabold tracking-tighter cursor-pointer">Kamalovic&apos;s Blog</Link>
             <div className="flex items-center">
               <SubscribeModal />
             </div>

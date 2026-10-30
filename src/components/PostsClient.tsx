@@ -3,7 +3,7 @@ import { useState } from "react";
 import Link from 'next/link';
 
 interface Post {
-  id: string;
+  slug: string;
   date: string;
   title: string;
   description: string;
@@ -29,8 +29,8 @@ export default function PostsClient({ initialPosts }: { initialPosts: Post[] }) 
         />
       </div>
       <div className="space-y-8">
-        {filteredPosts.map(({ id, date, title, description, imageUrl }) => (
-          <Link key={id} href={`/posts/${id}`} className="block group">
+        {filteredPosts.map(({ slug, date, title, description, imageUrl }) => (
+          <Link key={slug} href={`/posts/${slug}`} className="block group">
             <article className="flex flex-col sm:flex-row gap-4 sm:gap-6 items-start border-b border-gray-700/50 pb-8">
               <div className="flex-1 order-2 sm:order-1">
                 <p className="text-[10px] sm:text-xs text-gray-400 uppercase tracking-widest mb-1 sm:mb-2">{date}</p>
@@ -44,7 +44,7 @@ export default function PostsClient({ initialPosts }: { initialPosts: Post[] }) 
               </div>
               <div className="w-full sm:w-32 h-40 sm:h-24 flex-shrink-0 bg-gray-800 rounded-lg overflow-hidden order-1 sm:order-2">
                 <img 
-                  src={imageUrl || `https://picsum.photos/seed/${id}/400/300`} 
+                  src={imageUrl || `https://picsum.photos/seed/${slug}/400/300`} 
                   alt={title} 
                   className="w-full h-full object-cover"
                 />
