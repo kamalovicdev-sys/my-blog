@@ -1,8 +1,8 @@
 export const SITE_NAME = "Kamalovic's Blog";
 export const SITE_DESCRIPTION = 'Dasturlash, Linux va texnologiyalar haqida maqolalar';
 
-// Netlify build paytida URL o'zgaruvchisiga saytning asosiy manzilini beradi
-export const SITE_URL = process.env.URL ?? 'https://kamalovic-blog.netlify.app';
+// Saytning asosiy manzili: sitemap, RSS, ulashish havolalari va Telegram preview'lar shu manzil bilan yasaladi
+export const SITE_URL = 'https://blog.kamalovic.uz';
 
 export const SOCIAL = {
   github: 'https://github.com/kamalovicdev-sys',
@@ -21,4 +21,4 @@ export const GISCUS = {
 
 // Statistika: Cloudflare Web Analytics (dash.cloudflare.com → Web Analytics → Add a site → JS snippet'dagi token).
 // Bo'sh bo'lsa skript qo'shilmaydi
-export const CLOUDFLARE_ANALYTICS_TOKEN = '' as string;
+export const CLOUDFLARE_ANALYTICS_TOKEN = 'f5d8569e97ce4c3190bb561a1c7f0317' as string;
