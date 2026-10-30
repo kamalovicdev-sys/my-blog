@@ -1,10 +1,13 @@
 ---
 title: Monte Carlo usuli bilan π sonini hisoblaymiz
-date: 2026-10-30
-description: Tasodifiy nuqtalar, bitta formula va 15 qator Python kodi yordamida π sonini taxminlaymiz hamda xato nega 1/√N tezlikda kamayishini ko'ramiz.
-tags: [python, matematika]
-cover: 
-draft: true
+date: '2026-10-30'
+description: >-
+  Tasodifiy nuqtalar, bitta formula va 15 qator Python kodi yordamida π sonini
+  taxminlaymiz hamda xato nega 1/√N tezlikda kamayishini ko'ramiz.
+tags:
+  - python
+  - matematika
+draft: false
 ---
 
 π sonini hisoblash uchun murakkab qatorlar yoki geometriya bilimi shart emas. Kvadratga **tasodifiy nuqtalar** tashlab, ularning qanchasi doira ichiga tushganini sanash kifoya. Bu yondashuv *Monte Carlo usuli*[^1] deb ataladi va fizikadan tortib moliyagacha keng qo'llaniladi. Batafsil ma'lumot: [Wikipedia: Monte Carlo method](https://en.wikipedia.org/wiki/Monte_Carlo_method).
