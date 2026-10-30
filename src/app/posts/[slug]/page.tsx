@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getAllPostSlugs, getPostData, getPostMeta } from "@/lib/posts";
+import { formatDate } from "@/lib/date";
 import ShareButtons from "@/components/ShareButtons";
 
 type Props = { params: Promise<{ slug: string }> };
 
-// Postlar build paytida tayyorlanadi, src/posts'da yo'q manzillar 404 qaytaradi
+// Postlar build paytida tayyorlanadi, content/posts'da yo'q manzillar 404 qaytaradi
 export const dynamicParams = false;
 
 export function generateStaticParams() {
@@ -39,18 +40,17 @@ export default async function Post({ params }: Props) {
   const postData = await getPostData(slug);
   if (!postData) notFound();
 
-  const styledContent = postData.contentHtml.replace(
-    /<img/g,
-    '<img class="block w-full max-w-2xl mx-auto rounded-lg shadow-lg my-8"'
-  );
-
   return (
-    <article className="max-w-2xl mx-auto py-10 px-4">
-      <p className="text-xs text-gray-400 uppercase tracking-widest">{postData.date}</p>
-      <h1 className="text-3xl md:text-4xl font-extrabold mt-2 mb-8 text-white">{postData.title}</h1>
+    <article className="max-w-2xl mx-auto">
+      <header className="mb-8 sm:mb-10">
+        <time dateTime={postData.date} className="text-xs text-gray-400 uppercase tracking-widest">
+          {formatDate(postData.date)}
+        </time>
+        <h1 className="text-3xl md:text-4xl font-extrabold leading-tight text-balance mt-2 text-white">{postData.title}</h1>
+      </header>
       <div
-        className="prose prose-invert prose-stone max-w-none"
-        dangerouslySetInnerHTML={{ __html: styledContent }}
+        className="prose prose-lg prose-invert prose-slate max-w-none break-words font-serif prose-headings:font-sans prose-h2:text-2xl prose-h3:text-xl prose-img:mx-auto prose-img:rounded-lg"
+        dangerouslySetInnerHTML={{ __html: postData.contentHtml }}
       />
       <ShareButtons slug={slug} />
     </article>

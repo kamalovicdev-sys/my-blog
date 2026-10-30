@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import Link from 'next/link';
+import { formatDate } from "@/lib/date";
 
 interface Post {
   slug: string;
@@ -23,29 +24,26 @@ export default function PostsClient({ initialPosts }: { initialPosts: Post[] }) 
         <input
           type="text"
           placeholder="Search posts..."
-          className="w-full bg-[#1e2a38] text-white px-5 py-3 rounded-xl border border-gray-700 focus:outline-none focus:border-white transition"
+          className="w-full bg-surface text-white px-5 py-3 rounded-xl border border-gray-700 focus:outline-none focus:border-white transition"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
         />
       </div>
-      <div className="space-y-8">
+      <div className="space-y-6 sm:space-y-8">
         {filteredPosts.map(({ slug, date, title, description, imageUrl }) => (
           <Link key={slug} href={`/posts/${slug}`} className="block group">
-            <article className="flex flex-col sm:flex-row gap-4 sm:gap-6 items-start border-b border-gray-700/50 pb-8">
-              <div className="flex-1 order-2 sm:order-1">
-                <p className="text-[10px] sm:text-xs text-gray-400 uppercase tracking-widest mb-1 sm:mb-2">{date}</p>
-                <h2 className="text-xl sm:text-2xl font-extrabold mb-1 sm:mb-2 group-hover:text-gray-300">{title}</h2>
-                <p className="text-sm sm:text-base text-gray-400">{description}</p>
-                <div className="mt-2">
-                  <span className="text-sm font-medium text-[#4F46E5] hover:underline">
-                    Click to read more →
-                  </span>
-                </div>
+            <article className="flex gap-4 sm:gap-6 items-start border-b border-gray-700/50 pb-6 sm:pb-8">
+              <div className="flex-1 min-w-0">
+                <time dateTime={date} className="block text-xs text-gray-400 uppercase tracking-widest mb-1 sm:mb-2">
+                  {formatDate(date)}
+                </time>
+                <h2 className="text-lg sm:text-2xl font-extrabold leading-snug mb-1 sm:mb-2 group-hover:text-gray-300">{title}</h2>
+                <p className="text-sm sm:text-base text-gray-400 line-clamp-2 sm:line-clamp-3">{description}</p>
               </div>
-              <div className="w-full sm:w-32 h-40 sm:h-24 flex-shrink-0 bg-gray-800 rounded-lg overflow-hidden order-1 sm:order-2">
-                <img 
-                  src={imageUrl || `https://picsum.photos/seed/${slug}/400/300`} 
-                  alt={title} 
+              <div className="w-20 h-14 sm:w-36 sm:h-24 flex-shrink-0 bg-surface rounded-md sm:rounded-lg overflow-hidden">
+                <img
+                  src={imageUrl || `https://picsum.photos/seed/${slug}/400/300`}
+                  alt={title}
                   className="w-full h-full object-cover"
                 />
               </div>

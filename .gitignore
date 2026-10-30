@@ -39,3 +39,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# obsidian (faqat vault'ning umumiy sozlamalari saqlanadi)
+/content/.obsidian/*
+!/content/.obsidian/app.json
+!/content/.obsidian/templates.json

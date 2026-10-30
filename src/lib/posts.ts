@@ -13,7 +13,7 @@ import { toString } from 'mdast-util-to-string';
 import { visit } from 'unist-util-visit';
 import type { Heading, Paragraph, Root } from 'mdast';
 
-const postsDirectory = path.join(process.cwd(), 'src/posts');
+const postsDirectory = path.join(process.cwd(), 'content/posts');
 const EXCERPT_LENGTH = 160;
 
 export function getAllPostSlugs() {
@@ -58,6 +58,19 @@ function remarkShiftHeadings() {
   };
 }
 
+// Obsidian rasmga postdan nisbiy yo'l bilan murojaat qiladi: ../images/rasm.png → /images/rasm.png
+function resolveImageUrl(url: string) {
+  return url.replace(/^(\.\.\/)?images\//, '/images/');
+}
+
+function remarkLocalImages() {
+  return (tree: Root) => {
+    visit(tree, 'image', (node) => {
+      node.url = resolveImageUrl(node.url);
+    });
+  };
+}
+
 function readPost(slug: string) {
   const fileContents = fs.readFileSync(path.join(postsDirectory, `${slug}.md`), 'utf8');
   const { data, content } = matter(fileContents);
@@ -68,11 +81,12 @@ function readPost(slug: string) {
   return {
     meta: {
       slug,
-      title: String(data.title ?? slug).trim(),
+      // Obsidian shablonida bo'sh qolgan maydonlar uchun fayl nomi va matndan olingan tavsif ishlatiladi
+      title: String(data.title || slug).trim(),
       // Obsidian sanani qo'shtirnoqsiz yozadi va gray-matter uni Date obyektiga aylantiradi
       date: data.date instanceof Date ? data.date.toISOString().slice(0, 10) : String(data.date),
-      description: String(data.description ?? getExcerpt(content)),
-      imageUrl: imageMatch ? imageMatch[1] : null,
+      description: String(data.description || getExcerpt(content)),
+      imageUrl: imageMatch ? resolveImageUrl(imageMatch[1]) : null,
     },
     content,
   };
@@ -96,6 +110,7 @@ export async function getPostData(slug: string) {
     .use(remarkGfm)
     .use(remarkMath)
     .use(remarkShiftHeadings)
+    .use(remarkLocalImages)
     .use(remarkRehype, { allowDangerousHtml: true })
     .use(rehypeRaw)
     .use(rehypeKatex)

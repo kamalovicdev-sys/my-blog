@@ -13,7 +13,7 @@ export default function ShareButtons({ slug }: { slug: string }) {
       <h3 className="text-sm font-semibold text-gray-400 uppercase tracking-widest mb-4">Share this post</h3>
       <button 
         onClick={handleCopy}
-        className="px-6 py-2 bg-white text-[#17212d] rounded-lg font-bold hover:bg-gray-200 transition"
+        className="px-6 py-2 bg-white text-background rounded-lg font-bold hover:bg-gray-200 transition"
       >
         Copy Link
       </button>
