@@ -8,7 +8,7 @@ export const SOCIAL = {
   github: 'https://github.com/kamalovicdev-sys',
   telegram: 'https://t.me/kama1ovic',
   telegramChannel: 'https://t.me/datacurio',
-  portfolio: 'https://kamalovic.netlify.app',
+  portfolio: 'https://kamalovic.uz',
 };
 
 // Admin panel postlar va rasmlarni shu repo'ga commit qiladi
