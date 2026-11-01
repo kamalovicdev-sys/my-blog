@@ -1,7 +1,10 @@
 ---
-title: 'Ubuntu Lifehack '
+title: Ubuntu Lifehack
 date: '2026-03-15'
-tags: [linux, ubuntu]
+tags:
+  - linux
+  - ubuntu
+draft: true
 ---
 
 Ubuntuni go'zal tomoni uni o'zingiz hohlagancha o'zgartirishlar kiritib user-friendly qilishingiz mumkin. 
