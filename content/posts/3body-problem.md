@@ -1,7 +1,11 @@
 ---
-title: '3Body Problem'
+title: 3Body Problem
 date: '2025-11-26'
-tags: [react, threejs, simulyatsiya]
+tags:
+  - react
+  - threejs
+  - simulyatsiya
+draft: true
 ---
 
 # 🌌 3Body Problem 
