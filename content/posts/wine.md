@@ -1,7 +1,10 @@
 ---
-title: 'Linux Ubuntu muhitida .exe fayli bilan qanday ishlaymiz ? '
+title: Linux Ubuntu muhitida .exe fayli bilan qanday ishlaymiz ?
 date: '2026-01-07'
-tags: [linux, ubuntu]
+tags:
+  - linux
+  - ubuntu
+draft: true
 ---
 
 ## **Ubuntu muhitida da Windows dasturlarini ishlatish  Wine o'zi nima va u qanday ishlaydi?**
