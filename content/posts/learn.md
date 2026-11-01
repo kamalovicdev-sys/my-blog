@@ -1,7 +1,10 @@
 ---
-title: 'Vibe Coding davri nihoyasiga yetdi. '
+title: Vibe Coding davri nihoyasiga yetdi.
 date: '2026-04-20'
-tags: [ai, dasturlash]
+tags:
+  - ai
+  - dasturlash
+draft: true
 ---
 
 ## _Faqat tasvirlab ber va darhol ishga tushir_ davri bir muddat samarali bo'ldi. Ammo uni yakuniga yetkazgan omillar mana shular — va endilikda haqiqiy maydon qanday tus olayotgani ko'rishingiz mumkin.
