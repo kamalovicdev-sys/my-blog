@@ -1,8 +1,11 @@
 ---
-title: 'Tails OS mahfiyligingiz taminlay oladigan usb kompyuter.'
+title: Tails OS mahfiyligingiz taminlay oladigan usb kompyuter.
 date: '2026-03-25'
+tags:
+  - xavfsizlik
+  - linux
+draft: true
 slug: SecureOS
-tags: [xavfsizlik, linux]
 ---
 
 # **Bu method o'zidan doim havfsiraydigan va doim meni kuzatib yurishibdi yoki shunchaki xafsizlikni o'ylaydigan insonlarga to'g'ri keladi.**
