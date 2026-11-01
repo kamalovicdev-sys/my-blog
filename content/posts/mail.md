@@ -1,7 +1,11 @@
 ---
-title: 'Python orqali bepul email рассылка yubora olamizmi ?'
+title: Python orqali bepul email рассылка yubora olamizmi ?
 date: '2026-03-18'
-tags: [python, email, avtomatlashtirish]
+tags:
+  - python
+  - email
+  - avtomatlashtirish
+draft: true
 ---
 
 # **Qanday qilib 3200 ta korxonaga bloklanmasdan ommaviy xat yuborish tizimini yasadik? (Python)**
