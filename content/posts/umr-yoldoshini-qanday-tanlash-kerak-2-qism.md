@@ -5,6 +5,10 @@ description: >-
   Katta bir maqsadga erishishning eng muhim kaliti ko‘pincha uni eng mayda
   bo‘laklarga ajratish va ana shu bo‘laklarning bittasini qanday uddalashga
   e’tibor qaratishdan iborat.
+tags:
+  - psychology
+  - munosabatlar
+  - oila
 draft: false
 ---
 
