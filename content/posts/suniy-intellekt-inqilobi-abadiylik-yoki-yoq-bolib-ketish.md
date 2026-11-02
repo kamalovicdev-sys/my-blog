@@ -1,5 +1,5 @@
 ---
-title: 'Sun’iy intellekt inqilobi: abadiylik yoki yo‘q bo‘lib ketish'
+title: 'Sun’iy intellekt inqilobi: abadiylik yoki yo‘q bo‘lib ketish (2-qism)'
 date: '2026-11-02'
 description: >-
   Bu ta’sirli eshitiladi va ASI har qanday insondan tezroq fikrlaydi. Ammo
