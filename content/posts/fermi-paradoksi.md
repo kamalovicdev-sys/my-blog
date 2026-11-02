@@ -5,7 +5,7 @@ description: >-
   Yulduzlar juda ko‘p ko‘rinadigan joyda, yulduzli tunning ayni muddaosi bo‘lgan
   bir paytda osmonga qarab, mana buni ko‘rganingizda, har bir odam nimanidir his
   qiladi ...
-draft: true
+draft: false
 ---
 
 **2014-yil 21-may · Tim Urban**
