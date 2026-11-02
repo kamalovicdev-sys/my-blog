@@ -7,7 +7,7 @@ description: >-
 tags:
   - python
   - math
-draft: false
+draft: true
 ---
 
 π sonini hisoblash uchun murakkab qatorlar yoki geometriya bilimi shart emas. Kvadratga **tasodifiy nuqtalar** tashlab, ularning qanchasi doira ichiga tushganini sanash kifoya. Bu yondashuv *Monte Carlo usuli*[^1] deb ataladi va fizikadan tortib moliyagacha keng qo'llaniladi. Batafsil ma'lumot: [Wikipedia: Monte Carlo method](https://en.wikipedia.org/wiki/Monte_Carlo_method).
