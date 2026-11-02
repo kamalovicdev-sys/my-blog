@@ -5,6 +5,10 @@ description: >-
   Yulduzlar juda ko‘p ko‘rinadigan joyda, yulduzli tunning ayni muddaosi bo‘lgan
   bir paytda osmonga qarab, mana buni ko‘rganingizda, har bir odam nimanidir his
   qiladi ...
+tags:
+  - alien
+  - Fermi Paradox
+  - galaxy
 draft: false
 ---
 
