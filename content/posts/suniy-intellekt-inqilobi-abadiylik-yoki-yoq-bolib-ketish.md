@@ -5,7 +5,7 @@ description: >-
   Bu ta’sirli eshitiladi va ASI har qanday insondan tezroq fikrlaydi. Ammo
   haqiqiy ajratuvchi jihat uning aql sifati borasidagi ustunligi bo‘ladi — bu
   esa butunlay boshqa narsa.
-draft: true
+draft: false
 ---
 
 **Muallif:** Tim Urban  
