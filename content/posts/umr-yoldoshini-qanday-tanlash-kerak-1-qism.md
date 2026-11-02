@@ -1,6 +1,6 @@
 ---
 title: Umr yo‘ldoshini qanday tanlash kerak — 1-qism
-date: '2026-11-02'
+date: '2026-11-03'
 description: >-
   Baxtli va baxtsiz nikohlar orasidagi baxt darajasi naqadar katta farq
   qilishini ko‘rsatadigan tadqiqotlar, albatta, mantiqan tushunarli. Axir gap
