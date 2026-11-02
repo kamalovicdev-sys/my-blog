@@ -6,7 +6,7 @@ description: >-
   taxminlaymiz hamda xato nega 1/√N tezlikda kamayishini ko'ramiz.
 tags:
   - python
-  - matematika
+  - math
 draft: false
 ---
 
