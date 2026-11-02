@@ -4,7 +4,7 @@ date: '2026-11-03'
 description: >-
   Uning karyerasi juda yaxshi rivojlanmoqda. Ammo uni hech qachon ishga
   mukkasidan ketgan odam deb o‘ylamang — axir u oilaparvar inson.
-draft: true
+draft: false
 ---
 
 30 yoshli erkaklar — o‘ziga xos bir toifa.
