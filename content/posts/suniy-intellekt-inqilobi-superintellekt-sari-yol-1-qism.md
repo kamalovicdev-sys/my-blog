@@ -15,5 +15,8 @@ draft: true
 ---
 
 @ Tim Urban (Wait But Why)
-
+----- 
 Biz Yer yuzida inson hayotining yuksalishi bilan taqqoslanadigan o'zgarishlar yoqasida turibmiz. — Vernor Vinge
+
+Bu yerda turish qanday tuyg'u?
+*![suniy-intellekt-inqilobi-superintellekt-sari-yol-1-qism](../images/suniy-intellekt-inqilobi-superintellekt-sari-yol-1-qism.webp)
