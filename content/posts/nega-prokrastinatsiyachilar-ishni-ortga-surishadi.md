@@ -1,6 +1,8 @@
 ---
 title: Nega Prokrastinatsiyachilar ishni ortga surishadi
 date: '2026-11-02'
+tags:
+  - procrastination
 draft: false
 ---
 
