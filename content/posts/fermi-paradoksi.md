@@ -12,29 +12,25 @@ tags:
 draft: false
 ---
 
-**2014-yil 21-may · Tim Urban**
-
----
-
-Yulduzlar juda ko‘p ko‘rinadigan joyda, yulduzli tunning ayni muddaosi bo‘lgan bir paytda osmonga qarab, mana buni ko‘rganingizda, har bir odam nimanidir his qiladi:
+Yulduzlar juda ko‘p ko‘rinadigan joyda, yulduzli osmonga qarab, mana buni ko‘rganingizda, har bir odam nimanidir his qiladi:
 
 ![fermi-paradoksi](../images/fermi-paradoksi.webp)
 
-Ba’zilar odatdagidek, ulkan go‘zallikdan hayratga tushadi yoki koinotning aql bovar qilmas ko‘lamidan lol qoladi. Shaxsan men esa eski odatimga ko‘ra, avval «borliq oldida ekzistensial inqirozga» tushaman, keyin keyingi yarim soat davomida o‘zimni g‘alati tutaman. Ammo har kim nimanidir his qiladi.
+Ba’zilar odatdagidek, ulkan go‘zallikdan hayratga tushadi yoki koinotning aql bovar qilmas ko‘lamidan lol qoladi. Shaxsan men esa eski odatimga ko‘ra, avval «*borliq oldida ekzistensial inqirozga*» tushaman, keyin keyingi yarim soat davomida o‘zimni g‘alati tutaman. Ammo har kim nimanidir his qiladi.
 
 Fizik Enriko Fermi ham nimanidir his qilgan edi: «*Xo‘sh, hamma qayerda?*»
 
 ---
 
-Haqiqatan ham yulduzlar ko‘p ko‘rinadigan osmon behad kengdek tuyuladi, ammo biz ko‘rayotgan narsamiz aslida juda yaqin atrofimizdagi mahallamiz, xolos. Eng tiniq tunlarda taxminan 2 500 tagacha yulduzni ko‘rishimiz mumkin (bu galaktikamizdagi yulduzlarning qariyb yuz milliondan bir qismi). Ularning deyarli barchasi bizdan 1 000 yorug‘lik yilidan ham yaqin masofada joylashgan (ya’ni Somon Yo‘li diametrining atigi 1 foizi doirasida). Demak, aslida biz ko‘rayotgan manzara mana shu:
+Haqiqatan ham yulduzlar ko‘p ko‘rinadigan osmon behad kengdek tuyuladi, ammo biz ko‘rayotgan narsamiz aslida juda yaqin atrofimizdagi mahallamiz, xolos. Eng tiniq tunlarda taxminan 2 500 tagacha yulduzni ko‘rishimiz mumkin (***bu galaktikamizdagi yulduzlarning qariyb yuz milliondan bir qismi***). Ularning deyarli barchasi bizdan 1 000 yorug‘lik yilidan ham yaqin masofada joylashgan (ya’ni Somon Yo‘li diametrining atigi 1 foizi doirasida). Demak, aslida biz ko‘rayotgan manzara mana shu:
 
 ![fermi-paradoksi](../images/fermi-paradoksi-3.webp)
 
-Yulduzlar va galaktikalar haqida o‘ylaganimizda, ko‘pchilikni qiziqtiradigan savol shunday: «U yerda, koinotning boshqa joylarida ham aqlli hayot bormi?» Keling, bunga oid raqamlarni ko‘rib chiqaylik.
+Yulduzlar va galaktikalar haqida o‘ylaganimizda, ko‘pchilikni qiziqtiradigan savol shunday: «*U yerda, koinotning boshqa joylarida ham aqlli hayot bormi?*» Keling, bunga oid raqamlarni ko‘rib chiqaylik.
 
 Galaktikamizda qancha yulduz bo‘lsa (100–400 milliard), kuzatiladigan koinotda ham taxminan shuncha galaktika bor. Demak, ulkan Somon Yo‘lidagi har bir yulduzga qarshi u yerda butun boshli bir galaktika mavjud. Barchasini jamlasak, odatda keltiriladigan hisob-kitobga ko‘ra, jami yulduzlar soni 10²² bilan 10²⁴ oralig‘ida bo‘ladi. Bu Yer yuzidagi har bir sohilning har bir qum donasiga koinotda 10 000 ta yulduz to‘g‘ri keladi, degani.
 
-Bu yulduzlarning necha foizi «Quyoshga o‘xshash» — ya’ni hajmi, harorati va yorqinligi jihatidan Quyoshga yaqin — ekani borasida ilmiy hamjamiyatda yakdil fikr yo‘q. Taxminlar odatda 5 foizdan 20 foizgacha. Eng ehtiyotkor ko‘rsatkichni — 5 foizni — va jami yulduzlar sonining eng quyi chegarasini — 10²² ni — olsak, 500 kvintillion, boshqacha aytganda, 500 milliard milliardta Quyoshga o‘xshash yulduz chiqadi.
+Bu yulduzlarning necha foizi «**Quyoshga o‘xshash**» — ya’ni hajmi, harorati va yorqinligi jihatidan Quyoshga yaqin — ekani borasida ilmiy hamjamiyatda yakdil fikr yo‘q. Taxminlar odatda 5 foizdan 20 foizgacha. Eng ehtiyotkor ko‘rsatkichni — 5 foizni — va jami yulduzlar sonining eng quyi chegarasini — 10²² ni — olsak, 500 kvintillion, boshqacha aytganda, 500 milliard milliardta Quyoshga o‘xshash yulduz chiqadi.
 
 Quyoshga o‘xshash yulduzlarning necha foizini Yerga o‘xshash sayyora aylanib yurishi mumkinligi haqida ham bahs bor. Bunday sayyorada harorat sharoiti o‘xshash bo‘lib, suyuq suv mavjud bo‘lishi va Yerga o‘xshash hayotni qo‘llab-quvvatlashi mumkin. Ba’zilar bu ko‘rsatkich 50 foizgacha yetadi deydi, ammo yaqinda PNAS jurnalida e’lon qilingan tadqiqotda olingan ancha ehtiyotkor 22 foizni olaylik. Bu koinotdagi jami yulduzlarning kamida 1 foizi atrofida hayot uchun potensial jihatdan yaroqli, Yerga o‘xshash sayyora aylanishi mumkinligini anglatadi. Bunday sayyoralar soni jami 100 milliard milliardta bo‘ladi.
 
@@ -48,7 +44,7 @@ SETI (Yerdan tashqaridagi aqlli hayotni izlash) — boshqa aqlli mavjudotlardan 
 
 Ammo bunday bo‘lgani yo‘q. Hech bittasini. Hech qachon.
 
-Hamma qayerda?
+Boshqalar qayerda ?
 
 Vaziyat yanada g‘alati tus oladi. Bizning Quyoshimiz koinot umriga nisbatan ancha yosh. Undan ancha qadimiy yulduzlar va ularning atrofida ancha qadimiy, Yerga o‘xshash sayyoralar bor. Nazariy jihatdan, bu sayyoralarda biznikidan ancha ilg‘or sivilizatsiyalar bo‘lishi kerakligini anglatadi. Masalan, yoshi 4,54 milliard yil bo‘lgan Yerimizni faraziy, yoshi 8 milliard yil bo‘lgan X sayyora bilan solishtiraylik.
 
@@ -78,7 +74,7 @@ Galaktikani mustamlaka qilish qanday yuz berishi mumkinligi haqidagi farazlardan
 
 Taxmin qilishda davom etaylik: agar aqlli hayotning 1 foizi galaktikani mustamlaka qilishi mumkin bo‘lgan III turdagi sivilizatsiyaga aylanguncha yashab qolsa, yuqoridagi hisob-kitoblarimizning o‘ziyoq galaktikamizda kamida 1 000 ta III turdagi sivilizatsiya bo‘lishi kerakligini ko‘rsatadi. Bunday sivilizatsiyaning qudratini hisobga olsak, ularning borligi ko‘zga yaqqol tashlanishi kerak edi. Ammo biz hech narsani ko‘rmayapmiz, hech narsa eshitmayapmiz va hech kim bizni ziyorat qilmayapti.
 
-Xo‘sh, hamma qayerda?
+Xo‘sh, boshqlar o'zi qayerda?
 
 ---
 
@@ -90,7 +86,7 @@ Fermi paradoksiga doir eng ko‘p muhokama qilinadigan ehtimoliy izohlarni ko‘
 
 ## 1-izohlar guruhi: Yuqori darajadagi (II va III turdagi) sivilizatsiyalar belgilari yo‘q, chunki bunday sivilizatsiyalarning o‘zi mavjud emas
 
-Birinchi guruh izohlarini qo‘llab-quvvatlaydiganlar «istisnosizlik muammosi» deb ataladigan masalaga ishora qiladi. Bu muammo: «Yuqori darajadagi sivilizatsiyalar bor, ammo ularning hech biri biz bilan hech qanday aloqa o‘rnatmagan, chunki ularning barchasi _____», deydigan har qanday nazariyaga qarshi dalil bo‘ladi. Birinchi guruh vakillari minglab (yoki millionlab) yuqori darajadagi sivilizatsiyalar bo‘lishi kerakligini ko‘rsatadigan matematik hisob-kitoblarga qaraydi. Ularning fikricha, hech bo‘lmaganda bittasi umumiy qoidadan chetga chiqishi kerak edi. Hatto biror nazariya yuqori darajadagi sivilizatsiyalarning 99,99 foiziga mos kelsa ham, qolgan 0,01 foizi boshqacha yo‘l tutardi va biz ularning mavjudligidan xabar topardik.
+Birinchi guruh izohlarini qo‘llab-quvvatlaydiganlar «*istisnosizlik muammosi*» deb ataladigan masalaga ishora qiladi. Bu muammo: «*Yuqori darajadagi sivilizatsiyalar bor, ammo ularning hech biri biz bilan hech qanday aloqa o‘rnatmagan, chunki ularning barchasi _____*», deydigan har qanday nazariyaga qarshi dalil bo‘ladi. Birinchi guruh vakillari minglab (yoki millionlab) yuqori darajadagi sivilizatsiyalar bo‘lishi kerakligini ko‘rsatadigan matematik hisob-kitoblarga qaraydi. Ularning fikricha, hech bo‘lmaganda bittasi umumiy qoidadan chetga chiqishi kerak edi. Hatto biror nazariya yuqori darajadagi sivilizatsiyalarning 99,99 foiziga mos kelsa ham, qolgan 0,01 foizi boshqacha yo‘l tutardi va biz ularning mavjudligidan xabar topardik.
 
 Shu sababli, birinchi guruh izohlariga ko‘ra, nihoyatda rivojlangan sivilizatsiyalar umuman yo‘q bo‘lishi kerak. Ammo matematik hisob-kitoblar faqat o‘z galaktikamizning o‘zida ularning minglab bo‘lishi kerakligini ko‘rsatmoqda. Demak, boshqa bir narsa yuz berayotgan bo‘lishi kerak.
 
