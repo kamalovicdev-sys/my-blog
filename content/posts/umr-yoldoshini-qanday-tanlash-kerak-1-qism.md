@@ -5,6 +5,10 @@ description: >-
   Baxtli va baxtsiz nikohlar orasidagi baxt darajasi naqadar katta farq
   qilishini ko‘rsatadigan tadqiqotlar, albatta, mantiqan tushunarli. Axir gap
   sizning umr yo‘ldoshingiz haqida ketmoqda ...
+tags:
+  - munosabatlar
+  - oila
+  - psychology
 draft: false
 ---
 
