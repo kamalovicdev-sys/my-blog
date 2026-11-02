@@ -21,6 +21,8 @@ draft: false
 **Tarjima tili:** o‘zbek tili   
 **Manba:** [Wait But Why — The Artificial Intelligence Revolution: Part 1](https://waitbutwhy.com/2015/01/artificial-intelligence-revolution-1.html)
 
+> *Ushbu maqolani yozish uchun nega uch hafta vaqt ketganining sababi shuki, Sun'iy Intellekt bo'yicha izlanishlar olib borar ekanman, o'qiyotgan narsalarimga ishonolmasdim. SI (Sun'iy Intellekt) olamida yuz berayotgan voqealar shunchaki muhim mavzu emas, balki kelajagimiz uchun ENG muhim mavzu ekanini juda tez anglab yetdim. Shuning uchun bu haqda imkon qadar ko'proq narsani o'rganishni xohladim va o'rgangach, bu butun vaziyatni va uning nega bunchalik muhimligini to'liq tushuntirib beradigan maqola yozishga qaror qildim. Kutilganidek, u juda uzun bo'lib ketdi, shuning uchun uni ikki qismga bo'ldim.*
+
 ---
 
 > Biz Yer yuzida inson hayoti paydo bo‘lishi bilan qiyoslash mumkin bo‘lgan o‘zgarish ostonasida turibmiz. — Vernor Vinge
