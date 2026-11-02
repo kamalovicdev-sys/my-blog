@@ -1,5 +1,5 @@
 ---
-title: Umr yo‘ldoshini qanday tanlash kerak — 2-qism
+title: Umr yo‘ldoshini qanday tanlash kerak — (2-qism)
 date: '2026-11-03'
 description: >-
   Katta bir maqsadga erishishning eng muhim kaliti ko‘pincha uni eng mayda
