@@ -9,7 +9,7 @@ draft: false
 **pro-cras-ti-na-tion** |prəˌkrastəˈnāSHən, prō-|
 noun
 
-Biror ishni kechiktirish yoki keyinga qoldirish harakati: *birinchi maslahatingiz — ishni ortga surishdan qochish.*
+Biror ishni kechiktirish yoki keyinga qoldirish harakati
 
 ---
 Kim ham o‘ylabdi deysiz, yillar davomida ishni ortga surish bilan kurashib kelgan odamga yechimni aynan lug‘at taklif qiladi, deb.
