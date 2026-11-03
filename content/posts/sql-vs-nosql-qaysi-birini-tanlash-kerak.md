@@ -1,7 +1,11 @@
 ---
 title: 'SQL vs NoSQL: Qaysi birini tanlash kerak?'
-date: '2026-11-03'
-draft: true
+date: '2026-11-04'
+tags:
+  - database
+  - sql
+  - noSql
+draft: false
 ---
 
 ****
