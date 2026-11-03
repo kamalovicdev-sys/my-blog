@@ -1,6 +1,6 @@
 ---
 title: 'Distributed tizimlarda Anti-entropiya: Ma''lumotlar muvofiqligining kaliti'
-date: '2026-11-03'
+date: '2026-11-04'
 description: >-
   Anti-entropiya yordamida tiklash jarayoni klasterdagi turli node lar bo'ylab
   nusxalar holatini doimiy ravishda solishtirib boruvchi background jarayoni
