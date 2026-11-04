@@ -37,6 +37,7 @@ import PublishDialog from "@/components/admin/PublishDialog";
 import SettingsPanel from "@/components/admin/SettingsPanel";
 import { splitTags } from "@/components/admin/TagInput";
 import type { PostForm } from "@/lib/admin/post-file";
+import { formatDate, today } from "@/lib/date";
 import { adminImageUrl, findFirstImage } from "@/lib/images";
 import type { Tag } from "@/lib/posts";
 import { slugify } from "@/lib/slug";
@@ -165,7 +166,7 @@ function PreviewArticle({ form, preview, tags }: { form: PostForm; preview: Prev
   return (
     <article className="mx-auto max-w-2xl">
       <header className="mb-8 sm:mb-10">
-        <PostInfo date={form.date} readingTime={preview?.readingTime ?? 1} draft={form.draft} />
+        <PostInfo date={form.date} readingTime={preview?.readingTime ?? 1} draft={form.draft} scheduled={!form.draft && form.date > today()} />
         <h1 className="mt-2 text-balance text-3xl font-extrabold leading-tight text-white md:text-4xl">{form.title.trim() || "Untitled"}</h1>
       </header>
       {form.body.trim() ? <PostBody html={preview?.html ?? ""} /> : <p className="text-gray-500">Nothing to preview yet. Start writing in the editor.</p>}
@@ -239,6 +240,10 @@ export default function PostEditor({ fileName, sha, slug: initialSlug, initial, 
 
   const isNew = !saved.fileName;
   const isPublished = !isNew && !saved.draft;
+  const now = today();
+  // E'lon qilingan, lekin sanasi hali kelmagan post: sayt o'sha kuni o'zi qayta build qilinadi
+  const isScheduled = isPublished && saved.form.date > now;
+  const willSchedule = form.date > now;
   const slug = isNew ? (customSlug ?? slugify(form.title)) : (saved.slug ?? "");
   const dirty = !sameContent(form, saved.form);
   const tags = splitTags(form.tags).map((name) => ({ name, slug: slugify(name) }));
@@ -307,10 +312,10 @@ export default function PostEditor({ fileName, sha, slug: initialSlug, initial, 
     return () => clearTimeout(timer);
   }, [notice]);
 
-  // Esc avval Publish oynasini, keyin sozlamalar panelini yopadi
+  // Esc avval Publish oynasini, keyin sozlamalar panelini yopadi. Ochiq kalendar Esc'ni o'zi ishlatadi (preventDefault)
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key !== "Escape") return;
+      if (event.key !== "Escape" || event.defaultPrevented) return;
       if (publishStep) {
         if (!busy) setPublishStep(null);
       } else {
@@ -424,6 +429,12 @@ export default function PostEditor({ fileName, sha, slug: initialSlug, initial, 
     // So'rov ketayotganda yozilgan matn keyingi saqlashgacha "saqlanmagan" bo'lib qoladi
     const submitted = { ...form, draft };
     const wasPublished = isPublished;
+    const wasScheduled = isScheduled;
+    const scheduledFor = !draft && submitted.date > today() ? submitted.date : null;
+    // Saytdagi postga kelajak sana qo'yilsa, u o'sha kungacha saytdan yo'qoladi
+    if (wasPublished && !wasScheduled && scheduledFor) {
+      if (!window.confirm(`This post is live. Saving it with a future date hides it from the site until ${formatDate(scheduledFor)}. Continue?`)) return false;
+    }
     setBusy("save");
     try {
       const response = await fetch("/api/admin/posts", {
@@ -446,9 +457,18 @@ export default function PostEditor({ fileName, sha, slug: initialSlug, initial, 
 
       // Birinchi marta e'lon qilish natijasi Publish oynasida ko'rsatiladi
       if (draft) {
-        setNotice({ kind: "success", text: wasPublished ? "Unpublished. The post will disappear from the site in about a minute." : "Draft saved. It is not visible on the site." });
+        const text = wasScheduled
+          ? "Unscheduled. The post is a draft again."
+          : wasPublished
+            ? "Unpublished. The post will disappear from the site in about a minute."
+            : "Draft saved. It is not visible on the site.";
+        setNotice({ kind: "success", text });
+      } else if (wasPublished && scheduledFor) {
+        const text = wasScheduled ? `Saved. The post goes live on ${formatDate(scheduledFor)}.` : `Saved. The post is hidden from the site until ${formatDate(scheduledFor)}.`;
+        setNotice({ kind: "success", text });
       } else if (wasPublished) {
-        setNotice({ kind: "success", text: "Updated. The site will refresh in about a minute.", link: { href: `/posts/${result.slug}`, label: "View post ↗" } });
+        const text = wasScheduled ? "Published. The post will be live in about a minute." : "Updated. The site will refresh in about a minute.";
+        setNotice({ kind: "success", text, link: { href: `/posts/${result.slug}`, label: "View post ↗" } });
       }
       return true;
     } catch (error) {
@@ -529,9 +549,11 @@ export default function PostEditor({ fileName, sha, slug: initialSlug, initial, 
           </Link>
           <span className="h-5 w-px bg-gray-700/70" />
           <span
-            className={`flex items-center gap-1.5 rounded-full px-2 py-0.5 text-xs font-semibold ${isPublished ? "bg-green-500/10 text-green-400" : isNew ? "bg-white/5 text-gray-300" : "bg-amber-400/10 text-amber-300"}`}
+            title={isScheduled ? `Goes live on ${formatDate(saved.form.date)}` : undefined}
+            className={`flex items-center gap-1.5 whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-semibold ${isScheduled ? "bg-accent/10 text-accent" : isPublished ? "bg-green-500/10 text-green-400" : isNew ? "bg-white/5 text-gray-300" : "bg-amber-400/10 text-amber-300"}`}
           >
-            {isNew ? "New" : isPublished ? "Published" : "Draft"}
+            {isNew ? "New" : isScheduled ? "Scheduled" : isPublished ? "Published" : "Draft"}
+            {isScheduled && <span className="hidden font-medium sm:inline">· {formatDate(saved.form.date)}</span>}
           </span>
           <SaveState busy={busy} dirty={dirty} isNew={isNew} />
 
@@ -577,10 +599,16 @@ export default function PostEditor({ fileName, sha, slug: initialSlug, initial, 
             <button
               onClick={() => (isPublished ? save(false) : requireTitle() && setPublishStep("confirm"))}
               disabled={busy !== null}
-              title={isPublished ? "Save changes to the live post (Ctrl+S)" : undefined}
+              title={
+                isPublished
+                  ? `Save changes to the ${isScheduled ? "scheduled" : "live"} post (Ctrl+S)`
+                  : willSchedule
+                    ? "Publish automatically on the chosen date"
+                    : undefined
+              }
               className="rounded-lg bg-white px-3 py-1.5 text-sm font-bold text-background hover:bg-gray-200 disabled:opacity-50 transition sm:px-4"
             >
-              {isPublished ? "Update" : "Publish"}
+              {isPublished ? "Update" : willSchedule ? "Schedule" : "Publish"}
             </button>
           </div>
         </div>
@@ -706,6 +734,8 @@ export default function PostEditor({ fileName, sha, slug: initialSlug, initial, 
         slug={slug}
         isNew={isNew}
         isPublished={isPublished}
+        isScheduled={isScheduled}
+        savedDate={saved.form.date}
         busy={busy !== null}
         tagSuggestions={tagSuggestions}
         cover={cover}
@@ -720,6 +750,7 @@ export default function PostEditor({ fileName, sha, slug: initialSlug, initial, 
       {publishStep && (
         <PublishDialog
           step={publishStep}
+          scheduled={willSchedule}
           busy={busy !== null}
           post={{
             slug,
@@ -729,6 +760,7 @@ export default function PostEditor({ fileName, sha, slug: initialSlug, initial, 
             tags,
             imageUrl: cover?.url ?? null,
             draft: false,
+            scheduled: false,
             readingTime: preview?.readingTime ?? 1,
           }}
           hasDescription={form.description.trim() !== ""}

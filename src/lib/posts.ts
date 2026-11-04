@@ -1,13 +1,14 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
+import { today } from './date';
 import { findFirstImage, resolveImageUrl } from './images';
 import { getExcerpt, getReadingTime, renderMarkdown } from './markdown';
 import { slugify } from './slug';
 
 const postsDirectory = path.join(process.cwd(), 'content/posts');
 
-// Qoralamalar (draft: true) `npm run dev`da ko'rinadi, lekin saytga chiqmaydi
+// Qoralamalar (draft: true) va sanasi hali kelmagan postlar `npm run dev`da ko'rinadi, lekin saytga chiqmaydi
 const isProduction = process.env.NODE_ENV === 'production';
 
 export type Tag = { name: string; slug: string };
@@ -20,6 +21,8 @@ export type PostMeta = {
   tags: Tag[];
   imageUrl: string | null;
   draft: boolean;
+  // E'lon qilingan, lekin sanasi kelajakda: sayt o'sha kuni qayta build qilinganda chiqadi (.github/workflows/publish-scheduled.yml)
+  scheduled: boolean;
   readingTime: number;
 };
 
@@ -53,6 +56,7 @@ export function parsePost(fileName: string, fileContents: string): Post | null {
 
   // cover berilmagan bo'lsa, matndagi birinchi rasm olinadi
   const cover = data.cover || findFirstImage(content);
+  const draft = data.draft === true;
 
   return {
     meta: {
@@ -63,7 +67,8 @@ export function parsePost(fileName: string, fileContents: string): Post | null {
       description: String(data.description || getExcerpt(content)),
       tags: parseTags(data.tags),
       imageUrl: cover ? resolveImageUrl(String(cover)) : null,
-      draft: data.draft === true,
+      draft,
+      scheduled: !draft && date > today(),
       readingTime: getReadingTime(content),
     },
     content,
@@ -85,7 +90,7 @@ function getPosts() {
     .filter((fileName) => fileName.endsWith('.md'))
     .map(readPost)
     .filter((post) => post !== null)
-    .filter((post) => !isProduction || !post.meta.draft)
+    .filter((post) => !isProduction || (!post.meta.draft && !post.meta.scheduled))
     .sort((a, b) => b.meta.date.localeCompare(a.meta.date));
 
   const slugs = posts.map((post) => post.meta.slug);

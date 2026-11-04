@@ -1,4 +1,5 @@
 import matter from 'gray-matter';
+import { today } from '@/lib/date';
 import { parseDate, parseTags } from '@/lib/posts';
 
 // Admin paneldagi forma. extra: forma ko'rsatmaydigan, lekin faylda saqlanib qolishi kerak bo'lgan maydonlar (masalan slug)
@@ -20,11 +21,6 @@ export const POSTS_DIRECTORY = 'content/posts';
 // Faqat content/posts ichidagi .md fayl nomi (papka yo'li emas)
 export function isPostFileName(fileName: string) {
   return /^[^/\\]+\.md$/.test(fileName) && !fileName.startsWith('.');
-}
-
-// O'zbekiston vaqti bo'yicha bugungi sana, YYYY-MM-DD
-export function today() {
-  return new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Tashkent' }).format(new Date());
 }
 
 export function emptyPostForm(): PostForm {

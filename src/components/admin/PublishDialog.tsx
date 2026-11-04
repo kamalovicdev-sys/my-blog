@@ -1,13 +1,17 @@
 "use client";
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { Check, CircleCheck, Copy, ExternalLink, Info, LoaderCircle, Send, TriangleAlert, X } from "lucide-react";
+import Link from "next/link";
+import { CalendarCheck, CalendarClock, Check, CircleCheck, Copy, ExternalLink, Info, LoaderCircle, Send, TriangleAlert, X } from "lucide-react";
 import PostCard from "@/components/PostCard";
+import { formatWeekdayDate } from "@/lib/date";
 import type { PostMeta } from "@/lib/posts";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 
 type Props = {
   step: "confirm" | "done";
+  // Sana kelajakda: post hozir emas, o'sha kuni chiqadi
+  scheduled: boolean;
   busy: boolean;
   post: PostMeta;
   hasDescription: boolean;
@@ -49,9 +53,10 @@ function TelegramPreview({ url, post }: { url: string; post: PostMeta }) {
   );
 }
 
-export default function PublishDialog({ step, busy, post, hasDescription, coverSource, onConfirm, onClose }: Props) {
+export default function PublishDialog({ step, scheduled, busy, post, hasDescription, coverSource, onConfirm, onClose }: Props) {
   const [copied, setCopied] = useState(false);
   const url = `${SITE_URL}/posts/${post.slug}`;
+  const liveDate = formatWeekdayDate(post.date, "long");
 
   // Oyna ochiq paytida orqadagi sahifa scroll bo'lmaydi
   useEffect(() => {
@@ -89,9 +94,13 @@ export default function PublishDialog({ step, busy, post, hasDescription, coverS
       >
         {step === "done" ? (
           <div className="flex flex-col items-center px-6 py-10 text-center sm:px-10">
-            <CircleCheck className="size-14 text-green-400" strokeWidth={1.5} />
-            <h2 id="publish-title" className="mt-4 text-2xl font-bold">Published!</h2>
-            <p className="mt-2 text-sm text-gray-400">The site is rebuilding. The post will be live in about a minute.</p>
+            {scheduled ? <CalendarCheck className="size-14 text-accent" strokeWidth={1.5} /> : <CircleCheck className="size-14 text-green-400" strokeWidth={1.5} />}
+            <h2 id="publish-title" className="mt-4 text-2xl font-bold">{scheduled ? "Scheduled!" : "Published!"}</h2>
+            <p className="mt-2 text-sm text-gray-400">
+              {scheduled
+                ? `The post goes live on ${liveDate}, shortly after midnight (Tashkent time). The link starts working that day.`
+                : "The site is rebuilding. The post will be live in about a minute."}
+            </p>
             <div className="mt-6 flex w-full items-center gap-2 rounded-xl border border-gray-700 bg-background p-1.5 pl-3 text-left text-sm">
               <span className="min-w-0 flex-1 truncate text-gray-300">{url}</span>
               <button onClick={copyLink} className="flex shrink-0 items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-gray-300 hover:bg-white/5 hover:text-white transition">
@@ -103,17 +112,23 @@ export default function PublishDialog({ step, busy, post, hasDescription, coverS
               <button onClick={onClose} className="flex-1 rounded-xl border border-gray-600 px-4 py-2.5 font-semibold text-gray-200 hover:border-white hover:text-white transition">
                 Keep editing
               </button>
-              <a href={url} target="_blank" rel="noopener noreferrer" className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-white px-4 py-2.5 font-bold text-background hover:bg-gray-200 transition">
-                View post
-                <ExternalLink className="size-4" />
-              </a>
+              {scheduled ? (
+                <Link href="/admin" className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-white px-4 py-2.5 font-bold text-background hover:bg-gray-200 transition">
+                  All posts
+                </Link>
+              ) : (
+                <a href={url} target="_blank" rel="noopener noreferrer" className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-white px-4 py-2.5 font-bold text-background hover:bg-gray-200 transition">
+                  View post
+                  <ExternalLink className="size-4" />
+                </a>
+              )}
             </div>
           </div>
         ) : (
           <>
             <div className="flex items-start justify-between gap-4 border-b border-gray-700/70 px-6 py-5">
               <div>
-                <h2 id="publish-title" className="text-xl font-bold">Ready to publish?</h2>
+                <h2 id="publish-title" className="text-xl font-bold">{scheduled ? "Schedule this post?" : "Ready to publish?"}</h2>
                 <p className="mt-1 text-sm text-gray-400">This is how the post will look on the home page and when shared.</p>
               </div>
               <button onClick={onClose} disabled={busy} aria-label="Close" className="rounded-lg p-1.5 text-gray-400 hover:bg-white/5 hover:text-white disabled:opacity-50 transition">
@@ -122,6 +137,14 @@ export default function PublishDialog({ step, busy, post, hasDescription, coverS
             </div>
 
             <div className="flex-1 space-y-6 overflow-y-auto px-6 py-5">
+              {scheduled && (
+                <div className="flex gap-3 rounded-xl border border-accent/30 bg-accent/10 p-4 text-sm text-gray-200">
+                  <CalendarClock className="mt-0.5 size-5 shrink-0 text-accent" />
+                  <p>
+                    Goes live on <strong className="text-white">{liveDate}</strong>, shortly after midnight (Tashkent time). Until then it stays hidden from the site.
+                  </p>
+                </div>
+              )}
               <div>
                 <SectionLabel>Home page</SectionLabel>
                 {/* Saytdagi kartochkaning o'zi, faqat bosib bo'lmaydi */}
@@ -159,8 +182,8 @@ export default function PublishDialog({ step, busy, post, hasDescription, coverS
                 disabled={busy}
                 className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-white px-5 py-2.5 font-bold text-background hover:bg-gray-200 disabled:opacity-70 transition sm:ml-auto sm:flex-none"
               >
-                {busy ? <LoaderCircle className="size-4 animate-spin" /> : <Send className="size-4" />}
-                {busy ? "Publishing…" : "Publish now"}
+                {busy ? <LoaderCircle className="size-4 animate-spin" /> : scheduled ? <CalendarClock className="size-4" /> : <Send className="size-4" />}
+                {scheduled ? (busy ? "Scheduling…" : "Schedule") : busy ? "Publishing…" : "Publish now"}
               </button>
             </div>
           </>

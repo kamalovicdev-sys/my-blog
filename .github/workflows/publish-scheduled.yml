@@ -1,0 +1,45 @@
+# Kelajak sanali postlarni o'sha kuni saytga chiqaradi (scripts/publish-scheduled.mjs).
+#
+# Bir martalik sozlash:
+#   1. Netlify → Site configuration → Build & deploy → Continuous deployment → Build hooks → Add build hook (branch: master)
+#   2. Hosil bo'lgan URL'ni GitHub → Settings → Secrets and variables → Actions → New repository secret'ga
+#      NETLIFY_BUILD_HOOK nomi bilan qo'shing
+name: Publish scheduled posts
+
+on:
+  schedule:
+    # Cron UTC'da ishlaydi: 19:17 UTC = Toshkentda 00:17. Qolgan uchtasi kechikkan ishga tushirish yoki yiqilgan build uchun
+    - cron: "17 19 * * *"
+    - cron: "17 1,7,13 * * *"
+  workflow_dispatch:
+    inputs:
+      force:
+        description: "Start a Netlify build even if no post is due (to test the build hook)"
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: publish-scheduled
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          sparse-checkout: |
+            content/posts
+            scripts
+            src/lib
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+      - name: Publish posts whose date has come
+        env:
+          NETLIFY_BUILD_HOOK: ${{ secrets.NETLIFY_BUILD_HOOK }}
+        # src/lib'dagi .ts fayllar import qilinadi: Node "type": "module" yo'qligi haqida ogohlantirmasin
+        run: node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/publish-scheduled.mjs ${{ inputs.force && '--force' || '' }}

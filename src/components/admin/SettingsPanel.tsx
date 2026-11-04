@@ -2,8 +2,10 @@
 import { useRef } from "react";
 import Image from "next/image";
 import { EyeOff, ExternalLink, ImagePlus, Trash2, Upload, X } from "lucide-react";
+import DatePicker from "@/components/admin/DatePicker";
 import TagInput from "@/components/admin/TagInput";
 import type { PostForm } from "@/lib/admin/post-file";
+import { formatDate, formatWeekdayDate, today } from "@/lib/date";
 import { SITE_URL } from "@/lib/site";
 
 type Props = {
@@ -12,6 +14,8 @@ type Props = {
   slug: string;
   isNew: boolean;
   isPublished: boolean;
+  isScheduled: boolean;
+  savedDate: string;
   busy: boolean;
   tagSuggestions: string[];
   cover: { url: string; source: "custom" | "auto" } | null;
@@ -36,9 +40,25 @@ function Field({ label, hint, children }: { label: string; hint?: React.ReactNod
   );
 }
 
+// Sana ostidagi izoh: kelajak sana tanlansa post o'sha kuni o'zi saytga chiqadi
+function publishDateHint(date: string, now: string, { isPublished, isScheduled, savedDate }: Pick<Props, "isPublished" | "isScheduled" | "savedDate">) {
+  const future = date > now;
+  const day = formatWeekdayDate(date, "long");
+  if (isScheduled) {
+    if (!future) return "Updating with this date publishes the post right away.";
+    if (date !== savedDate) return `Click Update to reschedule it for ${day}.`;
+    return `Goes live automatically on ${day}, shortly after midnight (Tashkent time).`;
+  }
+  if (isPublished) {
+    return future ? <span className="text-amber-300">This post is live. Updating it with a future date hides it from the site until {formatDate(date)}.</span> : null;
+  }
+  return future ? `Publishing will schedule it: the post goes live automatically on ${day}.` : "Pick a future date to schedule the post.";
+}
+
 // URL, sana, teglar, cover va xavfli amallar: yozish maydonini band qilmasligi uchun o'ng panelda
 export default function SettingsPanel(props: Props) {
-  const { open, form, slug, isNew, isPublished, busy, cover, onChange } = props;
+  const { open, form, slug, isNew, isPublished, isScheduled, savedDate, busy, cover, onChange } = props;
+  const now = today();
   const coverInputRef = useRef<HTMLInputElement>(null);
 
   return (
@@ -59,6 +79,8 @@ export default function SettingsPanel(props: Props) {
           hint={
             isNew ? (
               "Generated from the title. You can change it before the first save."
+            ) : isScheduled ? (
+              `${SITE_URL.replace(/^https?:\/\//, "")}/posts/${slug} · live from ${formatDate(savedDate)}`
             ) : isPublished ? (
               <a href={`/posts/${slug}`} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-gray-400 hover:text-white">
                 {SITE_URL.replace(/^https?:\/\//, "")}/posts/{slug}
@@ -80,8 +102,8 @@ export default function SettingsPanel(props: Props) {
           </div>
         </Field>
 
-        <Field label="Publish date">
-          <input type="date" value={form.date} onChange={(event) => onChange("date", event.target.value)} className={INPUT_CLASS} />
+        <Field label="Publish date" hint={publishDateHint(form.date, now, props)}>
+          <DatePicker value={form.date} today={now} onChange={(value) => onChange("date", value)} />
         </Field>
 
         <Field label="Tags" hint="Press Enter or comma to add a tag.">
@@ -149,8 +171,8 @@ export default function SettingsPanel(props: Props) {
               >
                 <EyeOff className="size-4 shrink-0" />
                 <span>
-                  <span className="block font-semibold">Unpublish</span>
-                  <span className="block text-xs text-gray-500">Remove from the site and keep it as a draft</span>
+                  <span className="block font-semibold">{isScheduled ? "Unschedule" : "Unpublish"}</span>
+                  <span className="block text-xs text-gray-500">{isScheduled ? "Cancel the schedule and keep it as a draft" : "Remove from the site and keep it as a draft"}</span>
                 </span>
               </button>
             )}

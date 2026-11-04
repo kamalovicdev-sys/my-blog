@@ -11,6 +11,7 @@ export type AdminPostRow =
       date: string;
       slug: string;
       draft: boolean;
+      scheduled: boolean;
       description: string;
       tags: string[];
       imageUrl: string | null;
@@ -22,7 +23,7 @@ function toRow(fileName: string, text: string | null): AdminPostRow {
   try {
     const post = parsePost(fileName, text ?? '');
     if (!post) return { fileName, ok: false, error: 'No frontmatter' };
-    const { title, date, slug, draft, description, tags, imageUrl, readingTime } = post.meta;
+    const { title, date, slug, draft, scheduled, description, tags, imageUrl, readingTime } = post.meta;
     return {
       fileName,
       ok: true,
@@ -30,6 +31,7 @@ function toRow(fileName: string, text: string | null): AdminPostRow {
       date,
       slug,
       draft,
+      scheduled,
       description,
       tags: tags.map((tag) => tag.name),
       imageUrl: imageUrl && adminImageUrl(imageUrl),

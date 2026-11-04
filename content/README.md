@@ -14,7 +14,7 @@ Shablonsiz, ya'ni frontmatter'siz fayl post hisoblanmaydi va saytda ko'rinmaydi.
 
 | Maydon | Majburiy | Izoh |
 |---|---|---|
-| `date` | ha | `2026-10-30` ko'rinishida. Shablon o'zi qo'yadi |
+| `date` | ha | `2026-10-30` ko'rinishida. Shablon o'zi qo'yadi. Kelajak sana qo'yilsa (va `draft: false`), post o'sha kuni Toshkent vaqti bilan yarim tundan keyin o'zi saytga chiqadi |
 | `title` | yo'q | Bo'sh qolsa, qayd nomi sarlavha bo'ladi |
 | `description` | yo'q | Bosh sahifa va Telegram preview uchun. Bo'sh qolsa, matnning birinchi paragraflaridan olinadi |
 | `tags` | yo'q | Masalan: `linux`, `python` |

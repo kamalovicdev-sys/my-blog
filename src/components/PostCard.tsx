@@ -3,13 +3,20 @@ import Link from "next/link";
 import { formatDate } from "@/lib/date";
 import type { PostMeta } from "@/lib/posts";
 
-// Sana, o'qish vaqti va qoralama belgisi: post kartochkasida ham, post sahifasida ham ishlatiladi
-export function PostInfo({ date, readingTime, draft, className = "" }: Pick<PostMeta, "date" | "readingTime" | "draft"> & { className?: string }) {
+// Sana, o'qish vaqti va qoralama/rejalashtirilgan belgisi: post kartochkasida ham, post sahifasida ham ishlatiladi
+export function PostInfo({
+  date,
+  readingTime,
+  draft,
+  scheduled,
+  className = "",
+}: Pick<PostMeta, "date" | "readingTime" | "draft"> & { scheduled?: boolean; className?: string }) {
   return (
     <p className={`text-xs text-gray-400 uppercase tracking-widest ${className}`}>
       <time dateTime={date}>{formatDate(date)}</time>
       {` · ${readingTime} min read`}
       {draft && <span className="text-amber-400"> · Draft</span>}
+      {scheduled && <span className="text-accent"> · Scheduled</span>}
     </p>
   );
 }
