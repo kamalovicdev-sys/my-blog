@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import Stream from "@/components/Stream";
 import { getAllTags, getPostsByTag } from "@/lib/posts";
-import PostCard from "@/components/PostCard";
 
 type Props = { params: Promise<{ tag: string }> };
 
@@ -31,12 +31,12 @@ export default async function TagPage({ params }: Props) {
   if (!tag) notFound();
 
   return (
-    <section>
-      <Link href="/" className="text-sm text-gray-400 hover:text-white transition">← All posts</Link>
-      <h1 className="text-3xl sm:text-4xl font-extrabold mt-4">#{tag.name}</h1>
-      <p className="text-gray-400 mt-1 mb-8">{tag.count} {tag.count === 1 ? "post" : "posts"}</p>
-      <div className="space-y-6 sm:space-y-8">
-        {getPostsByTag(tag.slug).map((post) => <PostCard key={post.slug} post={post} />)}
+    <section className="mx-auto max-w-3xl px-4 py-8 sm:px-6 sm:py-12">
+      <Link href="/" className="font-mono text-xs font-bold uppercase tracking-[0.12em] text-muted transition hover:text-white">← All posts</Link>
+      <h1 className="mt-5 break-words font-display text-[clamp(52px,10vw,96px)] font-normal leading-[0.9]">#{tag.name}</h1>
+      <p className="mt-3 font-mono text-xs font-bold uppercase tracking-[0.12em] text-faint">{tag.count} {tag.count === 1 ? "post" : "posts"}</p>
+      <div className="mt-4">
+        <Stream posts={getPostsByTag(tag.slug)} controls={false} />
       </div>
     </section>
   );

@@ -9,6 +9,8 @@ tags:
   - psychology
   - munosabatlar
   - oila
+series: Umr yo‘ldoshini qanday tanlash kerak
+part: 2
 draft: false
 ---
 

@@ -12,7 +12,8 @@ export default function SiteLayout({
   return (
     <>
       <SiteHeader />
-      <main className="container mx-auto px-4 sm:px-6 max-w-3xl py-8 sm:py-12">{children}</main>
+      {/* Kenglikni har bir sahifa o'zi belgilaydi: bosh sahifa keng, post sahifasi tor */}
+      <main>{children}</main>
       <SiteFooter />
       {CLOUDFLARE_ANALYTICS_TOKEN && (
         <Script

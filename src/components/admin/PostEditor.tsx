@@ -42,7 +42,7 @@ import { adminImageUrl, findFirstImage } from "@/lib/images";
 import type { Tag } from "@/lib/posts";
 import { slugify } from "@/lib/slug";
 
-type Props = { fileName?: string; sha?: string; slug?: string; initial: PostForm; tagSuggestions: string[] };
+type Props = { fileName?: string; sha?: string; slug?: string; initial: PostForm; tagSuggestions: string[]; seriesSuggestions: string[] };
 type Notice = { kind: "info" | "success" | "error"; text: string; link?: { href: string; label: string } };
 type View = "write" | "split" | "preview";
 type Preview = { html: string; words: number; readingTime: number; excerpt: string };
@@ -55,7 +55,7 @@ const NOTICE_DURATION = 6000;
 const MAX_IMAGE_WIDTH = 1600;
 const CONVERTIBLE_IMAGE_TYPES = ["image/png", "image/jpeg", "image/webp"];
 const JSON_HEADERS = { "Content-Type": "application/json" };
-const CONTENT_KEYS = ["title", "date", "description", "tags", "cover", "body"] as const;
+const CONTENT_KEYS = ["title", "date", "description", "tags", "cover", "series", "part", "body"] as const;
 
 const VIEWS: { id: View; label: string; icon: LucideIcon; className?: string }[] = [
   { id: "write", label: "Write", icon: PenLine },
@@ -139,7 +139,8 @@ function parseLocalDraft(raw: string | null): LocalDraft | null {
   if (!raw) return null;
   try {
     const value = JSON.parse(raw);
-    return typeof value?.form?.body === "string" ? value : null;
+    // Series maydonlari qo'shilishidan oldin saqlangan nusxalarda ular yo'q
+    return typeof value?.form?.body === "string" ? { ...value, form: { series: "", part: "", ...value.form } } : null;
   } catch {
     return null;
   }
@@ -219,7 +220,7 @@ function Toast({ notice, onClose }: { notice: Notice; onClose: () => void }) {
   );
 }
 
-export default function PostEditor({ fileName, sha, slug: initialSlug, initial, tagSuggestions }: Props) {
+export default function PostEditor({ fileName, sha, slug: initialSlug, initial, tagSuggestions, seriesSuggestions }: Props) {
   const router = useRouter();
   const [form, setForm] = useState(initial);
   // GitHub'dagi oxirgi saqlangan holat: sha keyingi saqlashda konfliktni aniqlaydi, form esa saqlanmagan o'zgarishlarni
@@ -738,6 +739,7 @@ export default function PostEditor({ fileName, sha, slug: initialSlug, initial, 
         savedDate={saved.form.date}
         busy={busy !== null}
         tagSuggestions={tagSuggestions}
+        seriesSuggestions={seriesSuggestions}
         cover={cover}
         onChange={update}
         onSlugChange={setCustomSlug}
@@ -761,6 +763,7 @@ export default function PostEditor({ fileName, sha, slug: initialSlug, initial, 
             imageUrl: cover?.url ?? null,
             draft: false,
             scheduled: false,
+            series: null,
             readingTime: preview?.readingTime ?? 1,
           }}
           hasDescription={form.description.trim() !== ""}

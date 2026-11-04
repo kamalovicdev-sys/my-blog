@@ -30,7 +30,7 @@ export default function SubscribeModal() {
     <>
       <button
         onClick={() => setIsOpen(true)}
-        className="px-4 sm:px-6 py-2 text-sm sm:text-base bg-white text-background rounded-lg font-bold hover:bg-gray-200 transition"
+        className="flex h-9 items-center rounded bg-violet-deep px-3 font-mono text-xs font-bold uppercase tracking-[0.08em] text-white transition hover:bg-[#6a1fff] sm:h-10"
       >
         Subscribe
       </button>

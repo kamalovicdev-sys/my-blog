@@ -18,6 +18,7 @@ type Props = {
   savedDate: string;
   busy: boolean;
   tagSuggestions: string[];
+  seriesSuggestions: string[];
   cover: { url: string; source: "custom" | "auto" } | null;
   onChange: <K extends keyof PostForm>(key: K, value: PostForm[K]) => void;
   onSlugChange: (slug: string) => void;
@@ -108,6 +109,33 @@ export default function SettingsPanel(props: Props) {
 
         <Field label="Tags" hint="Press Enter or comma to add a tag.">
           <TagInput value={form.tags} onChange={(value) => onChange("tags", value)} suggestions={props.tagSuggestions} />
+        </Field>
+
+        <Field label="Series" hint="Posts with the same series name are linked together and shown in part order.">
+          <div className="flex gap-2">
+            <input
+              value={form.series}
+              onChange={(event) => onChange("series", event.target.value)}
+              list="series-suggestions"
+              placeholder="Not part of a series"
+              aria-label="Series name"
+              className={`${INPUT_CLASS} min-w-0 flex-1`}
+            />
+            <input
+              type="number"
+              min={1}
+              inputMode="numeric"
+              value={form.part}
+              onChange={(event) => onChange("part", event.target.value)}
+              disabled={!form.series.trim()}
+              placeholder="Part"
+              aria-label="Part number"
+              className="w-20 shrink-0 rounded-lg border border-gray-700 bg-background px-3 py-2 text-sm outline-none transition focus:border-gray-400 disabled:opacity-40"
+            />
+          </div>
+          <datalist id="series-suggestions">
+            {props.seriesSuggestions.map((name) => <option key={name} value={name} />)}
+          </datalist>
         </Field>
 
         <Field

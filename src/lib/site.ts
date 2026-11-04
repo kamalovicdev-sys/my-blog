@@ -4,6 +4,9 @@ export const SITE_DESCRIPTION = 'Dasturlash, Linux va texnologiyalar haqida maqo
 // Saytning asosiy manzili: sitemap, RSS, ulashish havolalari va Telegram preview'lar shu manzil bilan yasaladi
 export const SITE_URL = 'https://blog.kamalovic.uz';
 
+// Postlar ro'yxatida har bir post yonida ko'rsatiladigan muallif
+export const AUTHOR_NAME = 'Kamalovic';
+
 export const SOCIAL = {
   github: 'https://github.com/kamalovicdev-sys',
   telegram: 'https://t.me/kama1ovic',

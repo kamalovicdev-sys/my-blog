@@ -21,6 +21,8 @@ Shablonsiz, ya'ni frontmatter'siz fayl post hisoblanmaydi va saytda ko'rinmaydi.
 | `cover` | yo'q | Bosh sahifadagi kichik rasm va Telegram preview rasmi. Bo'sh qolsa, matndagi birinchi rasm olinadi |
 | `draft` | yo'q | `true` bo'lsa, post faqat kompyuteringizda (`npm run dev`) ko'rinadi, saytga chiqmaydi |
 | `slug` | yo'q | Manzilni qo'lda berish uchun: `slug: docker` → `/posts/docker` |
+| `series` | yo'q | Bir necha qismli maqola: bir xil nomli postlar bir-biriga bog'lanadi, masalan `series: Sun'iy intellekt inqilobi` |
+| `part` | yo'q | Seriyadagi qism raqami: `part: 1`. Bosh sahifada "Part 1 of 2" bo'lib chiqadi |
 
 ## Rasmlar
 

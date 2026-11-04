@@ -5,6 +5,10 @@ description: >-
   Bu ta’sirli eshitiladi va ASI har qanday insondan tezroq fikrlaydi. Ammo
   haqiqiy ajratuvchi jihat uning aql sifati borasidagi ustunligi bo‘ladi — bu
   esa butunlay boshqa narsa.
+tags:
+  - ai
+series: Sun'iy intellekt inqilobi
+part: 2
 draft: false
 ---
 

@@ -4,6 +4,8 @@ date: '2026-11-03'
 description: >-
   Uning karyerasi juda yaxshi rivojlanmoqda. Ammo uni hech qachon ishga
   mukkasidan ketgan odam deb o‘ylamang — axir u oilaparvar inson.
+tags:
+  - munosabatlar
 draft: false
 ---
 

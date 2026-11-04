@@ -12,6 +12,7 @@ export type AdminPostRow =
       slug: string;
       draft: boolean;
       scheduled: boolean;
+      series: string | null;
       description: string;
       tags: string[];
       imageUrl: string | null;
@@ -23,7 +24,7 @@ function toRow(fileName: string, text: string | null): AdminPostRow {
   try {
     const post = parsePost(fileName, text ?? '');
     if (!post) return { fileName, ok: false, error: 'No frontmatter' };
-    const { title, date, slug, draft, scheduled, description, tags, imageUrl, readingTime } = post.meta;
+    const { title, date, slug, draft, scheduled, series, description, tags, imageUrl, readingTime } = post.meta;
     return {
       fileName,
       ok: true,
@@ -32,6 +33,7 @@ function toRow(fileName: string, text: string | null): AdminPostRow {
       slug,
       draft,
       scheduled,
+      series: series?.name ?? null,
       description,
       tags: tags.map((tag) => tag.name),
       imageUrl: imageUrl && adminImageUrl(imageUrl),
@@ -64,4 +66,13 @@ export function collectTags(rows: AdminPostRow[]) {
     }
   }
   return [...counts.values()].sort((a, b) => b.count - a.count || a.name.localeCompare(b.name)).map((entry) => entry.name);
+}
+
+// Avval ishlatilgan seriya nomlari: Series maydonida taklif qilinadi
+export function collectSeries(rows: AdminPostRow[]) {
+  const names = new Map<string, string>();
+  for (const row of rows) {
+    if (row.ok && row.series) names.set(row.series.toLowerCase(), row.series);
+  }
+  return [...names.values()].sort((a, b) => a.localeCompare(b));
 }

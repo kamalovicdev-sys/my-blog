@@ -8,12 +8,25 @@
 @theme inline {
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-serif: var(--font-source-serif), ui-serif, Georgia, serif;
+  /* Sarlavhalar, bosh sahifadagi katta "Kamalovic" yozuvi va kichik texnik yozuvlar (sana, teg, tugma) */
+  --font-headline: var(--font-schibsted), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-anton), Impact, "Arial Narrow", sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
 @theme {
   --color-background: #17212d;
   --color-surface: #1e2a38;
   --color-accent: #818cf8;
+  /* Bosh sahifa (The Verge uslubi): muallif nomi va "/" belgilari, to'q binafsha tugmalar, qism yorlig'i, chiziqlar va matn ranglari */
+  --color-violet: #9f8cff;
+  --color-violet-deep: #5200ff;
+  --color-alert: #e5172f;
+  --color-line: #2b394a;
+  --color-line-strong: #3a4a5e;
+  --color-muted: #a9b5c4;
+  --color-faint: #8d9aab;
+  --color-prose: #c9d2dd;
 }
 
 /* Sayt to'liq qorong'i: brauzer scroll chiziqlari va forma elementlarini ham qorong'i chizadi */

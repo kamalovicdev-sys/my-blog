@@ -9,12 +9,15 @@ export type PostForm = {
   description: string;
   tags: string;
   cover: string;
+  // Seriya nomi va qism raqami (forma matn sifatida saqlaydi, faylga son bo'lib yoziladi)
+  series: string;
+  part: string;
   draft: boolean;
   body: string;
   extra: Record<string, unknown>;
 };
 
-const FORM_KEYS = ['title', 'date', 'description', 'tags', 'cover', 'draft'];
+const FORM_KEYS = ['title', 'date', 'description', 'tags', 'cover', 'series', 'part', 'draft'];
 
 export const POSTS_DIRECTORY = 'content/posts';
 
@@ -24,7 +27,7 @@ export function isPostFileName(fileName: string) {
 }
 
 export function emptyPostForm(): PostForm {
-  return { title: '', date: today(), description: '', tags: '', cover: '', draft: true, body: '', extra: {} };
+  return { title: '', date: today(), description: '', tags: '', cover: '', series: '', part: '', draft: true, body: '', extra: {} };
 }
 
 export function readPostForm(source: string): PostForm {
@@ -37,6 +40,8 @@ export function readPostForm(source: string): PostForm {
     description: String(data.description ?? ''),
     tags: parseTags(data.tags).map((tag) => tag.name).join(', '),
     cover: String(data.cover ?? ''),
+    series: String(data.series ?? ''),
+    part: data.part == null ? '' : String(data.part),
     draft: data.draft === true,
     body: content.replace(/^\n+/, ''),
     extra,
@@ -45,6 +50,7 @@ export function readPostForm(source: string): PostForm {
 
 export function serializePostForm(form: PostForm) {
   const tags = parseTags(form.tags).map((tag) => tag.name);
+  const part = Number.parseInt(form.part, 10);
   const extra = Object.fromEntries(Object.entries(form.extra).filter(([key]) => !FORM_KEYS.includes(key)));
   const data = {
     title: form.title.trim(),
@@ -52,6 +58,8 @@ export function serializePostForm(form: PostForm) {
     ...(form.description.trim() && { description: form.description.trim() }),
     ...(tags.length > 0 && { tags }),
     ...(form.cover.trim() && { cover: form.cover.trim() }),
+    // Qism raqami faqat seriyaga tegishli bo'lsa yoziladi
+    ...(form.series.trim() && { series: form.series.trim(), ...(part > 0 && { part }) }),
     draft: form.draft,
     ...extra,
   };
@@ -73,6 +81,8 @@ export function parsePostForm(value: unknown): PostForm | string {
     description: String(form.description ?? ''),
     tags: String(form.tags ?? ''),
     cover: String(form.cover ?? ''),
+    series: String(form.series ?? ''),
+    part: String(form.part ?? ''),
     draft: form.draft === true,
     body: form.body,
     extra,

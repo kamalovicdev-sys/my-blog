@@ -5,6 +5,7 @@ import { today } from './date';
 import { findFirstImage, resolveImageUrl } from './images';
 import { getExcerpt, getReadingTime, renderMarkdown } from './markdown';
 import { slugify } from './slug';
+import { TOPICS, topicHasTag } from './topics';
 
 const postsDirectory = path.join(process.cwd(), 'content/posts');
 
@@ -12,6 +13,9 @@ const postsDirectory = path.join(process.cwd(), 'content/posts');
 const isProduction = process.env.NODE_ENV === 'production';
 
 export type Tag = { name: string; slug: string };
+
+// Bir necha qismli maqola: frontmatter'dagi "series" (nomi) va "part" (qism raqami)
+export type SeriesInfo = { name: string; slug: string; part: number | null; total: number };
 
 export type PostMeta = {
   slug: string;
@@ -23,6 +27,7 @@ export type PostMeta = {
   draft: boolean;
   // E'lon qilingan, lekin sanasi kelajakda: sayt o'sha kuni qayta build qilinganda chiqadi (.github/workflows/publish-scheduled.yml)
   scheduled: boolean;
+  series: SeriesInfo | null;
   readingTime: number;
 };
 
@@ -57,6 +62,8 @@ export function parsePost(fileName: string, fileContents: string): Post | null {
   // cover berilmagan bo'lsa, matndagi birinchi rasm olinadi
   const cover = data.cover || findFirstImage(content);
   const draft = data.draft === true;
+  const seriesName = String(data.series ?? '').trim();
+  const part = Number.parseInt(String(data.part ?? ''), 10);
 
   return {
     meta: {
@@ -69,6 +76,8 @@ export function parsePost(fileName: string, fileContents: string): Post | null {
       imageUrl: cover ? resolveImageUrl(String(cover)) : null,
       draft,
       scheduled: !draft && date > today(),
+      // total (seriyadagi qismlar soni) getPosts'da, hamma postlar o'qilgandan keyin hisoblanadi
+      series: seriesName ? { name: seriesName, slug: slugify(seriesName), part: part > 0 ? part : null, total: 1 } : null,
       readingTime: getReadingTime(content),
     },
     content,
@@ -99,8 +108,23 @@ function getPosts() {
     throw new Error(`content/posts: bir nechta post "${duplicate}" manziliga to'g'ri keladi, birining nomini yoki slug'ini o'zgartiring`);
   }
 
+  countSeriesParts(posts.map((post) => post.meta));
   if (isProduction) cachedPosts = posts;
   return posts;
+}
+
+// "2 qismdan 1-si" uchun: saytdagi qismlar soni, raqamlar orasida bo'shliq bo'lsa eng katta qism raqami
+function countSeriesParts(posts: PostMeta[]) {
+  const counts = new Map<string, number>();
+  const maxParts = new Map<string, number>();
+  for (const { series } of posts) {
+    if (!series) continue;
+    counts.set(series.slug, (counts.get(series.slug) ?? 0) + 1);
+    maxParts.set(series.slug, Math.max(maxParts.get(series.slug) ?? 0, series.part ?? 0));
+  }
+  for (const { series } of posts) {
+    if (series) series.total = Math.max(counts.get(series.slug) ?? 1, maxParts.get(series.slug) ?? 0);
+  }
 }
 
 function findPost(slug: string) {
@@ -156,4 +180,44 @@ export function getRelatedPosts(slug: string, limit = 3) {
     .sort((a, b) => b.score - a.score)
     .slice(0, limit)
     .map(({ post }) => post);
+}
+
+export function getTopic(slug: string) {
+  return TOPICS.find((topic) => topic.slug === slug) ?? null;
+}
+
+export function getPostsByTopic(slug: string) {
+  const topic = getTopic(slug);
+  if (!topic) return [];
+  return getSortedPostsData().filter((post) => post.tags.some((tag) => topicHasTag(topic, tag.slug)));
+}
+
+// Mavzular va ulardagi postlar soni (bo'sh mavzular ham qaytadi, ko'rsatish-ko'rsatmaslikni sahifa hal qiladi)
+export function getAllTopics() {
+  return TOPICS.map((topic) => ({ ...topic, count: getPostsByTopic(topic.slug).length }));
+}
+
+function sortByPart(posts: PostMeta[]) {
+  return [...posts].sort((a, b) => (a.series?.part ?? Infinity) - (b.series?.part ?? Infinity) || a.date.localeCompare(b.date));
+}
+
+// Seriyalar va ularning qismlari tartib bilan, eng yangi seriya oldin
+export function getAllSeries() {
+  const series = new Map<string, { name: string; slug: string; posts: PostMeta[] }>();
+  for (const post of getSortedPostsData()) {
+    if (!post.series) continue;
+    const entry = series.get(post.series.slug) ?? { name: post.series.name, slug: post.series.slug, posts: [] };
+    entry.posts.push(post);
+    series.set(post.series.slug, entry);
+  }
+  return [...series.values()].map((entry) => ({ ...entry, posts: sortByPart(entry.posts) }));
+}
+
+export function getSeriesPosts(slug: string) {
+  return getAllSeries().find((entry) => entry.slug === slug)?.posts ?? [];
+}
+
+// O'qish vaqti eng uzun postlar: bosh sahifadagi "Long reads"
+export function getLongReads(limit = 5) {
+  return [...getSortedPostsData()].sort((a, b) => b.readingTime - a.readingTime).slice(0, limit);
 }

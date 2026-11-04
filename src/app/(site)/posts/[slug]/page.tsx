@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { getAllPostSlugs, getPostData, getPostMeta, getRelatedPosts } from "@/lib/posts";
+import { getAllPostSlugs, getPostData, getPostMeta, getRelatedPosts, getSeriesPosts } from "@/lib/posts";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 import CodeCopyButtons from "@/components/CodeCopyButtons";
 import Comments from "@/components/Comments";
 import PostBody from "@/components/PostBody";
 import PostCard, { PostInfo } from "@/components/PostCard";
 import ReadingProgress from "@/components/ReadingProgress";
+import SeriesBox from "@/components/SeriesBox";
 import ShareButtons from "@/components/ShareButtons";
 import TableOfContents from "@/components/TableOfContents";
 import TagLink from "@/components/TagLink";
@@ -49,18 +50,21 @@ export default async function Post({ params }: Props) {
   if (!postData) notFound();
 
   const relatedPosts = getRelatedPosts(slug);
+  const seriesPosts = postData.series ? getSeriesPosts(postData.series.slug) : [];
   // Mundarija faqat bir nechta bo'limli postlarda kerak
   const showToc = postData.toc.length >= 3;
 
   return (
-    <>
+    <div className="container mx-auto max-w-3xl px-4 py-8 sm:px-6 sm:py-12">
       <ReadingProgress />
       <CodeCopyButtons />
       <article className="relative max-w-2xl mx-auto">
         <header className="mb-8 sm:mb-10">
           <PostInfo {...postData} />
-          <h1 className="text-3xl md:text-4xl font-extrabold leading-tight text-balance mt-2 text-white">{postData.title}</h1>
+          <h1 className="font-headline text-3xl md:text-4xl font-extrabold leading-tight text-balance mt-2 text-white">{postData.title}</h1>
         </header>
+
+        {postData.series && seriesPosts.length > 1 && <SeriesBox series={postData.series} posts={seriesPosts} currentSlug={slug} />}
 
         {showToc && (
           <>
@@ -98,6 +102,6 @@ export default async function Post({ params }: Props) {
           </div>
         </section>
       )}
-    </>
+    </div>
   );
 }

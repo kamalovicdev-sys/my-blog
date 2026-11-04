@@ -13,6 +13,8 @@ description: >-
   bo'ldim.
 tags:
   - ai
+series: Sun'iy intellekt inqilobi
+part: 1
 draft: false
 ---
 
