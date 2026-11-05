@@ -43,7 +43,7 @@ export function TopicNav({ topics, series }: { topics: TopicCount[]; series: Ser
 }
 
 // Tor ekranda mavzular lentaning tepasida, yonga suriladigan qator bo'lib turadi.
-// Menyudagi "Topics" shu yerga olib keladi; keng ekranda mavzular chap ustunda, sahifa tepasida ko'rinib turadi
+// /#topics havolasi shu yerga olib keladi; keng ekranda mavzular chap ustunda, sahifa tepasida ko'rinib turadi
 export function TopicChips({ topics }: { topics: TopicCount[] }) {
   return (
     <nav id="topics" aria-label="Topics" className="-mx-4 mt-4 flex scroll-mt-6 gap-2 overflow-x-auto px-4 [scrollbar-width:none] sm:-mx-6 sm:px-6 xl:hidden">
