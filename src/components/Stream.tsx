@@ -68,7 +68,8 @@ export default function Stream({ posts, pageSize = 10, controls = true, children
               </button>
             ))}
           </div>
-          <label className="relative min-w-0 flex-1 sm:ml-auto sm:max-w-64">
+          {/* Joy yetmasa (telefonda) qidiruv tugmalar ostidagi qatorga tushadi */}
+          <label className="relative min-w-0 flex-1 basis-44 sm:ml-auto sm:max-w-64">
             <span className="sr-only">Search posts</span>
             <Search aria-hidden="true" className="pointer-events-none absolute left-3.5 top-1/2 size-4 -translate-y-1/2 text-faint" />
             <input

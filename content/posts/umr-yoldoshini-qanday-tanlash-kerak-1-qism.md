@@ -166,7 +166,7 @@ Bularning barchasi yaxshi *qo‘shimcha afzalliklar*, xolos. Nikohning o‘zi uc
 
 Yuqorida sanab o‘tilgan toifadagi odamlarning baxtsiz munosabatga tushib qolishining asosiy sababi shuki, ular umr yo‘ldoshi bilan birga yashash aslida nimani anglatishi va bunday sheriklikni baxtli qiladigan omillar nimaligini hisobga olmaydigan kuchlar ta’sirida qolishadi.
 
-Xo‘sh, baxtli hayotiy sheriklik qanday bo‘ladi? **Bu haqda ushbu maqolaning [2-qismida](https://) so‘z yuritamiz.**
+Xo‘sh, baxtli hayotiy sheriklik qanday bo‘ladi? **Bu haqda ushbu maqolaning [2-qismida](/posts/umr-yoldoshini-qanday-tanlash-kerak-2-qism) so‘z yuritamiz.**
 
 ---
 
