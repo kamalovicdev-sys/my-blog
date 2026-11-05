@@ -4,3 +4,12 @@
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
+
+# Primary domain belgilangan bo'lsa ham Netlify kamalovic-blog.netlify.app'ni o'zi yo'naltirmaydi, sayt u yerda ham
+# ochilib, Google'da ikki nusxa bo'lib qoladi. Shu qoida uni asosiy domenga 301 bilan yo'naltiradi.
+# Deploy preview'lar (deploy-preview-N--kamalovic-blog.netlify.app) boshqa host, ularga ta'sir qilmaydi
+[[redirects]]
+  from = "https://kamalovic-blog.netlify.app/*"
+  to = "https://blog.kamalovic.uz/:splat"
+  status = 301
+  force = true

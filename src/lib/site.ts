@@ -4,6 +4,16 @@ export const SITE_DESCRIPTION = 'Dasturlash, Linux va texnologiyalar haqida maqo
 // Saytning asosiy manzili: sitemap, RSS, ulashish havolalari va Telegram preview'lar shu manzil bilan yasaladi
 export const SITE_URL = 'https://blog.kamalovic.uz';
 
+// RSS lentasi: brauzerlar va RSS o'quvchilar uni har bir sahifadagi <link rel="alternate"> orqali topadi
+export const RSS_FEED = { 'application/rss+xml': '/rss.xml' };
+
+// Sahifaning asl (canonical) manzili: bitta sahifa bir nechta manzilda ochilishi mumkin (netlify.app, deploy
+// preview'lar, ?so'rov qo'shilgan havolalar), bu teg Google'ga qaysi manzilni indekslashni aytadi. Next.js metadata'ni
+// sayoz birlashtiradi: sahifadagi `alternates` layout'dagisini to'liq almashtiradi, shuning uchun RSS ham shu yerda beriladi
+export function pageAlternates(path: string) {
+  return { canonical: path, types: RSS_FEED };
+}
+
 // Postlar ro'yxatida har bir post yonida ko'rsatiladigan muallif
 export const AUTHOR_NAME = 'Kamalovic';
 

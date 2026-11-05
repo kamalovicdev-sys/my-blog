@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import Stream from "@/components/Stream";
 import { getAllTopics, getPostsByTopic, getTopic } from "@/lib/posts";
+import { pageAlternates } from "@/lib/site";
 
 type Props = { params: Promise<{ topic: string }> };
 
@@ -18,7 +19,7 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const topic = getTopic((await params).topic);
   if (!topic) return {};
-  return { title: topic.name, description: topic.description };
+  return { title: topic.name, description: topic.description, alternates: pageAlternates(`/topics/${topic.slug}`) };
 }
 
 export default async function TopicPage({ params }: Props) {

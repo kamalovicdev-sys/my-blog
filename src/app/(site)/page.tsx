@@ -1,7 +1,10 @@
+import type { Metadata } from "next";
 import { LongReads, TagCloud, TelegramCard, TopicChips, TopicNav } from "@/components/HomeRails";
 import Stream from "@/components/Stream";
 import { getAllSeries, getAllTags, getAllTopics, getLongReads, getSortedPostsData } from "@/lib/posts";
-import { SITE_NAME } from "@/lib/site";
+import { pageAlternates, SITE_NAME } from "@/lib/site";
+
+export const metadata: Metadata = { alternates: pageAlternates("/") };
 
 // Bosh sahifa (The Verge uslubi): chapda mavzular, o'rtada kunlar bo'yicha lenta, o'ngda uzun maqolalar va Telegram
 export default function Home() {

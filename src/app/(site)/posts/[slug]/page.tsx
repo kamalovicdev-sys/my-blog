@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getAllPostSlugs, getPostData, getPostMeta, getRelatedPosts, getSeriesPosts } from "@/lib/posts";
-import { SITE_NAME, SITE_URL } from "@/lib/site";
+import { pageAlternates, SITE_NAME, SITE_URL } from "@/lib/site";
 import CodeCopyButtons from "@/components/CodeCopyButtons";
 import Comments from "@/components/Comments";
 import PostBody from "@/components/PostBody";
@@ -26,16 +26,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post = getPostMeta(slug);
   if (!post) return {};
 
+  const url = `/posts/${post.slug}`;
   return {
     title: post.title,
     description: post.description,
+    alternates: pageAlternates(url),
     openGraph: {
       type: "article",
       siteName: SITE_NAME,
       locale: "uz_UZ",
       title: post.title,
       description: post.description,
-      url: `/posts/${slug}`,
+      url,
       publishedTime: post.date,
       tags: post.tags.map((tag) => tag.name),
       images: post.imageUrl ? [post.imageUrl] : undefined,

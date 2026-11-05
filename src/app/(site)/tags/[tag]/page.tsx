@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import Stream from "@/components/Stream";
 import { getAllTags, getPostsByTag } from "@/lib/posts";
+import { pageAlternates } from "@/lib/site";
 
 type Props = { params: Promise<{ tag: string }> };
 
@@ -23,6 +24,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `#${tag.name}`,
     description: `Posts tagged #${tag.name}`,
+    alternates: pageAlternates(`/tags/${tag.slug}`),
   };
 }
 

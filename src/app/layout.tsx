@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Anton, Inter, JetBrains_Mono, Schibsted_Grotesk, Source_Serif_4 } from "next/font/google";
 import "./globals.css";
-import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "@/lib/site";
+import { RSS_FEED, SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "@/lib/site";
 
 // Interfeys uchun Inter, post matni uchun Source Serif. Postlardagi ruscha so'zlar uchun kirill ham kerak
 const inter = Inter({ subsets: ["latin", "cyrillic"], variable: "--font-inter" });
@@ -18,9 +18,8 @@ export const metadata: Metadata = {
     template: `%s | ${SITE_NAME}`,
   },
   description: SITE_DESCRIPTION,
-  alternates: {
-    types: { "application/rss+xml": "/rss.xml" },
-  },
+  // Canonical har bir sahifaning o'zida beriladi (pageAlternates), bu yerda faqat RSS
+  alternates: { types: RSS_FEED },
   openGraph: {
     type: "website",
     siteName: SITE_NAME,
