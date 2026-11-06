@@ -2,7 +2,7 @@
 title: >-
   Carlo Cipolla ning "ahmoqlikning oltin qoidasi" yordamida ahmoq odamni qanday
   aniqlash mumkin?
-date: '2026-11-06'
+date: '2026-11-05'
 description: Insonni ahmoq deb atashimiz uchun u nechta ahmoqona ish qilishi kerak?
 tags:
   - Philosophy
