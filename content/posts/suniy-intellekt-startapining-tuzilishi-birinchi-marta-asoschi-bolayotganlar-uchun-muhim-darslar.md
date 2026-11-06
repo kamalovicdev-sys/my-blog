@@ -7,6 +7,9 @@ description: >-
   Aragon AI bosh direktori Wesley Tian Big Think Business nashriga o'z
   kompaniyasini dastlabki g'oyadan tortib, akseleratsiya va kengayish
   bosqichigacha qanday olib chiqqani haqida so'zlab berdi.
+tags:
+  - ai
+  - startup
 cover: ../images/startup.webp
 draft: false
 ---
