@@ -9,8 +9,9 @@ tags:
   - Evolution
   - History
   - ai
+  - Earth
 cover: ../images/1000042503.webp
-series: Ibtidodan intihogacha
+series: Part
 part: 2
 draft: false
 ---
