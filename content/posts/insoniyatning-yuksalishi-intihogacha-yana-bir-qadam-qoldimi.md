@@ -11,7 +11,7 @@ tags:
   - ai
   - Earth
 cover: ../images/1000042503.webp
-series: Part
+series: PART
 part: 2
 draft: false
 ---
