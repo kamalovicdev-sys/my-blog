@@ -10,7 +10,7 @@ tags:
   - History
   - Evolution
 cover: ../images/1000042489.webp
-series: Ibtidodan intihogacha
+series: Part
 part: 1
 draft: false
 ---
