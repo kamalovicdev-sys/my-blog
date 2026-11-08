@@ -1,6 +1,6 @@
 ---
 title: Koinot biz o‘ylaganimizdan trillionlab yillar oldinroq tugashi mumkin.
-date: '2026-11-10'
+date: '2026-11-09'
 description: >-
   Olimlar uzoq vaqt davomida bizning koinotimiz yana trillionlab yillar davom
   etadi deb taxmin qilib kelishgan edi...
