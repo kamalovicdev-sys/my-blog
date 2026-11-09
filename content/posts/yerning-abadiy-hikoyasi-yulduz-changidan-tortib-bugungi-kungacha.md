@@ -1,6 +1,6 @@
 ---
 title: 'Yerning Abadiy Hikoyasi: Yulduz Changidan Tortib Bugungi Kungacha'
-date: '2026-11-11'
+date: '2026-11-13'
 description: >-
   Bu sayyorada hayot qanday paydo bo'ldi? Qanday qilib mittigina hujayralardan
   ulkan dinozavrlar-u, oxir-oqibat biz – insonlar keldik? Va nega ba'zi qudratli
