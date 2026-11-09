@@ -13,11 +13,11 @@ draft: false
 
  ![koinot-biz-oylaganimizdan-trillionlab-yillar-oldinroq-tugashi-mumkin](../images/koinot-biz-oylaganimizdan-trillionlab-yillar-oldinroq-tugashi-mumkin.webp)
 
-So‘nggi tadqiqotlar shuni ko‘rsatmoqdaki, kosmik kengayish tezligi vaqt o‘tishi bilan keskin o‘zgaradi; agar bu rost bo‘lsa, u holda yangi tadqiqot natijalariga ko‘ra, koinot biz o‘ylaganimizdan ancha oldinroq tugashi mumkin.
+So‘nggi tadqiqotlar shuni ko‘rsatmoqdaki, kosmik kengayish tezligi vaqt o‘tishi bilan keskin o‘zgaradi, agar bu rost bo‘lsa, u holda yangi tadqiqot natijalariga ko‘ra, koinot biz o‘ylaganimizdan ham ancha oldinroq tugashi mumkin.
 
 Olimlar uzoq vaqt davomida bizning koinotimiz yana trillionlab yillar davom etadi deb taxmin qilib kelishgan edi. Biroq yangi tadqiqot koinot uchun ancha qisqa umrni o‘rtaga tashlamoqda: olamimiz yana bor-yo‘g‘i 33 milliard yil yashashi mumkin xolos.
 
-Bu hamma narsa o‘z-o‘ziga qulab tushishidan oldingi kosmik ko‘z qisib qo‘yishdek bir lahzadir — ushbu jarayon **"Katta siqilish" (Big Crunch) **deb nomlanadi. Unda kengayish ortga qaytib, butun materiya va fazo-vaqt "Katta portlash" sharoitlariga o‘xshash o‘ta zich holatga qaytishiga olib keladi. Koinotning kengayishi tezlashib borayotgani sababli bu holat uzoq vaqt davomida koinot taqdiri uchun imkonsiz deb rad etib kelingan edi. Ammo ushbu yangi tadqiqot kutilmagan va biroz xavotirli bu ehtimolni qayta ochib berdi.
+Bu hamma narsa o‘z-o‘ziga qulab tushishidan oldingi kosmik ko‘z qisib qo‘yishdek bir lahzadir — ushbu jarayon **"Katta siqilish" (Big Crunch)** deb nomlanadi. Unda kengayish ortga qaytib, butun materiya va fazo-vaqt "Katta portlash" sharoitlariga o‘xshash o‘ta zich holatga qaytishiga olib keladi. Koinotning kengayishi tezlashib borayotgani sababli bu holat uzoq vaqt davomida koinot taqdiri uchun imkonsiz deb rad etib kelingan edi. Ammo ushbu yangi tadqiqot kutilmagan va biroz xavotirli bu ehtimolni qayta ochib berdi.
 
 Bu hayratlanarli xulosaga kelish koinot xaritasini tuzish izlanishlarimizdan boshlandi. Bunda e’tiborimiz koinotni tezlashib borayotgan sur’atda kengaytirayotgan sirli kuch — qorong‘u energiyaga qaratildi. Qorong‘u energiya tadqiqoti (Dark Energy Survey, DES) va Qorong‘u energiya spektroskopik uskunasi (Dark Energy Spectroscopic Instrument, DESI) orqali olingan so‘nggi ma’lumotlar ushbu kengayishni o‘rganish maqsadida yuz millionlab galaktikalar xaritasini tuzib chiqishga yordam berdi. Bu muhim vositalar juda katta ishonch bilan shuni ko‘rsatmoqdaki, qorong‘u energiyaning "holat tenglamasi" — ya’ni uning bosim va energiya zichligi nisbati (bu uning kengayishga ta’sirini belgilaydi) — shunchaki o‘zgarmas son emas. Aksincha, uning ta’siri vaqt o‘tishi bilan o‘zgarib borayotganga o‘xshaydi.
 
