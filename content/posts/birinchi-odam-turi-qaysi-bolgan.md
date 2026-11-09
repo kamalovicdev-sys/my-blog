@@ -1,6 +1,6 @@
 ---
 title: Birinchi odam turi qaysi bo‘lgan?
-date: '2026-11-10'
+date: '2026-11-11'
 description: >-
   Marokashda topilgan qazilmalar anatomik jihatdan zamonaviy odamlar kamida 300
   000 yil oldin paydo bo‘lganini...
