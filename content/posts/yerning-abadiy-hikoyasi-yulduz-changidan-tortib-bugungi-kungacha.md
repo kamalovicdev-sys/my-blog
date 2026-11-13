@@ -10,7 +10,7 @@ tags:
   - History
   - Evolution
 cover: ../images/1000042489.webp
-series: PART
+series: Yerning qisqacha tarixi
 part: 1
 draft: false
 ---
