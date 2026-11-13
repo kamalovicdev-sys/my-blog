@@ -11,7 +11,7 @@ tags:
   - ai
   - Earth
 cover: ../images/1000042503.webp
-series: PART
+series: Yerning qisqacha tarixi
 part: 2
 draft: false
 ---
