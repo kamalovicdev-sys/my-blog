@@ -12,6 +12,9 @@ tags:
   - algorithm
   - Critical Thinking
   - Computer
+  - iOS
+  - Linux
+  - Windows
 draft: false
 ---
 
@@ -46,7 +49,7 @@ Protsessorlar bajaradigan «buyruqlar» (instructions) shunchaki ikkilik (binar)
 
 ![cpuga-siz-ni-qoshamiz](../images/cpuga-siz-ni-qoshamiz-1.webp)
 
-> Chekinish: Buyruqlar mashina kodida har doim ham yuqoridagi misoldagidek 1:1 nisbatda ifodalanavermaydi. Masalan, `add eax, 512` buyrug‘i `05 00 02 00 00` ko‘rinishiga o‘giriladi.
+> Mulohaza: Buyruqlar mashina kodida har doim ham yuqoridagi misoldagidek 1:1 nisbatda ifodalanavermaydi. Masalan, `add eax, 512` buyrug‘i `05 00 02 00 00` ko‘rinishiga o‘giriladi.
 Birinchi bayt (`05`) aynan EAX registriga 32-bitli sonni qo‘shishni bildiruvchi opkoddir. Qolgan baytlar esa [little-endian](https://en.wikipedia.org/wiki/Endianness) bayt tartibida yozilgan 512 (`0x200`) sonini anglatadi.
 Defuse Security assembler va mashina kodi o‘rtasidagi tarjima bilan tajriba o‘tkazib ko‘rish uchun [foydali vosita](https://defuse.ca/online-x86-assembler.htm) yaratgan.
 
@@ -86,7 +89,7 @@ Xotira haqidagi savol alohida bo‘limga loyiq va 5-bobda yoritilgan — qisqasi
 
 Endi esa tizim chaqiruvlari (syscalls) va xavfsizlik halqalariga to‘la olam sari birinchi chuqurlikka sakrash vaqti keldi.
 
-> Chekinish: aytgancha, yadro (kernel) nima o‘zi?
+> Mulohaza: aytgancha, yadro (kernel) nima o‘zi?
 Kompyuteringizning macOS, Windows yoki Linux kabi operatsion tizimi — bu kompyuterda ishlaydigan va barcha asosiy narsalarning ishlashini ta’minlaydigan dasturiy ta’minot to‘plamidir. «Asosiy narsalar» juda umumiy tushuncha, «operatsion tizim» ham shunday — kimdan so‘rashingizga qarab, u kompyuteringiz bilan birga keladigan standart ilovalar, shriftlar va piktogrammalarni ham o‘z ichiga olishi mumkin.
 Yadro (kernel) esa operatsion tizimning o‘zagidir. Kompyuterni yoqqaningizda, buyruqlar ko‘rsatkichi qayerdadir joylashgan bir dasturdan ish boshlaydi. O‘sha dastur — yadrodir. Yadro kompyuteringiz xotirasi, tashqi qurilmalari (periferiya) va boshqa resurslariga deyarli to‘liq kirish huquqiga ega hamda kompyuteringizga o‘rnatilgan dasturlarni (ular userland — foydalanuvchi makoni dasturlari deb ataladi) ishga tushirish uchun mas’uldir. Yadro bu huquqqa qanday ega ekanligi — va userland dasturlari nega ega emasligi haqida ushbu maqola davomida bilib olamiz.
 Linux shunchaki yadro bo‘lib, undan foydalanish uchun qobiqlar (shells) va displey serverlari kabi ko‘plab userland dasturlari kerak bo‘ladi. macOS yadrosi [XNU](https://en.wikipedia.org/wiki/XNU) deb ataladi va Unix-simon tuzilishga ega, zamonaviy Windows yadrosi esa [NT Kernel](https://en.wikipedia.org/wiki/Architecture_of_Windows_NT) deb nomlanadi.
@@ -166,3 +169,65 @@ Keling, boyagi birinchi savolimga qanday javob topishni o‘ylab ko‘raylik:
 > Agar CPU bittadan ortiq jarayonni kuzatib bormasa va buyruqlarni shunchaki ketma-ket bajarsa, nega u o‘zi ishga tushirgan dastur ichida qolib ketmaydi? Qanday qilib bir vaqtning o‘zida bir nechta dastur ishlay oladi?
 
 Buning javobi, aziz do‘stim, Coldplay guruhining bunchalik mashhurligi sababi bilan bir xil… soatlar («Clocks»)! (Xo‘sh, texnik jihatdan taymerlar. Shunchaki shu hazilni tiqishtirgim keldi.)
+
+## 2-bob: Vaqtni bo‘laklaymiz
+
+Aytaylik, siz operatsion tizim yaratyapsiz va foydalanuvchilar bir vaqtning o‘zida bir nechta dasturni ishga tushira olishlarini xohlaysiz. Biroq sizda zamonaviy ko‘p yadroli protsessor yo‘q, shuning uchun CPU bir vaqtning o‘zida faqat bitta buyruqni bajara oladi!
+
+Baxtingizga, siz juda aqlli OS dasturchisisiz. Siz jarayonlarga CPU’dan navbatma-navbat foydalanish imkonini berish orqali parallellik illyuziyasini (soxta parallellikni) yaratish mumkinligini tushunib yetasiz. Agar jarayonlar bo‘ylab aylanib chiqsangiz va ularning har biridan bir nechtadan buyruqni bajarsangiz, hech bir jarayon CPU’ni yakka o‘zi egallab olmagan holda ularning barchasi tezkor javob qaytaradigan (responsive) bo‘lib turadi.
+
+Lekin jarayonlarni almashtirish uchun boshqaruvni dastur kodidan qanday qilib qaytarib olasiz? Biroz izlanishdan so‘ng, aksariyat kompyuterlarda taymer chiplari (timer chips) mavjudligini bilib olasiz. Siz taymer chipini ma’lum bir vaqt o‘tgandan so‘ng OS’ning uzilishlarni qayta ishlovchi dasturiga (interrupt handler) o‘tishni ishga tushiradigan qilib dasturlashingiz mumkin.
+
+### Apparat uzilishlari (Hardware Interrupts)
+
+Avvalroq foydalanuvchi dasturidan OS’ga boshqaruvni topshirish uchun dasturiy uzilishlardan qanday foydalanilishini muhokama qilgan edik. Ular “dasturiy” uzilishlar deb ataladi, chunki ular dastur tomonidan ixtiyoriy ravishda ishga tushiriladi — odatiy olish-bajarish siklida protsessor tomonidan bajarilayotgan mashina kodi unga boshqaruvni yadroga o‘tkazishni buyuradi.
+
+![cpuga-siz-ni-qoshamiz](../images/cpuga-siz-ni-qoshamiz-7.webp)
+
+OS rejalashtiruvchilari (schedulers) ko‘p vazifalilik (multitasking) uchun apparat uzilishlarini ishga tushirishda [PIT](https://en.wikipedia.org/wiki/Programmable_interval_timer) (dasturlashtiriladigan interval taymerlari) kabi taymer chiplaridan foydalanadi:
+
+1. Dastur kodiga sakrashdan oldin OS taymer chipini ma’lum bir vaqt o‘tgandan so‘ng uzilishni ishga tushiradigan qilib sozlaydi.
+
+2. OS foydalanuvchi rejimiga o‘tadi va dasturning keyingi buyrug‘iga sakraydi.
+
+3. Taymer vaqti tugagach, u yadro rejimiga o‘tish va OS kodiga sakrash uchun apparat uzilishini ishga tushiradi.
+
+4. Endi OS dastur qayerda to‘xtaganini saqlab qo‘yishi, boshqa dasturni yuklashi va jarayonni takrorlashi mumkin.
+
+Bu ustuvor siqib chiqaruvchi ko‘p vazifalilik (preemptive multitasking) deb ataladi; jarayonning majburiy to‘xtatilishi esa siqib chiqarish [preemption](https://en.wikipedia.org/wiki/Preemption_(computing)) deyiladi. Agar siz, masalan, ushbu maqolani brauzerda o‘qiyotgan va ayni shu kompyuterda musiqa tinglayotgan bo‘lsangiz, shaxsiy kompyuteringiz ehtimol soniyasiga minglab marta xuddi shu siklni bajarmoqda.
+
+### Vaqt bo‘lagini (Timeslice) hisoblash
+
+Vaqt bo‘lagi *timeslice* — bu OS rejalashtiruvchisi jarayonni siqib chiqarishdan oldin unga ishlash uchun ruxsat beradigan vaqt davomiyligidir. Vaqt bo‘laklarini tanlashning eng oddiy usuli — har bir jarayonga bir xil vaqt bo‘lagini, masalan, $10\text{ ms}$ atrofida berish va vazifalar bo‘ylab tartib bilan aylanib chiqishdir. Bu qat’iy vaqt bo‘lagiga asoslangan davriy rejalashtirish *fixed timeslice round-robin scheduling* deb ataladi.
+
+> Mulohaza: qiziqarli jargon faktlar!
+Vaqt bo‘laklari ko‘pincha «kvantlar» (quantums) deb atalishini bilarmidingiz? Endi bilasiz va barcha texnik do‘stlaringizni hayratda qoldirishingiz mumkin. Ushbu maqolada har ikkinchi gapda “kvant” so‘zini ishlatmaganim uchun katta maqtovga loyiqman deb o‘ylayman.
+ Vaqt bo‘laklari jargonidan gap ochilgan ekan, Linux yadrosi dasturchilari qat’iy chastotali taymer tiklarini (timer ticks) sanash uchun jiffy vaqt birligidan foydalanadilar. Boshqa narsalar qatori, [jiffy](https://github.com/torvalds/linux/blob/22b8cc3e78f5448b4c5df00303817a9137cd663f/include/linux/jiffies.h)’lar vaqt bo‘laklarining uzunligini o‘lchash uchun ham ishlatiladi. Linux’ning jiffy chastotasi odatda $1000\text{ Hz}$ ni tashkil qiladi, ammo yadroni kompilyatsiya qilishda uni qayta sozlash mumkin.
+ 
+ Qat’iy vaqt bo‘lagiga asoslangan rejalashtirishni biroz yaxshilash uchun maqsadli kechikish *(target latency)* — jarayonning javob qaytarishi uchun ideal maksimal vaqt tanlanadi. Maqsadli kechikish — bu jarayonlar soni o‘rtacha (maqbul) bo‘lgan sharoitda, siqib chiqarilgan jarayonning yana qayta bajarilishni boshlashi uchun ketadigan vaqtdir. *Buni tasavvur qilish biroz qiyin! Xavotir olmang, tez orada diagramma ham bo‘ladi.*
+
+Vaqt bo‘laklari maqsadli kechikishni vazifalarning umumiy soniga bo‘lish orqali hisoblanadi; bu qat’iy vaqt bo‘lagiga asoslangan rejalashtirishdan yaxshiroq, chunki jarayonlar kam bo‘lganda behuda vazifa almashtirishlarning oldini oladi. Masalan, maqsadli kechikish $15\text{ ms}$ va jarayonlar soni 10 ta bo‘lsa, har bir jarayon ishlash uchun $15/10$ yoki $1.5\text{ ms}$ vaqt oladi. Agar jarayonlar soni atigi 3 ta bo‘lsa, har bir jarayon maqsadli kechikish doirasida qolgan holda uzoqroq — $5\text{ ms}$ lik vaqt bo‘lagiga ega bo‘ladi.
+
+Jarayonlarni almashtirish hisoblash jihatidan qimmatga tushadi, chunki u joriy dasturning butun holatini saqlashni va boshqasini tiklashni talab qiladi. Ma’lum bir chegaradan o‘tgach, haddan tashqari kichik vaqt bo‘lagi jarayonlarning juda tez almashinuvi tufayli unumdorlik muammolariga olib kelishi mumkin. Shu bois vaqt bo‘lagi davomiyligiga quyi chegara (minimal donadorlik — *minimum granularity*) belgilash odatiy holdir. Bu shuni anglatadiki, minimal donadorlik kuchga kirishi uchun jarayonlar yetarlicha ko‘p bo‘lganda, maqsadli kechikish chegarasidan oshib ketiladi.
+
+Ushbu maqola yozilayotgan vaqtda Linux rejalashtiruvchisi $6\text{ ms}$ maqsadli kechikish va $0.75\text{ ms}$ minimal donadorlikdan foydalanadi.
+
+![cpuga-siz-ni-qoshamiz](../images/cpuga-siz-ni-qoshamiz-8.webp)
+
+Ushbu oddiy vaqt bo‘lagi hisob-kitobiga asoslangan davriy (round-robin) rejalashtirish bugungi kunda aksariyat kompyuterlar bajaradigan ishga ancha yaqin. Biroq u baribir biroz sodda; aksariyat operatsion tizimlar jarayonlarning ustuvorligi (priorities) va muddatlarini (deadlines) hisobga oladigan murakkabroq rejalashtiruvchilarga ega. 2007-yildan beri Linux [Completely Fair Scheduler](https://docs.kernel.org/scheduler/sched-design-CFS.html) (CFS — Mutlaqo adolatli rejalashtiruvchi) deb nomlangan rejalashtiruvchidan foydalanib kelmoqda. CFS vazifalarga ustuvorlik berish va CPU vaqtini taqsimlash uchun kompyuter fanining bir talay murakkab va chiroyli usullarini qo‘llaydi.
+
+OS har safar biror jarayonni siqib chiqarganda, u yangi dasturning saqlangan bajarilish kontekstini (execution context), shu jumladan uning xotira muhitini yuklashi kerak. Bu CPU’ga “virtual” manzillarni fizik manzillarga bog‘laydigan xarita — boshqa sahifalar jadvalidan (page table) foydalanishni buyurish orqali amalga oshiriladi. Bu, shuningdek, dasturlarning bir-birining xotirasiga kirishiga to‘sqinlik qiladigan tizim hamdir; biz ushbu maqolaning 5 va 6-boblarida aynan shu mavzuning tubiga sho‘ng‘iymiz.
+
+### 1-eslatma: Yadroning uziluvchanligi (Kernel Preemptability)
+
+Hozirgacha biz faqat foydalanuvchi makoni jarayonlarini siqib chiqarish va rejalashtirish haqida gaplashdik. Agar yadro kodi tizim chaqiruvini (syscall) qayta ishlashga yoki drayver kodini bajarishga juda ko‘p vaqt sarflasa, dasturlar qotib ishlayotgandek (laggy) tuyulishi mumkin.
+
+Zamonaviy yadrolar, jumladan Linux ham, uziluvchan yadrolar ([preemptive kernels](https://en.wikipedia.org/wiki/Kernel_preemption)) hisoblanadi. Bu shuni anglatadiki, ular yadro kodining o‘zi ham xuddi foydalanuvchi jarayonlari kabi to‘xtatilishi (uzilishi) va rejalashtirilishi mumkin bo‘lgan tarzda dasturlangan.
+
+Agar siz yadro yoki shunga o‘xshash narsa yozmayotgan bo‘lsangiz, buni bilish unchalik muhim emas, lekin men o‘qigan deyarli har bir maqolada bu haqda eslatib o‘tilgan ekan, men ham aytib o‘tishga qaror qildim! Qo‘shimcha bilim kamdan-kam hollarda zarar qiladi.
+
+### 2-eslatma: Tarix darsi
+
+Qadimgi operatsion tizimlar, jumladan klassik Mac OS va Windows’ning NT’dan ancha oldingi versiyalari, ustuvor siqib chiqaruvchi ko‘p vazifalilikning o‘tmishdoshidan foydalangan. OS dasturlarni qachon siqib chiqarishni hal qilish o‘rniga, dasturlarning o‘zlari OS’ga navbatni bo‘shatib berishni (yield) tanlagan. Ular «hey, endi boshqa dastur ishlashiga ruxsat berishing mumkin» deyish uchun dasturiy uzilishni ishga tushirishgan. OS boshqaruvni qaytarib olishi va navbatdagi rejalashtirilgan jarayonga o‘tishi uchun ushbu ochiq-oydin navbat bo‘shatishlar yagona yo‘l edi.
+
+Bu kooperativ ko‘p vazifalilik ([cooperative multitasking](https://en.wikipedia.org/wiki/Cooperative_multitasking)) deb ataladi. Uning bir nechta jiddiy kamchiliklari bor: zararli yoki shunchaki yomon loyihalashtirilgan dasturlar butun operatsion tizimni osongina qotirib qo‘yishi mumkin, shuningdek, real vaqt rejimidagi yoki vaqtga sezgir vazifalar uchun vaqt izchilligini ta’minlash deyarli imkonsiz. Shu sabablarga ko‘ra, texnologiya olami allaqachon ustuvor siqib chiqaruvchi ko‘p vazifalilikka o‘tgan va ortiga qayrilib ham qaramagan.
