@@ -232,3 +232,292 @@ Agar siz yadro yoki shunga o‘xshash narsa yozmayotgan bo‘lsangiz, buni bilis
 Qadimgi operatsion tizimlar, jumladan klassik Mac OS va Windows’ning NT’dan ancha oldingi versiyalari, ustuvor siqib chiqaruvchi ko‘p vazifalilikning o‘tmishdoshidan foydalangan. OS dasturlarni qachon siqib chiqarishni hal qilish o‘rniga, dasturlarning o‘zlari OS’ga navbatni bo‘shatib berishni (yield) tanlagan. Ular «hey, endi boshqa dastur ishlashiga ruxsat berishing mumkin» deyish uchun dasturiy uzilishni ishga tushirishgan. OS boshqaruvni qaytarib olishi va navbatdagi rejalashtirilgan jarayonga o‘tishi uchun ushbu ochiq-oydin navbat bo‘shatishlar yagona yo‘l edi.
 
 Bu kooperativ ko‘p vazifalilik ([cooperative multitasking](https://en.wikipedia.org/wiki/Cooperative_multitasking)) deb ataladi. Uning bir nechta jiddiy kamchiliklari bor: zararli yoki shunchaki yomon loyihalashtirilgan dasturlar butun operatsion tizimni osongina qotirib qo‘yishi mumkin, shuningdek, real vaqt rejimidagi yoki vaqtga sezgir vazifalar uchun vaqt izchilligini ta’minlash deyarli imkonsiz. Shu sabablarga ko‘ra, texnologiya olami allaqachon ustuvor siqib chiqaruvchi ko‘p vazifalilikka o‘tgan va ortiga qayrilib ham qaramagan.
+
+## 3-bob: Dasturni qanday ishga tushirish kerak
+
+Hozirgacha biz CPU’lar bajariluvchi fayllardan yuklangan mashina kodini qanday bajarishini, halqalarga asoslangan xavfsizlik nima ekanligini va tizim chaqiruvlari (syscalls) qanday ishlashini ko‘rib chiqdik. Ushbu bo‘limda dasturlar eng avvalo qanday yuklanishi va ishga tushirilishini aniqlash uchun Linux yadrosining ichki tuzilishiga chuqur sho‘ng‘iymiz.
+
+Biz aynan x86-64 arxitekturasidagi Linux’ni ko‘rib chiqamiz. Nega?
+
+- Linux — bu desktop, mobil va serverlar uchun mo‘ljallangan to‘liq funksional ishlab chiqarish (production) operatsion tizimi. Linux ochiq kodli (open source), shuning uchun shunchaki uning manba kodini o‘qish orqali tadqiqot o‘tkazish juda oson. Ushbu maqolada men ba’zi yadro kodlariga to‘g‘ridan-to‘g‘ri havola beraman!
+
+- x86-64 — bu zamonaviy desktop kompyuterlarning aksariyati foydalanadigan arxitektura va ko‘plab kodlarning maqsadli arxitekturasidir. Men tilga oladigan x86-64 ga xos xatti-harakatlarning bir qismi boshqa tizimlarga ham yaxshi umumlashadi.
+
+O‘rganadiganlarimizning aksariyati boshqa operatsion tizimlar va arxitekturalar uchun ham, ular turli o‘ziga xos jihatlari bilan farq qilsa-da, yaxshi umumlashadi.
+
+### Exec tizim chaqiruvlarining asosiy ishlash tartibi
+
+![cpuga-siz-ni-qoshamiz](../images/cpuga-siz-ni-qoshamiz-9.webp)
+
+Keling, juda muhim bir tizim chaqiruvidan boshlaylik: execve. U dasturni yuklaydi va agar muvaffaqiyatli bo‘lsa, joriy jarayonni o‘sha dastur bilan almashtiradi. Yana bir nechta tizim chaqiruvlari (execlp, execvpe va boshqalar) mavjud, lekin ularning barchasi turli ko‘rinishlarda execve ustiga qurilgan.
+
+
+>  Mulohaza: ~ ` execveat`
+
+`execve` aslida dasturni ma’lum konfiguratsiya parametrlari bilan ishga tushiradigan umumiyroq tizim chaqiruvi — `execveat` ustiga qurilgan. Soddalik uchun biz asosan execve haqida gaplashamiz; yagona farq shundaki, u `execveat` ga ba’zi standart (default) qiymatlarni taqdim etadi.
+`ve` nimani anglatishiga qiziqyapsizmi? `v` — bir parametr argumentlar vektori (ro‘yxati — `argv`) ekanligini, `e` esa — boshqa parametr muhit o‘zgaruvchilari vektori (`envp`) ekanligini bildiradi. Boshqa turli exec tizim chaqiruvlari turli chaqiruv imzolarini (call signatures) belgilash uchun har xil qo‘shimchalarga ega. `execveat` dagi at esa shunchaki “qayerda” (`at`) ma’nosini beradi, chunki u `execve` ni qaysi joylashuvda ishga tushirishni ko‘rsatadi.
+
+`execve` ning chaqiruv imzosi (call signature) quyidagicha:
+
+
+```python
+int execve(const char *filename, char *const argv[], char *const envp[]);
+```
+
+- `filename` argumenti ishga tushiriladigan dasturga olib boruvchi yo‘lni (path) ko‘rsatadi.
+
+- `argv` — bu dasturga beriladigan argumentlarning null bilan tugallanuvchi (null-terminated, ya’ni oxirgi elementi null ko‘rsatkich bo‘lgan) ro‘yxati. C tilidagi main funksiyalariga uzatilishini tez-tez ko‘radigan argc argumenti aslida keyinroq tizim chaqiruvi tomonidan hisoblanadi, null bilan tugallanish ham shuning uchun kerak.
+
+- `envp` argumenti ilova uchun kontekst sifatida ishlatiladigan muhit o‘zgaruvchilarining (environment variables) yana bir null bilan tugallanuvchi ro‘yxatini o‘z ichiga oladi. Ular… odatda `KEY=VALUE` juftliklari ko‘rinishida bo‘ladi. Odatda. Men kompyuterlarni yaxshi ko‘raman.
+
+Qiziqarli fakt! Dasturning birinchi argumenti dastur nomi bo‘lishi haqidagi kelishuvni bilasiz-a? Bu shunchaki bir kelishuv (convention) bo‘lib, aslida `execve` tizim chaqiruvining o‘zi tomonidan o‘rnatilmaydi! Birinchi argument `argv` argumentining birinchi elementi sifatida `execve` ga nima uzatilgan bo‘lsa, o‘sha bo‘ladi — hatto uning dastur nomiga umuman aloqasi bo‘lmasa ham.
+
+Qizig‘i shundaki, `execve` tarkibida `argv[0]` ni dastur nomi deb hisoblaydigan ba’zi kodlar ham bor. Interpretatsiya qilinadigan skript tillari haqida gaplashganimizda bunga batafsilroq to‘xtalamiz.
+
+### 0-qadam: Ta’rif (Definition)
+
+Biz tizim chaqiruvlari qanday ishlashini allaqachon bilamiz, lekin hali haqiqiy hayotiy kod misolini ko‘rmaganmiz! Keling, ichki tomondan `execve` qanday ta’riflanganini ko‘rish uchun Linux yadrosining manba kodiga nazar tashlaylik:
+
+
+```python
+fs/exec.c
+
+SYSCALL_DEFINE3(execve,
+		const char __user *, filename,
+		const char __user *const __user *, argv,
+		const char __user *const __user *, envp)
+{
+	return do_execve(getname(filename), argv, envp);
+}
+```
+
+
+
+`SYSCALL_DEFINE3` — bu 3 argumentli tizim chaqiruvi kodini ta’riflash uchun mo‘ljallangan makros.
+
+> Nega argumentlar soni ([arity](https://en.wikipedia.org/wiki/Arity)) makros nomiga qat’iy yozib qo‘yilganiga qiziqib qoldim; Google’dan qidirib, bu biror [xavfsizlik zaifligini](https://nvd.nist.gov/vuln/detail/cve-2009-0029) tuzatish uchun aylanma yo‘l (workaround) bo‘lganini bilib oldim.
+
+filename argumenti `getname()` funksiyasiga uzatiladi, u satrni foydalanuvchi makonidan yadro makoniga nusxalaydi va foydalanishni kuzatish bilan bog‘liq ba’zi ishlarni bajaradi. U `include/linux/fs.h` faylida ta’riflangan `filename` strukturasini qaytaradi. Ushbu struktura foydalanuvchi makonidagi asl satrga ko‘rsatkichni ham, yadro makoniga nusxalangan qiymatga yangi ko‘rsatkichni ham saqlaydi:
+
+
+```python
+include/linux/fs.h
+
+struct filename {
+	const char		*name;	/* haqiqiy satrga ko'rsatkich */
+	const __user char	*uptr;	/* foydalanuvchi makonidagi asl ko'rsatkich */
+	int			refcnt;
+	struct audit_names	*aname;
+	const char		iname[];
+};
+```
+
+Shundan so‘ng `execve` tizim chaqiruvi `do_execve()` funksiyasini chaqiradi. Bu esa, o‘z navbatida, ba’zi standart qiymatlar bilan `do_execveat_common() `funksiyasini chaqiradi. Yuqorida eslatib o‘tgan `execveat` tizim chaqiruvi ham `do_execveat_common()` ni chaqiradi, lekin u foydalanuvchi tomonidan berilgan ko‘proq parametrlarni o‘tkazadi.
+
+Quyidagi kod parchasida men `do_execve` va `do_execveat` funksiyalarining ikkalasining ham ta’rifini keltirdim:
+
+
+```python
+fs/exec.c
+
+static int do_execve(struct filename *filename,
+	const char __user *const __user *__argv,
+	const char __user *const __user *__envp)
+{
+	struct user_arg_ptr argv = { .ptr.native = __argv };
+	struct user_arg_ptr envp = { .ptr.native = __envp };
+	return do_execveat_common(AT_FDCWD, filename, argv, envp, 0);
+}
+
+static int do_execveat(int fd, struct filename *filename,
+		const char __user *const __user *__argv,
+		const char __user *const __user *__envp,
+		int flags)
+{
+	struct user_arg_ptr argv = { .ptr.native = __argv };
+	struct user_arg_ptr envp = { .ptr.native = __envp };
+	return do_execveat_common(fd, filename, argv, envp, flags);
+}
+```
+
+`execveat` da tizim chaqiruviga, so‘ngra `do_execveat_common` ga fayl deskriptori (biror resursga ishora qiluvchi identifikator turi) uzatiladi. Bu dastur qaysi katalogga nisbatan ishga tushirilishini belgilaydi.
+
+`execve` da esa fayl deskriptori argumenti uchun maxsus qiymat — `AT_FDCWD` ishlatiladi. Bu Linux yadrosidagi umumiy konstanta bo‘lib, funksiyalarga fayl yo‘llarini joriy ishchi katalogga (current working directory) nisbatan talqin qilishni buyuradi. Fayl deskriptorlarini qabul qiluvchi funksiyalar odatda `if (fd == AT_FDCWD) { /* special codepath */ }` kabi qo‘lda yozilgan tekshiruvni o‘z ichiga oladi.
+
+### 1-qadam: Tayyorgarlik (Setup)
+
+Biz endi dastur bajarilishini boshqaruvchi asosiy funksiya — do_execveat_common ga yetib keldik. Ushbu funksiya nimalar qilishini kattaroq manzarada ko‘rish uchun kodga tikilishdan biroz chekinamiz.
+
+`do_execveat_common` ning birinchi asosiy vazifasi `linux_binprm` deb nomlangan strukturani sozlashdir. Men butun struktura ta’rifining nusxasini keltirmayman, biroq ko‘rib chiqish kerak bo‘lgan bir nechta muhim maydonlar mavjud:
+
+- Yangi dastur uchun virtual xotira boshqaruvini tayyorlash maqsadida `mm_struct` va `vm_area_struct` kabi ma’lumotlar strukturalari aniqlanadi.
+
+- Dasturga uzatilishi uchun `argc` va `envc` hisoblanadi va saqlanadi.
+
+- `filename` va `interp` mos ravishda dasturning va uning interpretatorining fayl nomlarini saqlaydi. Boshida ular bir-biriga teng bo‘ladi, lekin ba’zi hollarda o‘zgarishi mumkin: bunday holatlardan biri [shebang](https://en.wikipedia.org/wiki/Shebang_(Unix)) ga ega interpretatsiya qilinadigan skriptlarni ishga tushirishdir. Masalan, Python dasturini bajarayotganda filename manba faylga ishora qiladi, interp esa Python interpretatoriga olib boruvchi yo‘l bo‘ladi.
+
+- `buf` — bajarilishi kerak bo‘lgan faylning dastlabki 256 bayti bilan to‘ldiriladigan massiv. U fayl formatini aniqlash va skript shebang’larini yuklash uchun ishlatiladi.
+
+(Bugun bilib oldim: binprm — “binary program”, ya’ni binar dastur degan ma’noni anglatadi.)
+
+Keling, ushbu `buf` buferini yaqinroqdan ko‘rib chiqaylik:
+
+
+```python
+linux_binprm @ include/linux/binfmts.h
+
+	char buf[BINPRM_BUF_SIZE];
+
+```
+
+
+Ko‘rib turganimizdek, uning uzunligi `BINPRM_BUF_SIZE` konstantasi sifatida belgilangan. Kod bazasidan ushbu satrni qidirish orqali uning ta’rifini `include/uapi/linux/binfmts.h` faylida topishimiz mumkin:
+
+
+```python
+include/uapi/linux/binfmts.h
+
+/* sizeof(linux_binprm->buf) */
+#define BINPRM_BUF_SIZE 256
+
+```
+
+
+Shunday qilib, yadro bajarilayotgan faylning dastlabki 256 baytini ushbu xotira buferiga yuklaydi.
+
+> Mulohaza: UAPI nima o‘zi?
+
+Yuqoridagi kodning yo‘lida `/uapi/` borligini payqagan bo‘lsangiz kerak. Nega uzunlik `linux_binprm` strukturasi joylashgan faylning o‘zida — `include/linux/binfmts.h` da ta’riflanmagan?
+
+UAPI — “userspace API” (foydalanuvchi makoni API’si) degan ma’noni anglatadi. Bu holatda kimdir bufer uzunligi yadroning ommaviy API’si tarkibiga kirishi kerak deb qaror qilgan. Nazariy jihatdan, UAPI’dagi hamma narsa foydalanuvchi makoni (userland) uchun ochiq, UAPI bo‘lmagan hamma narsa esa yadro kodi uchun yopiq (shaxsiy) hisoblanadi.
+
+Yadro va foydalanuvchi makoni kodlari dastlab bitta aralash-quralash to‘plamda birga mavjud bo‘lgan. 2012-yilda texnik xizmat ko‘rsatishni yaxshilash maqsadida UAPI kodi [alohida katalogga ajratib](https://lwn.net/Articles/507794/) chiqarildi.
+
+### 2-qadam: Binfmt’lar (Binar formatlar)
+
+Yadroning keyingi asosiy vazifasi bir qator “binfmt” (binar format) qayta ishlovchilari (handlers) bo‘ylab aylanib chiqishdir. Ushbu qayta ishlovchilar `fs/binfmt_elf.c` va `fs/binfmt_flat.c` kabi fayllarda ta’riflangan. Yadro modullari ham umumiy ro‘yxatga o‘zlarining shaxsiy binfmt qayta ishlovchilarini qo‘shishlari mumkin.
+
+Har bir qayta ishlovchi linux_binprm strukturasini qabul qiladigan va qayta ishlovchi dastur formatini tushunish-tushunmasligini tekshiradigan `load_binary() `funksiyasini taqdim etadi.
+
+Bu ko‘pincha buferdan sehrli raqamlarni ([magic numbers](https://en.wikipedia.org/wiki/Magic_number_(programming)#Format_indicator)) qidirishni, dasturning boshlanishini (shuningdek buferdan) dekodlashga urinishni va/yoki fayl kengaytmasini (extension) tekshirishni o‘z ichiga oladi. Agar qayta ishlovchi haqiqatan ham formatni qo‘llab-quvvatlasa, u dasturni bajarishga tayyorlaydi va muvaffaqiyat kodini qaytaradi. Aks holda, u ishni erta to‘xtatadi va xato kodini qaytaradi. Yadro muvaffaqiyatli yakunlangan birinchi qayta ishlovchiga yetib borgunga qadar har bir binfmt’ning `load_binary()` funksiyasini sinab ko‘radi. Ba’zan ular rekursiv tarzda ishlaydi; masalan, agar skriptda interpretator ko‘rsatilgan bo‘lsa va o‘sha interpretatorning o‘zi ham skript bo‘lsa, ierarxiya quyidagicha ko‘rinish olishi mumkin: `binfmt_script` -> `binfmt_script` -> `binfmt_elf` (bu yerda ELF zanjir oxiridagi bajariluvchi formatdir).
+
+### Format tahlili: Skriptlar
+
+Linux qo‘llab-quvvatlaydigan ko‘plab formatlar orasida men alohida to‘xtalmoqchi bo‘lgan birinchi format bu `binfmt_script` dir.
+
+Siz qachonlardir [shebang](https://en.wikipedia.org/wiki/Shebang_(Unix)) o‘qiganmisiz yoki yozganmisiz? Ba’zi skriptlarning boshida interpretatorga olib boruvchi yo‘lni ko‘rsatadigan o‘sha satr-chi?
+
+
+```python
+#!/bin/bash
+```
+
+Men har doim bularni qobiq (shell) qayta ishlaydi deb o‘ylardim, lekin yo‘q! Shebang’lar aslida yadroning xususiyati bo‘lib, skriptlar ham boshqa barcha dasturlar kabi aynan o‘sha tizim chaqiruvlari bilan ishga tushiriladi. Kompyuterlar juda ajoyib.
+
+`fs/binfmt_script.c` fayl shebang bilan boshlanishini qanday tekshirishiga qarang:
+
+
+```python
+load_script @ fs/binfmt_script.c
+
+	/* Agar "#!" bilan boshlanmasa, uni bajarish bizning ishimiz emas. */
+	if ((bprm->buf[0] != '#') || (bprm->buf[1] != '!'))
+		return -ENOEXEC;
+```
+
+Agar fayl haqiqatan ham shebang bilan boshlansa, binfmt qayta ishlovchisi interpretator yo‘lini va yo‘ldan keyin bo‘shliq (probel) bilan ajratilgan har qanday argumentlarni o‘qiydi. U yangi qator belgisiga (newline) yoki bufer oxiriga yetib borganda o‘qishni to‘xtatadi.
+
+Bu yerda ikkita qiziqarli va biroz g‘alati narsa sodir bo‘ladi.
+
+**Birinchidan**, `linux_binprm` ichidagi faylning dastlabki 256 bayti bilan to‘ldirilgan o‘sha bufer esingizdami? U bajariluvchi fayl formatini aniqlash uchun ishlatiladi, biroq `binfmt_script` da shebang’lar ham aynan o‘sha buferdan o‘qib olinadi.
+
+Izlanishlarim davomida bufer uzunligini 128 bayt deb ta’riflagan bir maqolani o‘qib qoldim. O‘sha maqola chop etilganidan keyin qachondir bu uzunlik ikki barobarga oshirilib, 256 bayt qilingan! Sababiga qiziqib, Linux manba kodida `BINPRM_BUF_SIZE` ta’riflangan satr uchun Git blame (kodning ma’lum bir satrini tahrirlagan barcha kishilar jurnali) ni tekshirib ko‘rdim. Qarasam…
+
+![cpuga-siz-ni-qoshamiz](../images/cpuga-siz-ni-qoshamiz-10.webp)
+KOMPYUTERLAR JUDA AJOYIB!
+
+Shebang’lar yadro tomonidan qayta ishlanganligi va butun faylni yuklash o‘rniga buf dan olinganligi sababli, ular har doim `buf` uzunligigacha qirqiladi (kesiladi). Aftidan, 4 yil oldin kimningdir 128 belgidan uzun yo‘llarini yadro qirqib tashlayotgani asabiga tekkan va uning yechimi bufer hajmini ikki barobar oshirish orqali qirqish nuqtasini ikki barobar uzaytirish bo‘lgan! Bugun ham o‘zingizning Linux mashinangizda, agar 256 belgidan uzun shebang satriga ega bo‘lsangiz, 256 belgidan keyingi hamma narsa *butunlay yo‘qolib ketadi*.
+
+![cpuga-siz-ni-qoshamiz](../images/cpuga-siz-ni-qoshamiz-11.webp)
+
+Shu tufayli xatolik (bug) yuzaga kelganini tasavvur qiling. Kodingizni nima buzayotganining tub sababini topishga urinayotganingizni tasavvur qiling. Muammo chuqur Linux yadrosining ichida ekanligini kashf etganingizda o‘zingizni qanday his qilishingizni tasavvur qiling. Katta bir korxonada yo‘lning bir qismi sirli ravishda g‘oyib bo‘lganini kashf etadigan keyingi IT mutaxassisining holiga voy.
+
+**Ikkinchi g‘alati narsa:** `argv[0]` ning dastur nomi bo‘lishi shunchaki kelishuv ekanligi, chaqiruvchi tomon exec tizim chaqiruviga xohlagan `argv` ni uzatishi va u hech qanday tahrirsiz o‘tib ketishi esingizdami?
+
+Ma’lum bo‘lishicha, `binfmt_script `— `argv[0]` ni dastur nomi deb hisoblaydigan joylardan biridir. U har doim `argv[0]` ni olib tashlaydi va so‘ngra argv ning boshiga quyidagilarni qo‘shadi:
+
+- Interpretatorga olib boruvchi yo‘l
+- Interpretatorga beriladigan argumentlar
+- Skriptning fayl nomi
+
+> Misol: Argumentlarni o‘zgartirish
+Keling, `execve` chaqiruvining namunasini ko‘rib chiqaylik:
+
+
+```python
+// Argumentlar: filename, argv, envp
+execve("./script", [ "A", "B", "C" ], []);
+```
+Ushbu faraziy skript faylining birinchi satrida quyidagi shebang mavjud:
+
+```python
+script
+#!/usr/bin/node --experimental-module
+```
+
+Nihoyat Node interpretatoriga uzatiladigan o‘zgartirilgan `argv` quyidagicha bo‘ladi:
+
+
+```python
+[ "/usr/bin/node", "--experimental-module", "./script", "B", "C" ]
+```
+
+`argv` ni yangilagandan so‘ng, qayta ishlovchi `linux_binprm.interp` ni interpretator yo‘liga (bu holatda Node binar fayliga) o‘rnatish orqali faylni bajarishga tayyorlashni yakunlaydi. Nihoyat, dasturni bajarishga tayyorlash muvaffaqiyatli o‘tganini bildirish uchun 0 qaytaradi.
+
+### Format tahlili: Turli xil interpretatorlar (binfmt_misc)
+
+Yana bir qiziqarli qayta ishlovchi — bu `binfmt_misc`. U `/proc/sys/fs/binfmt_misc/ `manziliga maxsus fayl tizimini ulash (mount qilish) orqali foydalanuvchi makoni konfiguratsiyasi yordamida ba’zi cheklangan formatlarni qo‘shish imkoniyatini ochadi. Dasturlar o‘zlarining qayta ishlovchilarini qo‘shish uchun ushbu katalogdagi fayllarga maxsus formatlangan ma’lumotlarni yozishlari mumkin. Har bir konfiguratsiya yozuvi quyidagilarni belgilaydi:
+
+- Fayl formatini qanday aniqlash kerakligi. Bu ma’lum bir siljishdagi (offset) sehrli raqamni yoki qidiriladigan fayl kengaytmasini ko‘rsatishi mumkin.
+
+- Interpretator bajariluvchi fayliga olib boruvchi yo‘l. Interpretator argumentlarini ko‘rsatish imkoni yo‘q, shuning uchun agar ular kerak bo‘lsa, o‘rovchi skript (wrapper script) talab qilinadi.
+
+- Ba’zi konfiguratsiya bayroqlari (flags), jumladan `binfmt_misc` `argv` ni qanday yangilashini belgilovchi bayroq.
+
+Ushbu `binfmt_misc` tizimi ko‘pincha Java o‘rnatmalari tomonidan qo‘llaniladi; u .class fayllarini ularning `0xCAFEBABE` sehrli baytlari orqali, .jar fayllarini esa kengaytmasi orqali aniqlashga sozlangan bo‘ladi. Mening shaxsiy tizimimda Python bayt-kodini .pyc kengaytmasi orqali aniqlaydigan va uni tegishli qayta ishlovchiga uzatadigan handler sozlangan.
+
+Bu dastur o‘rnatuvchilariga (installers) yuqori imtiyozli yadro kodini yozishga hojat qoldirmasdan o‘z formatlarini qo‘llab-quvvatlashni qo‘shish imkonini beruvchi juda ajoyib usuldir.
+
+### Yakunda (Linkin Park qo‘shig‘i nazarda tutilmayapti)
+
+exec tizim chaqiruvi har doim ikki yo‘ldan biri bilan yakunlanadi:
+
+U oxir-oqibat o‘zi tushunadigan bajariluvchi binar formatga yetib boradi (balki skript interpretatorlarining bir necha qatlamlaridan o‘tgandan so‘ng) va o‘sha kodni ishga tushiradi. Bu nuqtada eski kod almashtirilgan bo‘ladi.
+
+… yoki u barcha imkoniyatlarini tugatadi va chaqiruvchi dasturga dumini qisgancha xato kodini qaytaradi.
+
+Agar siz qachonlardir Unix’ga o‘xshash tizimdan foydalangan bo‘lsangiz, terminaldan ishga tushirilgan shell skriptlarida shebang satri yoki `.sh` kengaytmasi bo‘lmasa ham ular baribir bajarilishini payqagan bo‘lishingiz mumkin. Agar qo‘lingizda Windows bo‘lmagan terminal bo‘lsa, buni hoziroq sinab ko‘rishingiz mumkin:
+
+
+```python
+$ echo "echo hello" > ./file
+$ chmod +x ./file
+$ ./file
+hello
+```
+
+(Bu yerda `chmod +x` OS’ga fayl bajariluvchi ekanligini aytadi. Aks holda uni ishga tushira olmaysiz.)
+
+Xo‘sh, nega shell skripti hech qanday ajratib turuvchi belgisiz ham shell skripti sifatida ishga tushadi? Axir yadroning format qayta ishlovchilarida bunday belgisi yo‘q shell skriptlarini aniqlashning aniq usuli bo‘lmasligi kerak-ku!
+
+Ma’lum bo‘lishicha, bu xatti-harakat yadroning bir qismi emas. Bu aslida sizning qobig‘ingiz (shell) xatolik holatini qayta ishlashining keng tarqalgan usulidir.
+
+Qobiq yordamida faylni ishga tushirganingizda va exec tizim chaqiruvi muvaffaqiyatsiz tugaganda, aksariyat qobiqlar fayl nomini birinchi argument sifatida berib qobiqni ishga tushirish orqali faylni shell skripti sifatida qayta bajarishga harakat qiladi. Bash odatda interpretator sifatida o‘zidan foydalanadi, ZSH esa sh nima bo‘lsa o‘shandan (odatda [Bourne shell](https://en.wikipedia.org/wiki/Bourne_shell)) foydalanadi.
+
+Bu xatti-harakatning bunchalik keng tarqalganiga sabab, u [POSIX](https://en.wikipedia.org/wiki/POSIX) — kodni Unix tizimlari o‘rtasida ko‘chma (portable) qilish uchun yaratilgan eski standartda belgilab qo‘yilgan. Ko‘pgina vositalar yoki operatsion tizimlar POSIX’ga qat’iy amal qilmasa-da, uning ko‘plab kelishuvlari hanuzgacha umumiy hisoblanadi.
+
+> Agar [exec tizim chaqiruvi] `[ENOEXEC]` xatosiga ekvivalent xato tufayli muvaffaqiyatsiz tugasa, qobiq (shell) birinchi operand sifatida buyruq nomi ko‘rsatilgan holda qobiqni chaqirishga va qolgan barcha argumentlarni yangi qobiqqa uzatishga teng bo‘lgan buyruqni bajarishi kerak. Agar bajariluvchi fayl matnli fayl bo‘lmasa, qobiq ushbu buyruqni bajarishni chetlab o‘tishi mumkin. Bunday holda u xato xabarini yozishi va 126 chiqish holatini (exit status) qaytarishi shart.
+
+Manba: [Shell Command Language, POSIX.1-2017](https://pubs.opengroup.org/onlinepubs/9699919799.2018edition/utilities/V3_chap02.html#tag_18_09_01_01)
+
+Kompyuterlar juda ajoyib!
