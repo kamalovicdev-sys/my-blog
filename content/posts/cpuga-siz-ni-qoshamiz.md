@@ -15,6 +15,7 @@ tags:
   - iOS
   - Linux
   - Windows
+cover: ../images/banner.webp
 draft: false
 ---
 
