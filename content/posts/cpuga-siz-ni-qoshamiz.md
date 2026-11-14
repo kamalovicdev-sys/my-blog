@@ -1,6 +1,6 @@
 ---
 title: CPU’ga “Siz”ni qo‘shamiz
-date: '2026-11-13'
+date: '2026-11-20'
 description: >-
   Kompyuteringizda biror dasturni ishga tushirganingizda aynan nimalar sodir
   bo‘lishiga qiziqqanmisiz? Ko‘p jarayonli ishlash (multiprocessing) qanday
