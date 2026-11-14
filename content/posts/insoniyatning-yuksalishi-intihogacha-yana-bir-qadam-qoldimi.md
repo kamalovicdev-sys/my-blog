@@ -1,6 +1,6 @@
 ---
 title: 'Insoniyatning Yuksalishi: intihogacha yana bir qadam qoldimi?'
-date: '2026-11-15'
+date: '2026-11-14'
 description: >-
   Biz o'zimizning yashash joyimiz bo'lgan Yerni kesib tashlayapmiz. Agar
   ekotizim (oziq-ovqat zanjiri) qulasa, bu zanjirning eng tepasida turgan Homo
