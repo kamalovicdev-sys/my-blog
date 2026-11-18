@@ -1,16 +1,15 @@
 ---
 title: 'Sun''iy Intellekt Inqilobi: Superintellekt sari yo''l (1-qism)'
-date: '2026-11-02'
+date: '2026-11-01'
 description: >-
-  Ushbu maqolani yozish uchun nega uch hafta vaqt ketganining sababi shuki,
-  Sun'iy Intellekt bo'yicha izlanishlar olib borar ekanman, o'qiyotgan
-  narsalarimga ishonolmasdim. SI (Sun'iy Intellekt) olamida yuz berayotgan
-  voqealar shunchaki muhim mavzu emas, balki kelajagimiz uchun ENG muhim mavzu
-  ekanini juda tez anglab yetdim. Shuning uchun bu haqda imkon qadar ko'proq
-  narsani o'rganishni xohladim va o'rgangach, bu butun vaziyatni va uning nega
-  bunchalik muhimligini to'liq tushuntirib beradigan maqola yozishga qaror
-  qildim. Kutilganidek, u juda uzun bo'lib ketdi, shuning uchun uni ikki qismga
-  bo'ldim.
+  Ushbu maqolani yozishimga uch hafta ketganining sababi — sun’iy intellekt
+  haqidagi tadqiqotlarni o‘qib borar ekanman, ko‘z o‘ngimda turgan ma’lumotlarga
+  ishona olmadim. Sun’iy intellekt sohasida sodir bo‘layotgan voqealar shunchaki
+  muhim mavzu emas, balki kelajagimiz uchun eng muhim masala ekanini juda tez
+  angladim. Shu bois bu haqda imkon qadar ko‘proq ma’lumot olishni istadim. Buni
+  uddalagach esa, butun vaziyatni va uning nega bunchalik muhimligini chindan
+  ham tushuntirib beradigan maqola yozishga qaror qildim. Tabiiyki, maqola
+  haddan tashqari uzun bo‘lib ketdi, shuning uchun uni ikki qismga ajratdim.
 tags:
   - ai
 series: Sun'iy intellekt inqilobi
@@ -23,7 +22,7 @@ draft: false
 **Tarjima tili:** o‘zbek tili   
 **Manba:** [Wait But Why — The Artificial Intelligence Revolution: Part 1](https://waitbutwhy.com/2015/01/artificial-intelligence-revolution-1.html)
 
-> *Ushbu maqolani yozish uchun nega uch hafta vaqt ketganining sababi shuki, Sun'iy Intellekt bo'yicha izlanishlar olib borar ekanman, o'qiyotgan narsalarimga ishonolmasdim. SI (Sun'iy Intellekt) olamida yuz berayotgan voqealar shunchaki muhim mavzu emas, balki kelajagimiz uchun ENG muhim mavzu ekanini juda tez anglab yetdim. Shuning uchun bu haqda imkon qadar ko'proq narsani o'rganishni xohladim va o'rgangach, bu butun vaziyatni va uning nega bunchalik muhimligini to'liq tushuntirib beradigan maqola yozishga qaror qildim. Kutilganidek, u juda uzun bo'lib ketdi, shuning uchun uni ikki qismga bo'ldim.*
+> *Izoh: Ushbu maqolani yozishimga uch hafta ketganining sababi — sun’iy intellekt haqidagi tadqiqotlarni o‘qib borar ekanman, ko‘z o‘ngimda turgan ma’lumotlarga ishona olmadim. Sun’iy intellekt sohasida sodir bo‘layotgan voqealar shunchaki muhim mavzu emas, balki kelajagimiz uchun eng muhim masala ekanini juda tez angladim. Shu bois bu haqda imkon qadar ko‘proq ma’lumot olishni istadim. Buni uddalagach esa, butun vaziyatni va uning nega bunchalik muhimligini chindan ham tushuntirib beradigan maqola yozishga qaror qildim. Tabiiyki, maqola haddan tashqari uzun bo‘lib ketdi, shuning uchun uni ikki qismga ajratdim. *
 
 ---
 
