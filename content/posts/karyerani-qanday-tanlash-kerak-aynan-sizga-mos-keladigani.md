@@ -6,6 +6,11 @@ description: >-
   nimani xohlayotganingizni va bugungi tez o‘zgaruvchan karyera manzarasini aks
   ettiradigan karyera qarorlarini qabul qilishda yordam beradigan fikrlash
   tizimi ...
+tags:
+  - future
+  - psychology
+  - Critical Thinking
+  - Philosophy
 cover: ../images/opportunity-cost-2.webp
 draft: false
 ---
