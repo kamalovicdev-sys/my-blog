@@ -6,6 +6,10 @@ date: '2026-11-20'
 description: >-
   Fountain o‘zida muhandislik, moliya va mijozlar bilan ishlash kabi
   yo‘nalishlarda 180 dan ortiq agentdan foydalanishini aytadi...
+tags:
+  - ai
+  - algorithm
+  - future
 draft: false
 ---
 
