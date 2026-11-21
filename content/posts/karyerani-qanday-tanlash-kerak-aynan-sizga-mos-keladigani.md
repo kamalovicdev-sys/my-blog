@@ -14,10 +14,6 @@ Bu — men anchadan beri yozmoqchi bo‘lib yurgan mavzu: karyera haqida post. J
  
 Bu post aslida karyera bo‘yicha maslahat emas — bu sizning kimligingizni, nimani xohlayotganingizni va bugungi tez o‘zgaruvchan karyera manzarasini aks ettiradigan karyera qarorlarini qabul qilishda yordam beradigan fikrlash tizimi. Siz bu borada mutaxassis emassiz, lekin o‘zingizga nima yaxshiligini aniqlashga hammamizning o‘zini bilmaydigan keksa amakimizdan ancha ko‘proq vakolatlisiz. Karyerasini hali boshlamagan va hayotda nima qilishni bilmaydiganlarga ham, karyerasining o‘rtasida turib, to‘g‘ri yo‘ldamanmi, deb ikkilanayotganlarga ham bu post fikrlash jarayonini “qayta yuklash” va biroz oydinlik topishga yordam bersa, deb umid qilaman.
  
-— Tim
- 
-PDF: Bu postni chop etmoqchi yoki internetsiz o‘qimoqchi bo‘lsangiz, PDF variantini tanlagan ma’qul. Uni shu yerdan sotib olishingiz mumkin.
- 
 ---
  
 ## Hayot yo‘lingiz hozirgacha
