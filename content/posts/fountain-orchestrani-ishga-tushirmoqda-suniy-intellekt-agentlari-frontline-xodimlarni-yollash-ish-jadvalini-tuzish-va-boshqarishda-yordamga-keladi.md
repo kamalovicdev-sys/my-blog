@@ -2,7 +2,7 @@
 title: >-
   Fountain Orchestra’ni ishga tushirmoqda: sun’iy intellekt agentlari frontline
   xodimlarni yollash, ish jadvalini tuzish va boshqarishda yordamga keladi
-date: '2026-11-21'
+date: '2026-11-20'
 description: >-
   Fountain o‘zida muhandislik, moliya va mijozlar bilan ishlash kabi
   yo‘nalishlarda 180 dan ortiq agentdan foydalanishini aytadi...
