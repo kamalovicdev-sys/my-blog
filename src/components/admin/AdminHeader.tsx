@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ExternalLink, LogOut, Plus } from "lucide-react";
 import Logo from "@/components/Logo";
+import DeployButton from "@/components/admin/DeployButton";
 
 const ICON_BUTTON = "flex size-9 items-center justify-center rounded-lg text-gray-400 hover:bg-white/5 hover:text-white transition";
 
@@ -16,9 +17,11 @@ export default function AdminHeader({ login }: { login: string }) {
           </span>
         </Link>
         <nav className="flex items-center gap-1 sm:gap-2">
-          <Link href="/admin/new" className="mr-1 flex items-center gap-1.5 whitespace-nowrap rounded-lg bg-white px-3 py-1.5 text-sm font-bold text-background hover:bg-gray-200 transition">
-            <Plus className="size-4" strokeWidth={2.5} />
-            New post
+          <DeployButton />
+          {/* Telefonda faqat belgi: Deploy tugmasi bilan birga chiqish tugmasi ekrandan surilib ketmasin */}
+          <Link href="/admin/new" title="New post" className="mr-1 flex items-center gap-1.5 whitespace-nowrap rounded-lg bg-white px-2 py-1.5 text-sm font-bold text-background hover:bg-gray-200 transition sm:px-3">
+            <Plus className="size-5 sm:size-4" strokeWidth={2.5} />
+            <span className="max-sm:sr-only">New post</span>
           </Link>
           <a href="/" target="_blank" rel="noopener noreferrer" title="View site" aria-label="View site" className={`${ICON_BUTTON} max-sm:hidden`}>
             <ExternalLink className="size-[18px]" />

@@ -1,4 +1,5 @@
 import path from 'path';
+import { imageCommitMessage } from '@/lib/admin/commits';
 import { errorResponse, fileExists, putFile } from '@/lib/admin/github';
 import { authorizeRequest } from '@/lib/admin/session';
 import { IMAGE_CONTENT_TYPES } from '@/lib/images';
@@ -28,8 +29,7 @@ export async function POST(request: Request) {
       fileName = `${baseName}-${i}${extension}`;
     }
 
-    // Rasm o'zi saytni o'zgartirmaydi: u post bilan birga saqlanganda build bo'ladi
-    await putFile(session.accessToken, `${IMAGES_DIRECTORY}/${fileName}`, bytes.toString('base64'), `Add image: ${fileName} [skip netlify]`);
+    await putFile(session.accessToken, `${IMAGES_DIRECTORY}/${fileName}`, bytes.toString('base64'), imageCommitMessage(fileName));
     return Response.json({ markdownPath: `../images/${fileName}` });
   } catch (error) {
     return errorResponse(error);

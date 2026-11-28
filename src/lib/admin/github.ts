@@ -97,6 +97,19 @@ export async function deleteFile(token: string, filePath: string, sha: string, m
   });
 }
 
+export type CommitSummary = { sha: string; message: string; date: string };
+
+// Branch'dagi oxirgi commitlar, yangisi oldin
+export async function listRecentCommits(token: string, limit: number): Promise<CommitSummary[]> {
+  const query = new URLSearchParams({ sha: GITHUB_REPO.branch, per_page: String(limit) });
+  const commits = await (await request(token, `/repos/${GITHUB_REPO.owner}/${GITHUB_REPO.name}/commits?${query}`)).json();
+  return commits.map((item: { sha: string; commit: { message: string; committer?: { date?: string }; author?: { date?: string } } }) => ({
+    sha: item.sha,
+    message: item.commit.message,
+    date: item.commit.committer?.date ?? item.commit.author?.date ?? '',
+  }));
+}
+
 // API xatosini foydalanuvchiga tushunarli javobga aylantiradi
 export function errorResponse(error: unknown) {
   if (error instanceof GitHubError) {

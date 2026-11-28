@@ -441,7 +441,7 @@ export default function PostEditor({ fileName, sha, slug: initialSlug, initial, 
       const response = await fetch("/api/admin/posts", {
         method: "POST",
         headers: JSON_HEADERS,
-        body: JSON.stringify({ fileName: saved.fileName, sha: saved.sha, wasDraft: saved.draft, slug, form: submitted }),
+        body: JSON.stringify({ fileName: saved.fileName, sha: saved.sha, wasDraft: saved.draft, wasDate: saved.form.date, slug, form: submitted }),
       });
       const result = await response.json();
       if (response.status === 401) {
@@ -467,9 +467,11 @@ export default function PostEditor({ fileName, sha, slug: initialSlug, initial, 
       } else if (wasPublished && scheduledFor) {
         const text = wasScheduled ? `Saved. The post goes live on ${formatDate(scheduledFor)}.` : `Saved. The post is hidden from the site until ${formatDate(scheduledFor)}.`;
         setNotice({ kind: "success", text });
+      } else if (wasScheduled) {
+        setNotice({ kind: "success", text: "Published. The post will be live in about a minute.", link: { href: `/posts/${result.slug}`, label: "View post ↗" } });
       } else if (wasPublished) {
-        const text = wasScheduled ? "Published. The post will be live in about a minute." : "Updated. The site will refresh in about a minute.";
-        setNotice({ kind: "success", text, link: { href: `/posts/${result.slug}`, label: "View post ↗" } });
+        // Saytdagi postni tahrirlash build qilmaydi: bir nechta o'zgarish Posts sahifasidagi Deploy bilan birga chiqadi
+        setNotice({ kind: "success", text: "Saved. The site still shows the old version: click Deploy on the Posts page when you are done editing." });
       }
       return true;
     } catch (error) {
@@ -489,7 +491,7 @@ export default function PostEditor({ fileName, sha, slug: initialSlug, initial, 
       const response = await fetch("/api/admin/posts", {
         method: "DELETE",
         headers: JSON_HEADERS,
-        body: JSON.stringify({ fileName: saved.fileName, sha: saved.sha, title: form.title, wasDraft: saved.draft }),
+        body: JSON.stringify({ fileName: saved.fileName, sha: saved.sha, title: form.title, wasDraft: saved.draft, wasDate: saved.form.date }),
       });
       const result = await response.json();
       if (!response.ok) throw new Error(result.error);
@@ -602,7 +604,9 @@ export default function PostEditor({ fileName, sha, slug: initialSlug, initial, 
               disabled={busy !== null}
               title={
                 isPublished
-                  ? `Save changes to the ${isScheduled ? "scheduled" : "live"} post (Ctrl+S)`
+                  ? isScheduled
+                    ? "Save changes to the scheduled post (Ctrl+S)"
+                    : "Save changes. They go live when you click Deploy on the Posts page (Ctrl+S)"
                   : willSchedule
                     ? "Publish automatically on the chosen date"
                     : undefined
